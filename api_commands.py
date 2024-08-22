@@ -1,0 +1,20 @@
+#System
+GET_API_VERSION_REQ     = '\x26'
+GET_API_VERSION_CONF    = '\x27'
+
+GET_APPL_VERSION_REQ    = '\x30'
+GET_APPL_VERSION_CONF   = '\x31'
+
+#Interface (USB/BT)
+QIU_REGISTER_REQ        = '\x32'
+QIU_REGISTER_CONF       = '\x33'
+
+QIU_RELEASE_REQ         = '\34'
+QIU_RELEASE_CONF        = '\35'
+
+QIU_COMMAND_REJECT_CONF = '\x37'
+
+#Protected Commands
+QIU_REGISTER_RETRIGGER_REQ = '\x38'
+QIU_REGISTER_RETRIGGER_CONF = '\x39'
+#Power/Akku
