@@ -27,18 +27,26 @@ class Qiup():
             print("Found more than 1 FTDI device:")
             print(dev)
     
-    def _send_command(self, command):
-        command = self.STX + command + self.ETX
+    def _send_command(self, command, data=None):
+        if data==None:
+            command = self.STX + command + self.ETX
+        else:
+            command = self.STX + command
+            for dat in data:
+                command = command + bytes(dat)
+            command = command + self.ETX
         if self.debug:
-            print(f"Sending byte {command}")
+            print(f"{command} send")
         self.serial.write(command)
         data = self.serial.read_until(b'\x03')
         if self.debug:
-            print(f"Received : {data}")
+            print(f"{data} received")
         return data
     
     def get_api_version(self):
         version_raw = self._send_command(GET_API_VERSION_REQ)
+        if version_raw[1]!= ord(GET_API_VERSION_CONF):
+            print("Problem with API version request!")
         version_raw = version_raw.rstrip(b'\x03').lstrip(b'\x02')
         major = version_raw[1:5]
         minor = version_raw[5:9]
@@ -49,3 +57,25 @@ class Qiup():
         print(f"API version on device : {version_string}")
         return version_string
         
+    def get_appl_version(self):
+        version_raw = self._send_command(GET_APPL_VERSION_REQ)
+        print(version_raw)
+        if version_raw[1] != ord(GET_APPL_VERSION_CONF):
+            print("Problem with Application version request!")
+        version_raw = version_raw.rstrip(b'\x03').lstrip(b'\x02')
+        major = version_raw[1:5]
+        minor = version_raw[5:9]
+        patch = version_raw[9:13]
+        build = version_raw[13:17]
+        version_string = f"{int(major, 16)}.{int(minor, 16)}.{int(patch, 16)}.{int(build, 16)}"
+        print(f"Application version: {version_string}")
+        return version_string
+
+    def register(self ):
+        if self.debug:
+            state = self._send_command(QIU_REGISTER_REQ, [1])
+        else:
+            state = self._send_command(QIU_REGISTER_REQ, [0])
+    def release(self):
+        state = self._send_command(QIU_RELEASE_REQ)
+        #print(state)
