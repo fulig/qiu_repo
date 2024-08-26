@@ -1,12 +1,12 @@
 from pyftdi.ftdi import Ftdi
 import pyftdi.serialext
 from api_commands import * 
-from api_return_values import *
 
 class Qiup():
     def __init__(self, url=None, debug=False, baudrate=115200):
         self.data = []
-        self.url = "ftdi://ftdi:ft-x:DQ00QN2Q/1"
+        #self.url = "ftdi://ftdi:ft-x:DQ00QN2Q/1"
+        self.url = "ftdi://ftdi:ft-x:DK0HGAC5/1"
         self.baudrate = baudrate
         self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate)
         self.STX = b'\x02'
@@ -28,7 +28,18 @@ class Qiup():
             print("Found more than 1 FTDI device:")
             print(dev)
     
-    def _send_command(self, command, data=None):
+    def check_reject(self, answer):
+        state = int(answer[:2], 16)
+        connect_state = int(answer[2:4], 16)
+        cmd_state = int(answer[4:6], 16)
+        command = answer[6:]
+        print("------------------------------")
+        print(f"Wrong API command {command}")
+        self.api_return(state)
+        self.check_connection(connect_state)
+        print("------------------------------")
+
+    def send_command(self, command, data=None):
         if data==None:
             command = self.STX + command + self.ETX
         else:
@@ -72,12 +83,27 @@ class Qiup():
                 print("QP_API_ERROR_FLASH_SECTOR_RANGE_MAX")
             case 6:
                 print("QP_API_ERROR_FLASH_SECTOR_APPLPROTECTION_RANGE")
-        
         return
-
+    
+    def charge_return(self, state):
+        match state:
+            case b'0A':
+                mode = "No Battery."
+            case b'0B':
+                mode = "Not Charging"
+            case b'0C':
+                mode = "PRE/FAST Charging"
+            case b'0D':
+                mode = "TOP-OFF Charging"
+            case b'0E':
+                mode = "Maintainance"
+            case b'0F':
+                mode = "Fault"
+        print(f"Charging info : {mode}")
+        return state
 
     def get_api_version(self):
-        version_raw = self._send_command(GET_API_VERSION_REQ)
+        version_raw = self.send_command(GET_API_VERSION_REQ)
         if version_raw[0]!= ord(GET_API_VERSION_CONF):
             print("Problem with API version request!")
         version_raw = version_raw
@@ -90,7 +116,7 @@ class Qiup():
         return version_string
         
     def get_appl_version(self):
-        version_raw = self._send_command(GET_APPL_VERSION_REQ)
+        version_raw = self.send_command(GET_APPL_VERSION_REQ)
         if version_raw[0] != ord(GET_APPL_VERSION_CONF):
             print("Problem with Application version request!")
         major = version_raw[1:5]
@@ -101,11 +127,8 @@ class Qiup():
         print(f"Application version: {version_string}")
         return version_string
 
-    def register(self ):
-        if self.debug:
-            answer = self._send_command(QIU_REGISTER_REQ, [1])
-        else:
-            answer = self._send_command(QIU_REGISTER_REQ, [0])
+    def register(self, mode=1 ):
+        answer = self.send_command(QIU_REGISTER_REQ, [mode])
         if answer[0] != ord(QIU_REGISTER_CONF):
             print("Problem registering QIUP.")
         state = answer[1:3]
@@ -121,7 +144,7 @@ class Qiup():
         return connect_state
 
     def release(self):
-        answer = self._send_command(QIU_RELEASE_REQ)
+        answer = self.send_command(QIU_RELEASE_REQ)
         if answer[0] != ord(QIU_RELEASE_CONF):
             print("Problem while releasing communication!")
         state = answer[1:3]
@@ -130,18 +153,57 @@ class Qiup():
         self.check_connection(connect_state)
         return connect_state
     
-    def trigger_reject(self):
-        self._send_command(b'\x01')
-    
-
-
-    def check_reject(self, answer):
-        state = int(answer[:2], 16)
-        connect_state = int(answer[2:4], 16)
-        cmd_state = int(answer[4:6], 16)
-        command = answer[6:]
-        print("------------------------------")
-        print(f"Wrong API command {command}")
+    def _trigger_reject(self):
+        self.send_command(b'\x01')
+        
+    def register_retrigger(self):
+        answer = self.send_command(QIU_REGISTER_RETRIGGER_REQ)
+        if answer[0] != ord(QIU_REGISTER_RETRIGGER_CONF):
+            print("Problem while retriggering.")
+        state = answer[1:3]
+        connect_state = int(answer[3:5])
+        time_remaining = int(answer[5:], 16)
         self.api_return(state)
         self.check_connection(connect_state)
-        print("------------------------------")
+        if time_remaining == 255:
+            print("More than 2.5 s remaining until release.")
+        else:
+            print(f"{(time_remaining * 8 )/1024} secounds until Release.")
+        return time_remaining
+
+##########################################################################
+# Docu überprüfen !! Werte für die unterschiedlichen Voltages nicht vorhande (mit X eingetragen).
+    def control_power(self, state, voltage_select):
+        answer = self.send_command(POWER_CONTROL_REQ, [state, voltage_select])
+        print(answer)
+        if answer[0] != POWER_CONTROL_CONF:
+            print("Problem while controlling power.")
+    
+    def get_voltage(self, voltage_select):
+        answer = self.send_command(GET_VOLTAGE_REQ, [voltage_select])
+        print(answer)
+        if answer[0] != ord(GET_VOLTAGE_CONF):
+            print(f"Problem while requesting voltage {voltage_select}")
+####################################################################
+    
+    def get_charge_state(self):
+        answer = self.send_command(GET_CHARGE_STATE_REQ)
+        if answer[0] != ord(GET_CHARGE_STATE_CONF):
+            print("Problem while requesting charge) state.")
+        self.charge_return(answer[1:3])
+    
+    def control_irled_ext(self, state):
+        answer = self.send_command(IRLED_EXT_CONTROL_REQ, [state])
+        if answer[0] != ord(IRLED_EXT_CONTROL_CONF):
+            print("Problem with extern IRLED control.")
+    
+    def control_irled_intern(self, state):
+        answer = self.send_command(IRLED_INT_CONTROL_REQ, [state])
+        if answer[0] != ord(IRLED_INT_CONTROL_CONF):
+            print("Problem with extern IRLED control.")
+    
+    def dim_led(self, rgb, dim_value):
+        answer = self.send_command(DIM_LED_REQ, [ord(rgb), dim_value])
+        print(answer)
+        if answer[0] != ord(DIM_LED_CONF):
+            print(f"Problem while dimming {rgb} LED")
