@@ -47,4 +47,64 @@ EARCLIP_STATE_CONF = '\x11'
 #Flash
 FLASH_READ_DATA_REQ = '\x12'
 FLASH_READ_DATA_CONF = '\x13'
+FLASH_WRITE_DATA_REQ = '\x014'
+FLASH_WRITE_DATA_CONF = '\x015'
+FLASH_ERASE_SECTOR_REQ = '\x16'
+FLASH_ERASE_SECTOR_CONF = '\x17'
+
+# Measurement/Parameters
+# Start/Stop measurement
+PULSE_MEAS_CONTROL_REQ = '\x1A'
+PULSE_MEAS_CONTROL_CONF = '\x1B'
+# Receive 16 Messwerte
+PULSE_MEAS_DATA_16_IND = '\x1D'
+# Request breathing rate
+GET_RESP_RATE_REQ = b'\x1E'
+GET_RESP_RATE_CONF = b'\x1F'
+# Set breathing rate
+SET_RESP_RATE_REQ = b'\x20'
+SET_RESP_RATE_CONF = b'\x21'
+# Get gain
+GET_GAIN_REQ = b'\x22'
+GET_GAIN_CONF = b'\x23'
+# Set gain
+SET_GAIN_REQ = b'\x24'
+SET_GAIN_CONF = b'\x25'
+
+# System
+# Get date time
+GET_DATETIME_REQ = b'\x28'
+GET_DATETIME_CONF = b'\x29'
+# Set date time
+SET_DATETIME_REQ = b'\x2A'
+SET_DATETIME_CONF = b'\x2B'
+# Prepare firmware update
+PREPARE_FW_UPDATE_APPL_REQ = b'\x3C'
+PREPARE_FW_UPDATE_APPL_CONF = b'\x3D'
+PREPARE_FW_UPDATE_SYSTEM_REQ = b'\x3E'
+PREPARE_FW_UPDATE_SYSTEM_CONF = b'\x3F'
+
+# HMI
+# Play Sound
+PLAY_SOUND_REQ = b'\x2C'
+PLAY_SOUND_CONF = b'\x2D'
+# Push button state
+PUSHBUTTON_STATE_REQ = b'\x54'
+PUSHBUTTON_STATE_CONF = b'\x55'
+# Accelerator state
+GET_ACCEL_RAW_REQ = b'\x56'
+GET_ACCEL_RAW_CONF = b'\x57'
+
+# Status/Events/Notifications
+GET_EVENTSTATUS_VECTOR_REQ = b'\x2E'
+GET_EVENTSTATUS_VECTOR_CONF = b'\x2F'
+
+# System Status Vector
+GET_SYSTEM_STATUS_REQ = b'\x48'
+GET_SYSTEM_STATUS_CONF = b'\x49'
+
+#Reserved Events Teletronic
+# There are 16 Samples in Measurement queue available...
+PULSE_MEAS_16_TIMER_IND = b'\xD1'
+
 
