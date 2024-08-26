@@ -18,15 +18,11 @@ LED_1 = b'\x02\x0C5\x03'
 version = b'\x02\x26\x03'
 REGISTER = b'\x02\x32\x00\x03'
 RELEASE = b'\x02\x34\x03'
+REJECT = b'\x02\x01\x03'
 #old_url = ftdi://ftdi:ft-x:DK0HGAC5/1
 url = "ftdi://ftdi:ft-x:DQ00QN2Q/1"
 port = pyftdi.serialext.serial_for_url(url, baudrate=baudrate)
-print(REGISTER)
-port.write(REGISTER)
-data=port.read_until(b'\x03')
-print(data)
-print(RELEASE)
-port.write(RELEASE)
+port.write(REJECT)
 #data = port.read()
 data=port.read_until(b'\x03')
 print(data)

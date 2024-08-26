@@ -9,8 +9,8 @@ GET_APPL_VERSION_CONF   = b'\x31'
 QIU_REGISTER_REQ        = b'\x32'
 QIU_REGISTER_CONF       = b'\x33'
 
-QIU_RELEASE_REQ         = b'\34'
-QIU_RELEASE_CONF        = b'\35'
+QIU_RELEASE_REQ         = b'\x34'
+QIU_RELEASE_CONF        = b'\x35'
 
 QIU_COMMAND_REJECT_CONF = b'\x37'
 
