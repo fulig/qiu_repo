@@ -16,8 +16,11 @@ Ftdi.show_devices()
 #ping = b'\x02p5EA0547BFE2F2F\x03'
 LED_1 = b'\x02\x0C5\x03'
 version = b'\x02\x26\x03'
-#
-port = pyftdi.serialext.serial_for_url('ftdi://ftdi:ft-x:DK0HGAC5/1', baudrate=baudrate)
+#old_url = ftdi://ftdi:ft-x:DK0HGAC5/1
+url = "ftdi://ftdi:ft-x:DQ00QN2Q/1"
+port = pyftdi.serialext.serial_for_url(url, baudrate=baudrate)
+print(LED_1)
+print(type(LED_1))
 port.write(LED_1)
 #data = port.read()
 data=port.read_until(b'\x03')
