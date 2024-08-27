@@ -32,12 +32,12 @@ port.write(REGISTER)
 data=port.read_until(b'\x03')
 #print(data)
 
-for i in range(255):
-    send_data = b'\x02' b'\x5A' + i.to_bytes(1) + b'\x03'
-    print(f"Send : {send_data}")
-    port.write(send_data)
-    rec_data = port.read_until(b'\x03').lstrip(b'\x02').rstrip(b'\x03')
-    print(rec_data)
+#for i in range(255):
+#    send_data = b'\x02' b'\x5A' + i.to_bytes(1) + b'\x03'
+#    print(f"Send : {send_data}")
+#    port.write(send_data)
+#    rec_data = port.read_until(b'\x03').lstrip(b'\x02').rstrip(b'\x03')
+#    print(rec_data)
     #print(f"Recv : {rec_data}")
     #if rec_data[0] != 55:
     #    print(send_data)
