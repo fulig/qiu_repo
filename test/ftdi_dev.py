@@ -7,9 +7,8 @@ import numpy as np
 STX = b'\x02'
 ETX = 0x03
 ping = 0x70
-
-
 baudrate = 115200
+print(b'\x5B')
 
 Ftdi.show_devices()
 #ping_1 = b'\x02p09933DDC9AE1E1\x03'
@@ -24,13 +23,15 @@ VOLTAGE_0=b'\x02\x5A\x0A\x03'
 VOLTAGE_1=b'\x02\x5A\x01\x03'
 VOLTAGE_2=b'\x02\x5A\x02\x03'
 
-#old_url = ftdi://ftdi:ft-x:DK0HGAC5/1
+#url = "ftdi://ftdi:ft-x:DQ00QN2Q/1"
 url = "ftdi://ftdi:ft-x:DK0HGAC5/1"
 port = pyftdi.serialext.serial_for_url(url, baudrate=baudrate)
-port.write(REGISTER)
+POWER = b'\x02\x5A\x01\x05\x03'
+print(POWER)
+port.write(POWER)
 #data = port.read()
 data=port.read_until(b'\x03')
-#print(data)
+print(data)
 
 #for i in range(255):
 #    send_data = b'\x02' b'\x5A' + i.to_bytes(1) + b'\x03'

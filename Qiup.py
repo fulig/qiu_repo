@@ -113,9 +113,8 @@ class Qiup():
             print(f"QIUP : API version on device {version_string}")
             return version_string
         else:
-            print("QIUP : Error with API version request!")
+            print("QIUP : Error requesting API version.")
             return None
-        
         
     def get_appl_version(self):
         version_raw = self.send_command(GET_APPL_VERSION_REQ)
@@ -134,9 +133,9 @@ class Qiup():
     def register(self, mode=1 ):
         answer = self.send_command(QIU_REGISTER_REQ, [mode])
         if answer[0] == ord(QIU_REGISTER_CONF):
-            state = answer[1:3]
+            state = int(answer[1:3],16)
             connect_state = int(answer[3:], 16)
-            self.api_return(int(state, 16))
+            self.api_return(state)
             match connect_state:
                 case 0:
                     print("QIUP : No Connection with QIU+.")
@@ -184,7 +183,7 @@ class Qiup():
 # Docu überprüfen !! Werte für die unterschiedlichen Voltages nicht vorhande (mit X eingetragen).
     def control_power(self, state, voltage_select):
         answer = self.send_command(POWER_CONTROL_REQ, [state, voltage_select])
-        if answer[0] == POWER_CONTROL_CONF:
+        if answer[0] == ord(POWER_CONTROL_CONF):
             print(answer)
         else:
             print("QIUP : Error while controlling power.")
