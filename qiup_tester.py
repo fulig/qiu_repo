@@ -3,7 +3,7 @@ from Qiup import Qiup
 import time
 from voltages import *
 
-qiup = Qiup(debug=False)
+qiup = Qiup(debug=True)
 
 
 #print("API Version")
