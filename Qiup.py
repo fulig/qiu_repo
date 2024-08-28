@@ -39,14 +39,8 @@ class Qiup():
         self.check_connection(connect_state)
         print("QIUP : ------------------------------")
 
-    def send_command(self, command, data=None):
-        if data==None:
-            command = self.STX + command + self.ETX
-        else:
-            command = self.STX + command
-            for dat in data:
-                command = command + dat.to_bytes(1)
-            command = command + self.ETX
+    def send_command(self, command):
+        command = self.STX + command + self.ETX
         self.serial.write(command)
         data = self.serial.read_until(b'\x03')
         if self.debug:
@@ -130,8 +124,11 @@ class Qiup():
             print("QIUP : Error with Application version request!")
             return None
 
-    def register(self, mode=1 ):
-        answer = self.send_command(QIU_REGISTER_REQ, [mode])
+    def register(self, mode=0 ):
+        send_reg = bytearray(QIU_REGISTER_REQ)
+        send_reg.extend(b'\x30')
+        send_reg.append(ord(str(mode)))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(QIU_REGISTER_CONF):
             state = int(answer[1:3],16)
             connect_state = int(answer[3:], 16)
@@ -180,11 +177,13 @@ class Qiup():
             print("QIUP : Error while retriggering.")
             return None
 ##########################################################################
-# Docu überprüfen !! Werte für die unterschiedlichen Voltages nicht vorhande (mit X eingetragen).
+# Not working!?
     def control_power(self, state, voltage_select):
         answer = self.send_command(POWER_CONTROL_REQ, [state, voltage_select])
         if answer[0] == ord(POWER_CONTROL_CONF):
-            print(answer)
+            power_return = answer[1:]
+            print(power_return)
+
         else:
             print("QIUP : Error while controlling power.")
             return None

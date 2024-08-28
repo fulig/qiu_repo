@@ -3,7 +3,7 @@ from Qiup import Qiup
 import time
 from voltages import *
 
-qiup = Qiup(debug=True)
+qiup = Qiup(debug=False)
 
 
 #print("API Version")
@@ -16,12 +16,13 @@ if qiup.register(0) == 1:
     qiup.release()
     print("Retry register..")
     qiup.register(0)
-time.sleep(1)
-qiup.register_retrigger()
-qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
-qiup.get_voltage(QP_API_ACCU_VOLTAGE)
-qiup.get_voltage(QP_API_USB_VOLTAGE)
-qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)
+#time.sleep(1)
+#qiup.register_retrigger()
+#qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
+#qiup.dim_led("R", 65)
+#qiup.get_voltage(QP_API_ACCU_VOLTAGE)
+#qiup.get_voltage(QP_API_USB_VOLTAGE)
+#qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)
 #qiup.ledbar_control(2)
 #qiup._trigger_reject()
 #time.sleep(14)
