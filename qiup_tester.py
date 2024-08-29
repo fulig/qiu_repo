@@ -3,7 +3,8 @@ from Qiup import Qiup
 import time
 from voltages import *
 
-qiup = Qiup(debug=True)
+qiup = Qiup(debug=False)
+#qiup = Qiup(debug=True)
 
 
 #print("API Version")
@@ -18,18 +19,42 @@ if qiup.register(0) == 1:
     qiup.register(0)
 #time.sleep(1)
 #qiup.register_retrigger()
-#qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
-#qiup.dim_led("R", 65)
+qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
+qiup.control_power(1,QP_API_ANALOG_SUPPLY_VOLTAGE)
+#qiup.control_power(0,QP_API_LED_SUPPLY_VOLTAGE)
+#qiup.control_power(0,QP_API_ANALOG_SUPPLY_VOLTAGE)
+
 #qiup.get_voltage(QP_API_ACCU_VOLTAGE)
 #qiup.get_voltage(QP_API_USB_VOLTAGE)
 #qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)
-#qiup.ledbar_control(2)
-#qiup._trigger_reject()
-#time.sleep(14)
-#qiup.register_retrigger()
+#qiup.get_voltage(10)
+
+#qiup.get_charge_state() # --> Takes longer to request..???
+
+#qiup.control_irled_ext(0)
+#qiup.control_irled_ext(1)
+
+#qiup.control_irled_intern(1)
+#qiup.control_irled_intern(0)
+#qiup.dim_led('R', 0)
+#qiup.dim_led('G', 0)
+#qiup.dim_led('B', 0)
+#while True:
+#    for i in range(65):
+#        qiup.dim_led('B', i)
+#        time.sleep(2/(65))
+#    for i in range(65):
+#        qiup.dim_led('B', 65-i)
+#        time.sleep(2/(65))
+
+qiup.ledbar_control([0,1,0,0,1,1,0,0])
+
+qiup.check_earclip()
+qiup.read_flash(8112, 3)
+
 #print("Gain")
 #qiup.get_gain()
-#qiup.read_flash(4444, 1)
+
 #data = bytearray()
 #data.extend(b'\x00\x01\x02\x03\x04\x05\x06\x07\x06\x09\xAA\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
 #qiup.write_flash(44, 44, 1, data)
@@ -53,8 +78,7 @@ if qiup.register(0) == 1:
 #qiup.dim_led("G", 65)
 #qiup.control_power(1, 0)
 #qiup.get_charge_state()
-#qiup.control_irled_ext(0)
-#qiup.control_irled_ext(1)
+
 #qiup.control_irled_intern(1)
 #print("Wait")
 #time.sleep(14)
