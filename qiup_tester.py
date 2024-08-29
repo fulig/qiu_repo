@@ -3,8 +3,8 @@ from Qiup import Qiup
 import time
 from voltages import *
 
-#qiup = Qiup(debug=False)
-qiup = Qiup(debug=True)
+qiup = Qiup(debug=False)
+#qiup = Qiup(debug=True)
 
 
 #print("API Version")
@@ -47,7 +47,7 @@ qiup.control_power(1,QP_API_ANALOG_SUPPLY_VOLTAGE)
 #        qiup.dim_led('B', 65-i)
 #        time.sleep(2/(65))
 data = "1234567812345678123456781234567812345678123456781234567812345678"
-
+qiup.puls_measure_control(0,0,0,0)
 qiup.ledbar_control([0,0,0,0,1,1,0,0])
 qiup.check_earclip()
 print("Erase flash")
@@ -58,8 +58,21 @@ print("write flash")
 qiup.write_flash(8112, 3, data)
 print("read flash")
 qiup.read_flash(8112, 3)
+print("PULS_MEASURE start")
+#qiup.puls_measure_control(0,0,1,1)
+#time.sleep(0.5)
+#qiup.puls_measure_control(0,0,0,0)
+#qiup.set_gain(0)
+#qiup.get_gain()
+#qiup.set_gain(1)
+#qiup.get_gain()
+#qiup.set_gain(2)
+#qiup.get_gain()
+#qiup.set_gain(3)
+#qiup.get_gain()
 #print("Gain")
 #qiup.get_gain()
+qiup.get_datetime()
 
 #data = bytearray()
 #data.extend(b'\x00\x01\x02\x03\x04\x05\x06\x07\x06\x09\xAA\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')

@@ -385,40 +385,31 @@ class Qiup():
             print(f"QIUP: Problem while erasing sector {sector_number}")
             return None
 
-    def puls_measure_control(self, start_stop,online,record,emulation):
-        answer = self.send_command(PULSE_MEAS_CONTROL_REQ)
+    def puls_measure_control(self, emulation, record, online, start_stop):
+        [mode] = np.packbits([0,0,0,0,emulation, record,online, start_stop])
+        print(mode)
+        send_reg = bytearray(PULSE_MEAS_CONTROL_REQ)
+        mode = f"{mode:02X}"
+        print(mode)
+        send_reg.extend(map(ord, mode))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(PULSE_MEAS_CONTROL_CONF):
-            print(answer)
+            if start_stop == 0:
+                self.q_print("Measurement stopped.")
+            if start_stop == 1:
+                self.q_print("Measurement started.")
         else:
             self.q_print("Error while setting up Measurement.")
             return None
-
-# No valid API command 0x1E ????
-    def get_breathing_rate(self):
-        answer = self.send_command(GET_RESP_RATE_REQ)
-        if answer[0] == ord(GET_RESP_RATE_CONF):
-            breathing_rate = int(answer[1:], 16)
-            print(f"QIUP : Breathing rate {breathing_rate + 5}")
-            return breathing_rate
-        else:
-            self.q_print("Error while requesting breathing rate.")
-            return None
     
-    def set_breathing_rate(self):
-        answer = self.send_command(SET_RESP_RATE_REQ)
-        if answer[0] == ord(SET_RESP_RATE_CONF):
-            breathing_rate = int(answer[1:], 16)
-            print(f"QIUP : Breathing rate {breathing_rate + 5}")
-        else:
-            self.q_print("Error while requesting breathing rate.")
-            return None
-    
-    def get_gain(self):
-        answer = self.send_command(GET_GAIN_REQ)
-        if answer[0] == ord(GET_GAIN_CONF):
-            gain_state = int(answer[1:], 16)
-
-            match gain_state:
+    def stop_measure(self):
+        self.puls_measure_control(0,0,0,0)
+        return
+ #### TODO: mesurement data receiving...   
+    #def get_measurement_data
+    def print_gain(self, gain_stage):
+        gain = ""
+        match gain_stage:
                 case 0:
                     gain = "479 (53.6 dB)"
                 case 1:
@@ -427,8 +418,45 @@ class Qiup():
                     gain = "2553 (68.1 dB)"
                 case 3:
                     gain = "4096 (72.2 dB)"
-            print(f"Verstärkung {gain}.")
-            return gain_state
+        return gain
+    
+    def get_gain(self):
+        answer = self.send_command(GET_GAIN_REQ)
+        if answer[0] == ord(GET_GAIN_CONF):
+            gain_stage = int(answer[1:], 16)
+            gain = self.print_gain(gain_stage)
+            print(f"Gain is {gain}.")
+            return gain_stage
         else:
             self.q_print("Error while requesting gain stage.")
             return None
+    
+    def set_gain(self, stage):
+        if stage > 3:
+            self.q_print("Max gain stage is 3")
+            return
+        send_reg = bytearray(SET_GAIN_REQ)
+        set_gain = f"{stage:02X}"
+        send_reg.extend(map(ord, set_gain))
+        answer = self.send_command(send_reg)
+        if answer[0] == ord(SET_GAIN_CONF):
+            gain_stage = self.print_gain(stage)
+            self.q_print(f"Set gain to {gain_stage}")
+            return set_gain
+        else:
+            self.q_print("Error while requesting gain stage.")
+            return None
+    
+    def convert_datetime(self, raw_time):
+        time = ""
+        return time
+
+    def get_datetime(self):
+        answer = self.send_command(GET_DATETIME_REQ)
+        if answer[0] == ord(GET_DATETIME_CONF):
+            print(answer[1:])
+            print(len(answer[1:]))
+        return
+    
+    def set_datetime(self):
+        return
