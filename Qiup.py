@@ -82,7 +82,7 @@ class Qiup():
                 self.q_print("QP_API_ERROR_FLASH_SECTOR_RANGE_MAX")
             case 6:
                 self.q_print("QP_API_ERROR_FLASH_SECTOR_APPLPROTECTION_RANGE")
-        return
+        return value
     
     def charge_return(self, state):
         match state:
@@ -342,33 +342,45 @@ class Qiup():
     def read_flash(self, sector_number, part_number):
         send_reg = bytearray(FLASH_READ_DATA_REQ)
         sector = f"{sector_number:04X}"
-        print(sector)
+        part = f"{part_number:02X}"
+        send_reg.extend(map(ord, sector+part))
         answer = self.send_command(send_reg)
-        print(answer)
         if answer[0] == ord(FLASH_READ_DATA_CONF):
-            print(answer)
+            state = int(answer[-2:])
+            self.api_return(state)
+            data = answer[1:-2]
+            return data
         else:
-            print(f"QIUP : Error while reading flash sector {sector_number}, part {part_number}")
+            self.q_print(f"Error while reading flash sector {sector_number}, part {part_number}")
             return None
-################################################################
-# Needs furthermore tests.        
-    def write_flash(self, sector_h, sector_l, part_number, data):
-        command_data = [sector_h, sector_l, part_number]
-        for b in data:
-            command_data.append(b)
-        answer = self.send_command(FLASH_WRITE_DATA_REQ, command_data)
+      
+    def write_flash(self, sector_number, part_number, data):
+        if not isinstance(data, str):
+            self.q_print("Please use string format for data.")
+            return
+        send_reg = bytearray(FLASH_WRITE_DATA_REQ)
+        sector = f"{sector_number:04X}"
+        part = f"{part_number:02X}"
+        send_reg.extend(map(ord, sector+part))
+        send_reg.extend(map(ord, data))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(FLASH_WRITE_DATA_CONF):
-            print(answer)
+            state = int(answer[1:])
+            self.api_return(state)
+            return state
         else:
             self.q_print("Error while writing flash.")
             return None
-
-
+####### Answer contains more information then written in docu???
     def erase_flash(self, sector_number):
-        sector = sector_number.to_bytes(2)
-        answer = self.send_command(FLASH_ERASE_SECTOR_REQ, [sector[0], sector[1]])
+        send_reg = bytearray(FLASH_ERASE_SECTOR_REQ)
+        sector = f"{sector_number:04X}"
+        send_reg.extend(map(ord, sector))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(FLASH_ERASE_SECTOR_CONF):
-            print(answer)
+            state = int(answer[1:3])
+            self.api_return(state)
+            return state
         else:
             print(f"QIUP: Problem while erasing sector {sector_number}")
             return None
@@ -380,7 +392,6 @@ class Qiup():
         else:
             self.q_print("Error while setting up Measurement.")
             return None
-###########################################################################
 
 # No valid API command 0x1E ????
     def get_breathing_rate(self):
