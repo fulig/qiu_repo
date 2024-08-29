@@ -58,12 +58,6 @@ PULSE_MEAS_CONTROL_REQ = b'\x1A'
 PULSE_MEAS_CONTROL_CONF = b'\x1B'
 # Receive 16 Messwerte
 PULSE_MEAS_DATA_16_IND = b'\x1D'
-# Request breathing rate
-GET_RESP_RATE_REQ = b'\x1E'
-GET_RESP_RATE_CONF = b'\x1F'
-# Set breathing rate
-SET_RESP_RATE_REQ = b'\x20'
-SET_RESP_RATE_CONF = b'\x21'
 # Get gain
 GET_GAIN_REQ = b'\x22'
 GET_GAIN_CONF = b'\x23'
