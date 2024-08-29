@@ -1,6 +1,8 @@
 from pyftdi.ftdi import Ftdi
 import pyftdi.serialext
+import numpy as np
 from api_commands import * 
+from voltages import *
 
 class Qiup():
     def __init__(self, url=None, debug=False, baudrate=115200):
@@ -17,15 +19,19 @@ class Qiup():
             self.debug = False
         #if url == None:
         #    self.dev = self.get_avail_dev()
+    
+    def q_print(self, message):
+        print(f"QIUP : {message}")
+    
     def get_avail_dev(self):
         dev = Ftdi.list_devices('ftdi:///?')
         if len(dev) == 1:
-            print(f"Using device {dev}")
+            self.q_print(f"Using device {dev}")
             return dev
         if len(dev) == 0:
-            print("QIUP : Did not Found any Ftdi device...")
+            self.q_print("Did not Found any Ftdi device...")
         if len(dev) > 1:
-            print("QIUP : Found more than 1 FTDI device:")
+            self.q_print("Found more than 1 FTDI device:")
             print(dev)
     
     def check_reject(self, answer):
@@ -33,49 +39,49 @@ class Qiup():
         connect_state = int(answer[2:4], 16)
         cmd_state = int(answer[4:6], 16)
         command = answer[6:]
-        print("QIUP : ------------------------------")
+        self.q_print("------------------------------")
         print(f"Wrong API command {command}")
         self.api_return(state)
-        self.check_connection(connect_state)
-        print("QIUP : ------------------------------")
+        self._check_connection(connect_state)
+        self.q_print("------------------------------")
 
     def send_command(self, command):
         command = self.STX + command + self.ETX
         self.serial.write(command)
         data = self.serial.read_until(b'\x03')
         if self.debug:
-            print(f"QIUP : {command} send")
-            print(f"QIUP : {data} received")
+            self.q_print(f"{command} send")
+            self.q_print(f"{data} received")
         data = data.rstrip(b'\x03').lstrip(b'\x02')
         if data[0] == ord(QIU_COMMAND_REJECT_CONF):
             self.check_reject(data[1:])
         return data
     
-    def check_connection(self, state):
+    def _check_connection(self, state):
         match state:
             case 0:
-                print("QIUP : No connection with QIU+")
+                self.q_print("No connection with QIU+")
             case 1:
-                print("QIUP : Connected with USB.")
+                self.q_print("Connected with USB.")
             case 2:
-                print("QIUP : Connected with Bluetooth.")
+                self.q_print("Connected with Bluetooth.")
 
     def api_return(self, value):
         match value:
             case 0:
-                print("QIUP : QP_API_SUCCESS")
+                self.q_print("QP_API_SUCCESS")
             case 1:
-                print("QIUP : QP_API_ERROR")
+                self.q_print("QP_API_ERROR")
             case 2:
-                print("QIUP : QP_API_ERROR_CMD_UNKNOW")
+                self.q_print("QP_API_ERROR_CMD_UNKNOW")
             case 3:
-                print("QIUP : QP_API_ERROR_HEX_CONVERTER")
+                self.q_print("QP_API_ERROR_HEX_CONVERTER")
             case 4:
-                print("QIUP : QP_API_ERROR_FLASH_SECTOR_RANGE_MIN")
+                self.q_print("QP_API_ERROR_FLASH_SECTOR_RANGE_MIN")
             case 5:
-                print("QIUP : QP_API_ERROR_FLASH_SECTOR_RANGE_MAX")
+                self.q_print("QP_API_ERROR_FLASH_SECTOR_RANGE_MAX")
             case 6:
-                print("QIUP : QP_API_ERROR_FLASH_SECTOR_APPLPROTECTION_RANGE")
+                self.q_print("QP_API_ERROR_FLASH_SECTOR_APPLPROTECTION_RANGE")
         return
     
     def charge_return(self, state):
@@ -94,7 +100,28 @@ class Qiup():
                 mode = "Fault"
         print(f"Charging info : {mode}")
         return state
-
+    
+    def convert_voltage(self, voltage):
+        voltage_string = ""
+        match voltage:
+            case 0:
+                voltage_string = "Undefined voltage"
+            case 1:
+                voltage_string = "ACCU_VOLTAGE"
+            case 2:
+                voltage_string = "USB_VOLTAGE" 
+            case 3: 
+                voltage_string = "DIG_SUPPLY_VOLTAGE"
+            case 4:
+                voltage_string = "LED_SUPPLY_VOLTAGE"
+            case 5:
+                voltage_string = "ANALOG_SUPPLY_VOLTAGE"
+            case 6:
+                voltage_string  = "CC1DC_VOLTAGE"
+            case _:
+                voltage = ""
+        return voltage_string
+    
     def get_api_version(self):
         version_raw = self.send_command(GET_API_VERSION_REQ)
         if version_raw[0]== ord(GET_API_VERSION_CONF):
@@ -107,7 +134,7 @@ class Qiup():
             print(f"QIUP : API version on device {version_string}")
             return version_string
         else:
-            print("QIUP : Error requesting API version.")
+            self.q_print("Error requesting API version.")
             return None
         
     def get_appl_version(self):
@@ -121,7 +148,7 @@ class Qiup():
             print(f"QIUP : Application version {version_string}")
             return version_string
         else:
-            print("QIUP : Error with Application version request!")
+            self.q_print("Error with Application version request!")
             return None
 
     def register(self, mode=0 ):
@@ -135,14 +162,14 @@ class Qiup():
             self.api_return(state)
             match connect_state:
                 case 0:
-                    print("QIUP : No Connection with QIU+.")
+                    self.q_print("No Connection with QIU+.")
                 case 1:
-                    print("QIUP : Connected with USB.")
+                    self.q_print("Connected with USB.")
                 case 2:
-                    print("QIUP : Connected with Bluetooth.")
+                    self.q_print("Connected with Bluetooth.")
             return  state
         else:
-            print("QIUP : Error registering QIUP.")
+            self.q_print("Error registering QIUP.")
             return None
 
     def release(self):
@@ -151,10 +178,10 @@ class Qiup():
             state = answer[1:3]
             connect_state = int(answer[3:], 16)
             self.api_return(state)
-            self.check_connection(connect_state)
+            self._check_connection(connect_state)
             return connect_state
         else:
-            print("QIUP : Error while releasing communication!")
+            self.q_print("Error while releasing communication!")
             return None
         
     def _trigger_reject(self):
@@ -167,35 +194,62 @@ class Qiup():
             connect_state = int(answer[3:5])
             time_remaining = int(answer[5:], 16)
             self.api_return(state)
-            self.check_connection(connect_state)
+            self._check_connection(connect_state)
             if time_remaining == 255:
-                print("QIUP : More than 2.5 s remaining until release.")
+                self.q_print("More than 2.5 s remaining until release.")
             else:
                 print(f"{(time_remaining * 8 )/1024} secounds until Release.")
             return time_remaining
         else:
-            print("QIUP : Error while retriggering.")
+            self.q_print("Error while retriggering.")
             return None
-##########################################################################
-# Not working!?
-    def control_power(self, state, voltage_select):
-        answer = self.send_command(POWER_CONTROL_REQ, [state, voltage_select])
-        if answer[0] == ord(POWER_CONTROL_CONF):
-            power_return = answer[1:]
-            print(power_return)
 
-        else:
-            print("QIUP : Error while controlling power.")
+    def control_power(self, state, voltage_select):
+        if state not in [1,0]:
+            self.q_print("Wrong state, Use 0 (OFF) or 1 (ON)]")
             return None
-    
+        avail_voltage = [QP_API_ANALOG_SUPPLY_VOLTAGE,QP_API_LED_SUPPLY_VOLTAGE]
+        if voltage_select in avail_voltage:
+            send_reg = bytearray(POWER_CONTROL_REQ)
+            send_reg.extend(b'\x30')
+            send_reg.append(ord(str(state)))
+            send_reg.extend(b'\x30')
+            send_reg.append(ord(str(voltage_select)))
+            answer = self.send_command(send_reg)
+            if answer[0] == ord(POWER_CONTROL_CONF):
+                power_return = int(chr(answer[2]))
+                power_string = self.convert_voltage(power_return)
+                if state == 0:
+                    self.q_print(f"Turned OFF {power_string}.")
+                if state == 1:
+                    self.q_print(f"Turned ON {power_string}.")
+                return power_return
+            else:
+                self.q_print("Error while controlling power.")
+                return None
+        else:
+            print(f"Wrong voltage selection {voltage_select}. Use {avail_voltage}")
+
     def get_voltage(self, voltage_select):
-        answer = self.send_command(GET_VOLTAGE_REQ, [voltage_select])
-        if answer[0] == ord(GET_VOLTAGE_CONF):
-            print(answer)
+        avail_voltage = [QP_API_ACCU_VOLTAGE, QP_API_USB_VOLTAGE,QP_API_DIG_SUPPLY_VOLTAGE]
+        if voltage_select in avail_voltage:
+            send_reg = bytearray(GET_VOLTAGE_REQ)
+            send_reg.extend(b'\x30')
+            send_reg.append(ord(str(voltage_select)))
+            answer = self.send_command(send_reg)
+            if answer[0] == ord(GET_VOLTAGE_CONF):
+                power_return = int(chr(answer[2]))
+                power_string = self.convert_voltage(power_return)
+                if self.debug:
+                    print(answer)
+                voltage = (int(answer[3:].decode(), 16) * 5.0) / 4096 
+                self.q_print(f"{power_string} : {voltage}")
+                return voltage 
+            else:
+                print(f"Error while requesting voltage {voltage_select}")
+                return None
         else:
-            print(f"Error while requesting voltage {voltage_select}")
-            return None
-####################################################################
+            self.q_print(f"Wrong voltage selection. Use {avail_voltage}")
     
     def get_charge_state(self):
         answer = self.send_command(GET_CHARGE_STATE_REQ)
@@ -203,68 +257,101 @@ class Qiup():
             state = self.charge_return(answer[1:3])
             return state
         else:
-            print("QIUP : Error while requesting charge) state.")
+            self.q_print("Error while requesting charge) state.")
             return None
     
     def control_irled_ext(self, state):
-        answer = self.send_command(IRLED_EXT_CONTROL_REQ, [state])
+        if state not in [1,0]:
+            self.q_print("Wrong state, Use 0 (OFF) or 1 (ON)]")
+            return
+        send_reg = bytearray(IRLED_EXT_CONTROL_REQ)
+        send_reg.extend(b'\x30')
+        send_reg.append(ord(str(state)))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(IRLED_EXT_CONTROL_CONF):
-            print(answer)
+            if state == 0:
+                self.q_print("Turned OFF external IRLED.")
+            if state == 1:
+                self.q_print("Turned ON external IRLED.")
+            return
         else:
-            print("QIUP : Error with extern IRLED control.")
-            return None
+            self.q_print("Error with extern IRLED control.")
+            return
     
     def control_irled_intern(self, state):
-        answer = self.send_command(IRLED_INT_CONTROL_REQ, [state])
+        if state not in [1,0]:
+            self.q_print("Wrong state, Use 0 (OFF) or 1 (ON)]")
+            return
+        send_reg = bytearray(IRLED_INT_CONTROL_REQ)
+        send_reg.extend(b'\x30')
+        send_reg.append(ord(str(state)))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(IRLED_INT_CONTROL_CONF):
-            print(answer)
+            if state == 0:
+                self.q_print("Turned OFF internal IRLED.")
+            if state == 1:
+                self.q_print("Turned ON internal IRLED.")
+            return
         else:
-            print("QIUP : Error with extern IRLED control.")
-            return None
-##########################################################
-# NOT WORKING  
+            self.q_print("Error with intern IRLED control.")
+            return
+ 
     def dim_led(self, rgb, dim_value):
-        answer = self.send_command(DIM_LED_REQ, [ord(rgb), dim_value])
-        print(answer)
+        rgb = rgb.upper()
+        if rgb not in [ "R", "G", "B"]:
+            self.q_print("Wrong LED selection use 'R','G' or 'B' (or in lower case)")
+        send_reg = bytearray(DIM_LED_REQ)
+        rgb_val = hex(ord(rgb))[2:]
+        value = f"{dim_value:02X}"
+        send_reg.extend(map(ord, rgb_val + value))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(DIM_LED_CONF):
-            print(answer)
+            return
         else:
             print(f"Error while dimming {rgb} LED")
             return None
     
     def ledbar_control(self, LED_vector):
-        answer = self.send_command(LEDBAR_CONTROL_REQ, [LED_vector])
+        if len(LED_vector) != 8:
+            print("Please use list in form of [x,x,x,x,x,x,x,x] -> x=1/0")
+        send_reg = bytearray(LEDBAR_CONTROL_REQ)
+        [number] = np.packbits(LED_vector)
+        led_byte = f"{number:02X}"
+        send_reg.extend(map(ord,led_byte))
+        answer = self.send_command(send_reg)
         if answer[0] == ord(LEDBAR_CONTROL_CONF):
-            print(answer)
+            self.q_print(f"Setup LED Vector {LED_vector}")
+            return led_byte
         else:
-            print("QIUP : Error while controlling LED Bar.")
+            self.q_print("Error while controlling LED Bar.")
             return None
-################################################################
 
     def check_earclip(self):
         answer = self.send_command(EARCLIP_STATE_REQ)
         if answer[0] == ord(EARCLIP_STATE_CONF):
             state = int(answer[1:], 16)
             if state == 0:
-                print("QIUP : No Earclip connected")
+                self.q_print("No Earclip connected")
             if state == 1:
-                print("QIUP : Earclip connected.")
+                self.q_print("Earclip connected.")
             return state
         else:
-            print("QIUP : Error while checking earclip state")
+            self.q_print("Error while checking earclip state")
             return None
-################################################################
-# Needs furthermore tests.    
+   
     def read_flash(self, sector_number, part_number):
-        sector = sector_number.to_bytes(2)
-        answer = self.send_command(FLASH_READ_DATA_REQ, [sector[0], sector[1], part_number])
+        send_reg = bytearray(FLASH_READ_DATA_REQ)
+        sector = f"{sector_number:04X}"
+        print(sector)
+        answer = self.send_command(send_reg)
         print(answer)
         if answer[0] == ord(FLASH_READ_DATA_CONF):
             print(answer)
         else:
             print(f"QIUP : Error while reading flash sector {sector_number}, part {part_number}")
             return None
-        
+################################################################
+# Needs furthermore tests.        
     def write_flash(self, sector_h, sector_l, part_number, data):
         command_data = [sector_h, sector_l, part_number]
         for b in data:
@@ -273,7 +360,7 @@ class Qiup():
         if answer[0] == ord(FLASH_WRITE_DATA_CONF):
             print(answer)
         else:
-            print("QIUP : Error while writing flash.")
+            self.q_print("Error while writing flash.")
             return None
 
 
@@ -291,7 +378,7 @@ class Qiup():
         if answer[0] == ord(PULSE_MEAS_CONTROL_CONF):
             print(answer)
         else:
-            print("QIUP : Error while setting up Measurement.")
+            self.q_print("Error while setting up Measurement.")
             return None
 ###########################################################################
 
@@ -303,7 +390,7 @@ class Qiup():
             print(f"QIUP : Breathing rate {breathing_rate + 5}")
             return breathing_rate
         else:
-            print("QIUP : Error while requesting breathing rate.")
+            self.q_print("Error while requesting breathing rate.")
             return None
     
     def set_breathing_rate(self):
@@ -312,7 +399,7 @@ class Qiup():
             breathing_rate = int(answer[1:], 16)
             print(f"QIUP : Breathing rate {breathing_rate + 5}")
         else:
-            print("QIUP : Error while requesting breathing rate.")
+            self.q_print("Error while requesting breathing rate.")
             return None
     
     def get_gain(self):
@@ -332,5 +419,5 @@ class Qiup():
             print(f"Verstärkung {gain}.")
             return gain_state
         else:
-            print("QIUP : Error while requesting gain stage.")
+            self.q_print("Error while requesting gain stage.")
             return None
