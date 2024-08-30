@@ -1,6 +1,7 @@
 from pyftdi.ftdi import Ftdi
 import pyftdi.serialext
 import numpy as np
+import datetime
 from api_commands import * 
 from voltages import *
 
@@ -387,10 +388,8 @@ class Qiup():
 
     def puls_measure_control(self, emulation, record, online, start_stop):
         [mode] = np.packbits([0,0,0,0,emulation, record,online, start_stop])
-        print(mode)
         send_reg = bytearray(PULSE_MEAS_CONTROL_REQ)
         mode = f"{mode:02X}"
-        print(mode)
         send_reg.extend(map(ord, mode))
         answer = self.send_command(send_reg)
         if answer[0] == ord(PULSE_MEAS_CONTROL_CONF):
@@ -407,6 +406,8 @@ class Qiup():
         return
  #### TODO: mesurement data receiving...   
     #def get_measurement_data
+
+
     def print_gain(self, gain_stage):
         gain = ""
         match gain_stage:
@@ -448,15 +449,132 @@ class Qiup():
             return None
     
     def convert_datetime(self, raw_time):
-        time = ""
+        year =  str(int(raw_time[0:4],16))
+        month = str(int(raw_time[4:6],16)).zfill(2)
+        day = str(int(raw_time[6:8],16)).zfill(2)
+        hours = str(int(raw_time[8:10],16)).zfill(2)
+        min = str(int(raw_time[10:12], 16)).zfill(2)
+        secs = str(int(raw_time[12:], 16)).zfill(2)
+        time = [year, month, day, hours, min, secs]
         return time
 
     def get_datetime(self):
         answer = self.send_command(GET_DATETIME_REQ)
         if answer[0] == ord(GET_DATETIME_CONF):
-            print(answer[1:])
-            print(len(answer[1:]))
-        return
+            time = self.convert_datetime(answer[1:])
+            self.q_print(f"{time[0]}-{time[1]}-{time[2]} {time[3]}:{time[4]}:{time[5]}")
+            return time
+        else:
+            self.q_print("Error while requesting date time.")
+            return None
     
-    def set_datetime(self):
-        return
+    def set_datetime(self, datetime):
+        year = f"{datetime[0]:04X}"
+        month = f"{datetime[1]:02X}"
+        day = f"{datetime[2]:02X}"
+        hours = f"{datetime[3]:02X}"
+        min = f"{datetime[4]:02X}"
+        secs = f"{datetime[5]:02X}"
+        send_reg = bytearray(SET_DATETIME_REQ)
+        send_reg.extend(map(ord, year+month+day+hours+min+secs))
+        answer = self.send_command(send_reg)
+        if answer[0] == ord(SET_DATETIME_CONF):
+            month = f"{datetime[1]}".zfill(2)
+            day = f"{datetime[2]}".zfill(2)
+            hours = f"{datetime[3]}".zfill(2)
+            min = f"{datetime[4]}".zfill(2)
+            secs = f"{datetime[5]}".zfill(2)
+            self.q_print("Set date time to "
+                         +f"{datetime[0]}-{month}-{day} "
+                         +f"{hours}:{min}:{secs}"
+                         )
+            return True
+        else:
+            self.q_print("Error while setting date time.")
+            return None
+    
+    def set_time_from_pc(self):
+        self.q_print("Setting time from PC.")
+        pc_time = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        year = int(pc_time[0:4])
+        month = int(pc_time[4:6])
+        day = int(pc_time[6:8])
+        hours = int(pc_time[8:10])
+        min =   int(pc_time[10:12])
+        secs =  int(pc_time[12:14])
+        self.set_datetime([year,month,day,hours,min,secs])
+    
+    # Firmware update??
+    # PREPARE_FW_UPDATE_APPL
+    
+    #function skelleton
+    def function(self):
+        send_reg = bytearray()
+        answer = self.send_command()
+        if answer[0] == ord(1) :
+            return 
+        else:
+            self.q_print("Error")
+            return None
+
+    def play_sound(self, sound_nr):
+        send_reg = bytearray(PLAY_SOUND_REQ)
+        sound = f"{sound_nr:02X}"
+        send_reg.extend(map(ord,sound))
+        answer = self.send_command(send_reg)
+        if answer[0] == ord(PLAY_SOUND_CONF):
+            print(f"Playing sound {sound_nr}")
+            return True
+        else:
+            self.q_print(f"Error while playing sound {sound_nr}")
+            return None
+    
+    def pushbutton_state(self):
+        send_reg = bytearray(PUSHBUTTON_STATE_REQ)
+        answer = self.send_command(send_reg)
+        if answer[0] == ord(PUSHBUTTON_STATE_CONF):
+            state = int(answer[1:])
+            if state == 0:
+                self.q_print("Button not pressed")
+            if state == 1:
+                self.q_print("Button pressed")
+            return state
+        else:
+            self.q_print("Error while checking button state")
+            return None
+ 
+
+#Umrechnung implementieren!!!       
+    def get_accel(self):
+        send_reg = bytearray(GET_ACCEL_RAW_REQ)
+        answer = self.send_command(send_reg)
+        if answer[0] == ord(GET_ACCEL_RAW_CONF):
+            state = int(answer[1:3])
+            self.api_return(state)
+            print(state)
+            print(answer)
+            accel_x = answer[3:7]
+            accel_y = answer[7:11]
+            accel_z = answer[11:15]
+            print(accel_x)
+            print(accel_y)
+            print(accel_z)
+            return 
+        else:
+            self.q_print("Error")
+            return None
+    # Wrong API command??
+    def get_event_vector(self):
+        send_reg = bytearray(GET_EVENTSTATUS_VECTOR_REQ)
+        answer = self.send_command(send_reg)
+        if answer[0] == ord(GET_EVENTSTATUS_VECTOR_CONF):
+            earclip_state = answer[1]
+            usb_charge = answer[2]
+            usb_connect = answer[3]
+            bt_connect = answer[4]
+            print(f"Earlip: {earclip_state}, usb_charge: {usb_charge}, "
+                  + f"usb_connect {usb_connect}, bt_connect : {bt_connect}")
+            return 
+        else:
+            self.q_print("Error")
+            return None
