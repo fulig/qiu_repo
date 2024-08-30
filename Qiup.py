@@ -16,18 +16,20 @@ class Qiup():
         else:
             self.debug = False
         self.url, self.name = self.get_avail_dev()
-        if self.url != None:
-            self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=3)
-    
-    def setup_serial(self, url):
+        #self.serial = None
+
+    def setup_serial(self):
+        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=3)
         return
+    
+    def close_serial(self):
+        self.serial.close()
 
     def q_print(self, message):
         print(f"QIUP : {message}")
     
     def get_avail_dev(self):
         dev = Ftdi.list_devices()
-        print(dev)
         if dev == []:
             self.q_print("No FTDI connected.")
             return None,None
@@ -35,7 +37,7 @@ class Qiup():
             dev = dev[0][0]
             url = f"ftdi://ftdi:ft-x:{dev[4]}/1"
             name = dev[-1]
-            self.q_print(f"Using {name} with Url : {url}")
+            self.q_print(f"FTDI device: {name} {url}")
             return url,name
             
     def check_reject(self, answer):
@@ -550,7 +552,6 @@ class Qiup():
         else:
             self.q_print("Error while checking button state")
             return None
- 
 
 #Umrechnung implementieren!!!       
     def get_accel(self):
