@@ -11,6 +11,7 @@ qiup = Qiup(debug=False)
 #qiup.get_api_version()
 #print("APPL Version")
 #qiup.get_appl_version()
+#qiup.get_avail_dev()
 print("Register")
 if qiup.register(0) == 1:
     print("Already registered. Releasing..")
@@ -19,8 +20,8 @@ if qiup.register(0) == 1:
     qiup.register(0)
 #time.sleep(1)
 #qiup.register_retrigger()
-qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
-qiup.control_power(1,QP_API_ANALOG_SUPPLY_VOLTAGE)
+#qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
+#qiup.control_power(1,QP_API_ANALOG_SUPPLY_VOLTAGE)
 #qiup.control_power(0,QP_API_LED_SUPPLY_VOLTAGE)
 #qiup.control_power(0,QP_API_ANALOG_SUPPLY_VOLTAGE)
 

@@ -1,4 +1,5 @@
 from pyftdi.ftdi import Ftdi
+import pyftdi.usbtools
 import pyftdi.serialext
 import numpy as np
 import datetime
@@ -7,34 +8,36 @@ from voltages import *
 
 class Qiup():
     def __init__(self, url=None, debug=False, baudrate=115200):
-        self.data = []
-        #self.url = "ftdi://ftdi:ft-x:DQ00QN2Q/1"
-        self.url = "ftdi://ftdi:ft-x:DK0HGAC5/1"
         self.baudrate = baudrate
-        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate)
         self.STX = b'\x02'
         self.ETX = b'\x03'
         if debug == True:
             self.debug = True
         else:
             self.debug = False
-        #if url == None:
-        #    self.dev = self.get_avail_dev()
+        self.url, self.name = self.get_avail_dev()
+        if self.url != None:
+            self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=3)
     
+    def setup_serial(self, url):
+        return
+
     def q_print(self, message):
         print(f"QIUP : {message}")
     
     def get_avail_dev(self):
-        dev = Ftdi.list_devices('ftdi:///?')
-        if len(dev) == 1:
-            self.q_print(f"Using device {dev}")
-            return dev
-        if len(dev) == 0:
-            self.q_print("Did not Found any Ftdi device...")
-        if len(dev) > 1:
-            self.q_print("Found more than 1 FTDI device:")
-            print(dev)
-    
+        dev = Ftdi.list_devices()
+        print(dev)
+        if dev == []:
+            self.q_print("No FTDI connected.")
+            return None,None
+        else:
+            dev = dev[0][0]
+            url = f"ftdi://ftdi:ft-x:{dev[4]}/1"
+            name = dev[-1]
+            self.q_print(f"Using {name} with Url : {url}")
+            return url,name
+            
     def check_reject(self, answer):
         state = int(answer[:2], 16)
         connect_state = int(answer[2:4], 16)
@@ -50,6 +53,9 @@ class Qiup():
         command = self.STX + command + self.ETX
         self.serial.write(command)
         data = self.serial.read_until(b'\x03')
+        if data == b'':
+            self.q_print("Could not register with Qiup+. Maybe turned OFF?")
+            return None
         if self.debug:
             self.q_print(f"{command} send")
             self.q_print(f"{data} received")
@@ -157,6 +163,8 @@ class Qiup():
         send_reg.extend(b'\x30')
         send_reg.append(ord(str(mode)))
         answer = self.send_command(send_reg)
+        if answer == None:
+            return
         if answer[0] == ord(QIU_REGISTER_CONF):
             state = int(answer[1:3],16)
             connect_state = int(answer[3:], 16)
