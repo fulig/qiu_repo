@@ -78,7 +78,7 @@ qiup.control_power(1,QP_API_ANALOG_SUPPLY_VOLTAGE)
 #qiup.get_datetime()
 #qiup.set_datetime([2024,9,12,13,12,11])
 #qiup.get_datetime()
-qiup.set_time_from_pc()
+#qiup.set_time_from_pc()
 #qiup.get_datetime()
 
 #qiup.play_sound(0)
@@ -95,9 +95,9 @@ qiup.set_time_from_pc()
 
 #qiup.pushbutton_state()
 
-qiup.get_accel()
+#qiup.get_accel()
 
-qiup.get_event_vector()
+#qiup.get_event_vector()
 #qiup.write_flash(44, 44, 1, data)
 #qiup.erase_flash(4444)
 #qiup.read_flash(4444, 1)
