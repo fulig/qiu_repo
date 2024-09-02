@@ -19,7 +19,7 @@ class Qiup():
         #self.serial = None
 
     def setup_serial(self):
-        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=3)
+        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=2)
         return
     
     def close_serial(self):
@@ -322,6 +322,7 @@ class Qiup():
             print(f"Error while dimming {rgb} LED")
             return None
     
+    #### verify led numbers!!!!!
     def ledbar_control(self, LED_vector):
         if len(LED_vector) != 8:
             print("Please use list in form of [x,x,x,x,x,x,x,x] -> x=1/0")

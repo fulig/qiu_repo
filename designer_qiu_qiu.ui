@@ -19,7 +19,7 @@
      <rect>
       <x>30</x>
       <y>40</y>
-      <width>80</width>
+      <width>91</width>
       <height>25</height>
      </rect>
     </property>
@@ -32,7 +32,7 @@
      <rect>
       <x>30</x>
       <y>80</y>
-      <width>80</width>
+      <width>91</width>
       <height>25</height>
      </rect>
     </property>
@@ -45,7 +45,7 @@
      <rect>
       <x>30</x>
       <y>120</y>
-      <width>80</width>
+      <width>91</width>
       <height>25</height>
      </rect>
     </property>
@@ -53,42 +53,12 @@
      <string>API Version</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>40</y>
-      <width>113</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>80</y>
-      <width>113</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>120</y>
-      <width>113</width>
-      <height>25</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QFrame" name="main_operations">
     <property name="geometry">
      <rect>
-      <x>19</x>
+      <x>10</x>
       <y>20</y>
-      <width>231</width>
+      <width>281</width>
       <height>171</height>
      </rect>
     </property>
@@ -99,11 +69,14 @@
      <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QCheckBox" name="retrigger">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>140</y>
-       <width>111</width>
+       <width>131</width>
        <height>23</height>
       </rect>
      </property>
@@ -114,7 +87,7 @@
     <widget class="QSpinBox" name="retrigger_sec">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>160</x>
        <y>140</y>
        <width>42</width>
        <height>26</height>
@@ -127,7 +100,7 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>210</x>
        <y>140</y>
        <width>54</width>
        <height>21</height>
@@ -137,21 +110,170 @@
       <string>Sec.</string>
      </property>
     </widget>
+    <widget class="QLineEdit" name="app_version_text">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>60</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="api_version_text">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>100</y>
+       <width>71</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="qiup_name">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>20</y>
+       <width>141</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>70</y>
+      <width>88</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>All On</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>110</y>
+      <width>88</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>All Off</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>40</y>
+      <width>156</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QRadioButton" name="led1">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="led2">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="led3">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="led4">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="led5">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="led6">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="led8">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="led7">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
    <zorder>main_operations</zorder>
-   <zorder>Connect</zorder>
-   <zorder>pushButton</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>lineEdit_3</zorder>
-   <zorder>label</zorder>
-   <zorder>lineEdit</zorder>
    <zorder>connect</zorder>
    <zorder>app_version</zorder>
    <zorder>api_version</zorder>
-   <zorder>lineEdit</zorder>
-   <zorder>lineEdit_2</zorder>
-   <zorder>lineEdit_3</zorder>
+   <zorder>led1</zorder>
+   <zorder>led2</zorder>
+   <zorder>led3</zorder>
+   <zorder>led4</zorder>
+   <zorder>led5</zorder>
+   <zorder>led6</zorder>
+   <zorder>led7</zorder>
+   <zorder>led8</zorder>
+   <zorder></zorder>
+   <zorder>pushButton</zorder>
+   <zorder>pushButton_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -159,7 +281,7 @@
      <x>0</x>
      <y>0</y>
      <width>1131</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuQiuGui">
