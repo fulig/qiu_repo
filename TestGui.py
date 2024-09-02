@@ -7,6 +7,7 @@
 
 
 import sys
+import threading
 from PyQt6 import QtCore, QtGui, QtWidgets
 from Qiup import *
 from Gui import *  
@@ -18,18 +19,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.connect_state = 0
         self.default_values()
         self.gui = Ui_Quip_test()
-        self.qiup = Qiup()
+        self.qiup = Qiup(debug=True)
         self.default_values()
         self.connect_gui()
         self.setup_led_buttons()
 
     def default_values(self):
         self.retrigger.setChecked(True)
-        self.retrigger_sec.setValue(10)
-        self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led8,self.led7]
+        self.retrigger_sec.setValue(5)
+        self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led7,self.led8]
         
     def connect_gui(self):
         self.connect.clicked.connect(self.register)    
+        self.app_version.clicked.connect(self.get_app_version)
+        self.api_version.clicked.connect(self.get_api_version)
+        self.connect_2.clicked.connect(self.ledbar_on)
 
     def retranslateUi(self, Quip_test):
         _translate = QtCore.QCoreApplication.translate
@@ -55,6 +59,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                 self.get_api_version()
                 self.get_app_version()
                 self.connect.setText( "Release")
+                if retrigger == 1:
+                    print("Starting retrigger timer.")
+                    self.repeat_time = self.retrigger_sec.value()
+                    self.retrigger_timer()
                 self.qiup_name.setText(self.qiup.name)
         if button_text == "Release":
             self.connect_state = self.qiup.release()
@@ -64,6 +72,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.app_version_text.setText("")
             self.qiup_name.setText("")
     
+    def retrigger_timer(self):
+        if self.connect_state == 0:
+            self.timer.cancel()
+        else:
+            self.qiup.register_retrigger()
+            print("Retriggering...")
+            self.timer = threading.Timer(self.repeat_time, self.retrigger_timer)
+            self.timer.start()
+
     def setup_led_buttons(self):
         for led in self.leds:
             led.clicked.connect(self.set_ledbar)
@@ -90,7 +107,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.app_version_text.setText(app_version)
         return
     
-
+    def ledbar_on(self):
+        self.qiup.ledbar_control([1,1,1,1,1,1,1,1])
+        for led in self.leds:
+            led.setChecked(True)
+    
+    def ledbar_off(self):
+        self.qiup.ledbar_control([0,0,0,0,0,0,0,0])
+        for led in self.leds:
+            led.setChecked(False)
 
 app = QtWidgets.QApplication(sys.argv)
 
