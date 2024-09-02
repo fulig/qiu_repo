@@ -238,7 +238,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="led8">
+      <widget class="QRadioButton" name="led7">
        <property name="text">
         <string/>
        </property>
@@ -248,7 +248,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QRadioButton" name="led7">
+      <widget class="QRadioButton" name="led8">
        <property name="text">
         <string/>
        </property>
@@ -269,7 +269,6 @@
    <zorder>led4</zorder>
    <zorder>led5</zorder>
    <zorder>led6</zorder>
-   <zorder>led7</zorder>
    <zorder>led8</zorder>
    <zorder></zorder>
    <zorder>pushButton</zorder>

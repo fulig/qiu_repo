@@ -15,6 +15,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def __init__(self, *args, obj=None, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.setupUi(self)
+        self.connect_state = 0
         self.default_values()
         self.gui = Ui_Quip_test()
         self.qiup = Qiup()
@@ -25,7 +26,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def default_values(self):
         self.retrigger.setChecked(True)
         self.retrigger_sec.setValue(10)
-        self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led7,self.led8]
+        self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led8,self.led7]
         
     def connect_gui(self):
         self.connect.clicked.connect(self.register)    
@@ -45,8 +46,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         if button_text == "Connect":
             self.qiup.setup_serial()
             retrigger  = int(self.retrigger.isChecked())
-            register_state = self.qiup.register(retrigger)
-            if register_state == None:
+            self.connect_state = self.qiup.register(retrigger)
+            if self.connect_state == None:
                 self.qiup.close_serial()
                 self.connect.setText("Connect")
                 return
@@ -56,7 +57,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                 self.connect.setText( "Release")
                 self.qiup_name.setText(self.qiup.name)
         if button_text == "Release":
-            self.qiup.release()
+            self.connect_state = self.qiup.release()
             self.qiup.close_serial()
             self.connect.setText("Connect")
             self.api_version_text.setText("")
@@ -69,11 +70,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         return
     
     def set_ledbar(self):
-        led_bar = []
-        for led in self.leds:
-            led_bar.append(int(led.isChecked()))
-        print(led_bar)
-        self.qiup.ledbar_control(led_bar)
+        if self.connect_state == 1:
+            led_bar = []
+            for led in self.leds:
+                led_bar.append(int(led.isChecked()))
+            print(led_bar)
+            self.qiup.ledbar_control(led_bar)
+        if self.connect_state == 0:
+            print("Not Connected, Please register first.")
         return
 
     def get_api_version(self):

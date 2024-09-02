@@ -178,7 +178,7 @@ class Qiup():
                     self.q_print("Connected with USB.")
                 case 2:
                     self.q_print("Connected with Bluetooth.")
-            return  state
+            return  connect_state
         else:
             self.q_print("Error registering QIUP.")
             return None
