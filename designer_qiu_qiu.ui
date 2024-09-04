@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1131</width>
+    <width>1118</width>
     <height>769</height>
    </rect>
   </property>
@@ -59,11 +59,11 @@
       <x>10</x>
       <y>20</y>
       <width>281</width>
-      <height>171</height>
+      <height>191</height>
      </rect>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Panel</enum>
+     <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
      <enum>QFrame::Sunken</enum>
@@ -141,126 +141,778 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>40</y>
-      <width>156</width>
-      <height>17</height>
+      <x>330</x>
+      <y>30</y>
+      <width>161</width>
+      <height>42</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QRadioButton" name="led1">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_2">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string> 8</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="led2">
+     <item row="0" column="1">
+      <widget class="QLabel" name="label_3">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string>7</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="led3">
+     <item row="0" column="2">
+      <widget class="QLabel" name="label_4">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string>6</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="led4">
+     <item row="0" column="4">
+      <widget class="QLabel" name="label_6">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string>4</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="led5">
+     <item row="0" column="5">
+      <widget class="QLabel" name="label_7">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string>3</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="led6">
+     <item row="0" column="6">
+      <widget class="QLabel" name="label_8">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string>2</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="led7">
+     <item row="0" column="7">
+      <widget class="QLabel" name="label_9">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string>1</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QRadioButton" name="led8">
+     <item row="0" column="3">
+      <widget class="QLabel" name="label_5">
        <property name="text">
-        <string/>
-       </property>
-       <property name="autoExclusive">
-        <bool>false</bool>
+        <string>5</string>
        </property>
       </widget>
+     </item>
+     <item row="1" column="0" colspan="8">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QRadioButton" name="led1">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="led2">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="led3">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="led4">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="led5">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="led6">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="led7">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="led8">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="autoExclusive">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>20</y>
+      <width>241</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="led_power_on">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>150</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Off</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="led_power_label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>150</y>
+       <width>71</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>LED Power</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="blue_value">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>100</y>
+       <width>54</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0/65</string>
+     </property>
+    </widget>
+    <widget class="QSlider" name="Red">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>65</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="Green">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>80</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>65</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QSlider" name="Blue">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>100</y>
+       <width>160</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>65</number>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+    <widget class="QLabel" name="red_value">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>60</y>
+       <width>41</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0/65</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="green_value">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>80</y>
+       <width>41</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>0/65</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="red_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>16</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>R</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="green_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>16</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>G</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="blue_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>16</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>B</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="led_on">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>120</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>All LED On</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="led_off">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>120</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>All LED Off</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>559</x>
+      <y>20</y>
+      <width>341</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="get_datetime_qiu">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>161</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Get DateTime (Qiu)</string>
+     </property>
+    </widget>
+    <widget class="QDateTimeEdit" name="datetime_qiu">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>161</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="minimumDateTime">
+      <datetime>
+       <hour>0</hour>
+       <minute>0</minute>
+       <second>0</second>
+       <year>1752</year>
+       <month>9</month>
+       <day>14</day>
+      </datetime>
+     </property>
+     <property name="displayFormat">
+      <string>dd.MM.yyyy HH:mm:ss</string>
+     </property>
+    </widget>
+    <widget class="QDateTimeEdit" name="datetime_pc">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>50</y>
+       <width>161</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="displayFormat">
+      <string>dd.MM.yyyy HH:mm:ss</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="set_datetime_pc">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>10</y>
+       <width>161</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Set DateTime (PC)</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLineEdit" name="x_value">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>120</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="y_value">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>150</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="z_value">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>180</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="get_accl">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>150</y>
+      <width>71</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Get Accl.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="x_label">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>120</y>
+      <width>16</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>X</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="y_label">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>150</y>
+      <width>16</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Y</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="z_label">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>180</y>
+      <width>16</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Z</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>110</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="check_button">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>120</y>
+      <width>91</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>PushButton</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="button_state">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>120</y>
+      <width>41</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Open</string>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>740</x>
+      <y>110</y>
+      <width>161</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QSpinBox" name="spin_sound">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>31</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>5</number>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="play_sound">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>60</y>
+       <width>91</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>PlaySound</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="charge_state">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>40</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Charge State</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="accu_voltage">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>70</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Accu Voltage</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="usb_voltage">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>100</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>USB Voltage</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="digital_voltage">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>130</y>
+      <width>101</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dig. Voltage</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>170</y>
+      <width>171</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>All Voltages</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="charge_line">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>40</y>
+      <width>61</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="accu_line">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>70</y>
+      <width>61</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="usb_line">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>100</y>
+      <width>61</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="dig_line">
+    <property name="geometry">
+     <rect>
+      <x>920</x>
+      <y>130</y>
+      <width>61</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_5">
+    <property name="geometry">
+     <rect>
+      <x>909</x>
+      <y>19</y>
+      <width>191</width>
+      <height>191</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <zorder>frame_5</zorder>
+   <zorder>frame</zorder>
+   <zorder>frame_4</zorder>
+   <zorder>frame_3</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>layoutWidget</zorder>
    <zorder>main_operations</zorder>
    <zorder>connect</zorder>
    <zorder>app_version</zorder>
    <zorder>api_version</zorder>
-   <zorder>led1</zorder>
-   <zorder>led2</zorder>
-   <zorder>led3</zorder>
-   <zorder>led4</zorder>
-   <zorder>led5</zorder>
-   <zorder>led6</zorder>
-   <zorder>led8</zorder>
-   <zorder></zorder>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1131</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuQiuGui">
-    <property name="title">
-     <string>QiuGui</string>
-    </property>
-   </widget>
-   <addaction name="menuQiuGui"/>
+   <zorder>x_value</zorder>
+   <zorder>y_value</zorder>
+   <zorder>z_value</zorder>
+   <zorder>get_accl</zorder>
+   <zorder>x_label</zorder>
+   <zorder>y_label</zorder>
+   <zorder>z_label</zorder>
+   <zorder>check_button</zorder>
+   <zorder>button_state</zorder>
+   <zorder>charge_state</zorder>
+   <zorder>accu_voltage</zorder>
+   <zorder>usb_voltage</zorder>
+   <zorder>digital_voltage</zorder>
+   <zorder>pushButton_5</zorder>
+   <zorder>charge_line</zorder>
+   <zorder>accu_line</zorder>
+   <zorder>usb_line</zorder>
+   <zorder>dig_line</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

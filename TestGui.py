@@ -8,9 +8,11 @@
 
 import sys
 import threading
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtGui, QtWidgets
+from PyQt6.QtCore import QDateTime
 from Qiup import *
 from Gui import *  
+from voltages import *
 
 class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def __init__(self, *args, obj=None, **kwargs):
@@ -22,49 +24,66 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.qiup = Qiup(debug=True)
         self.default_values()
         self.connect_gui()
-        self.setup_led_buttons()
+        #
 
     def default_values(self):
+        self.connect_state = 0
         self.retrigger.setChecked(True)
         self.retrigger_sec.setValue(5)
         self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led7,self.led8]
-        
+        self.dim_leds = ["R","G","B"]
+        self.dim_slider = [self.Red, self.Green, self.Blue]
+        self.red_label.setStyleSheet("color:red")
+        self.green_label.setStyleSheet("color:green")
+        self.blue_label.setStyleSheet("color : blue")
+        self.datetime_qiu.clearMinimumDateTime()
+        self.datetime_pc.setDateTime(QDateTime.currentDateTime())
+        #print(QDateTime.currentDateTime())
+
     def connect_gui(self):
+        self.setup_led_buttons()
         self.connect.clicked.connect(self.register)    
         self.app_version.clicked.connect(self.get_app_version)
         self.api_version.clicked.connect(self.get_api_version)
-        self.connect_2.clicked.connect(self.ledbar_on)
-
-    def retranslateUi(self, Quip_test):
-        _translate = QtCore.QCoreApplication.translate
-        Quip_test.setWindowTitle(_translate("Quip_test", "Qiu+ Hardware Test"))
-        self.connect.setText(_translate("Quip_test", "Connect"))
-        self.app_version.setText(_translate("Quip_test", "App Version"))
-        self.api_version.setText(_translate("Quip_test", "API Version"))
-        self.retrigger.setText(_translate("Quip_test", "Retrigger Mode"))
-        self.label.setText(_translate("Quip_test", "Sec."))
-        self.menuQiuGui.setTitle(_translate("Quip_test", "QiuGui"))
+        self.led_on.clicked.connect(self.ledbar_on)
+        self.led_off.clicked.connect(self.ledbar_off)
+        self.led_power_on.clicked.connect(self.led_power_control)
+        self.Red.valueChanged.connect(self.red_slider)
+        self.Green.valueChanged.connect(self.green_slider)
+        self.Blue.valueChanged.connect(self.blue_slider)
+        self.get_datetime_qiu.clicked.connect(self.get_datetime)
+        self.set_datetime_pc.clicked.connect(self.set_datetime)
+        self.check_button.clicked.connect(self.get_button_state)
+        self.play_sound.clicked.connect(self.sound_play)
+        self.charge_state.clicked.connect(self.get_charge_state)
 
     def register(self):
         button_text = self.connect.text()
+        self.qiup_name.setText("")
         if button_text == "Connect":
             self.qiup.setup_serial()
-            retrigger  = int(self.retrigger.isChecked())
-            self.connect_state = self.qiup.register(retrigger)
+            self.retrigger_state  = int(self.retrigger.isChecked())
+            self.connect_state = self.qiup.register(self.retrigger_state)
             if self.connect_state == None:
                 self.qiup.close_serial()
                 self.connect.setText("Connect")
+                self.qiup_name.setStyleSheet("color: red")
+                self.qiup_name.setText("NO CONNECTION")
                 return
             else:
                 self.get_api_version()
                 self.get_app_version()
+                self.qiup_name.setStyleSheet("color: white")
                 self.connect.setText( "Release")
-                if retrigger == 1:
+                if self.retrigger_state == 1:
                     print("Starting retrigger timer.")
                     self.repeat_time = self.retrigger_sec.value()
                     self.retrigger_timer()
                 self.qiup_name.setText(self.qiup.name)
         if button_text == "Release":
+            if self.retrigger_state == 1:
+                self.timer.cancel()
+            self.ledbar_off()
             self.connect_state = self.qiup.release()
             self.qiup.close_serial()
             self.connect.setText("Connect")
@@ -86,12 +105,60 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             led.clicked.connect(self.set_ledbar)
         return
     
+    def led_power_control(self):
+        state_str = self.led_power_on.text()
+        if state_str == "Off":
+            self.qiup.control_power(0,QP_API_LED_SUPPLY_VOLTAGE)
+            self.led_power_on.setText("On")
+        if state_str == "On":
+            self.qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
+            self.led_power_on.setText("Off")
+        
+    def red_slider(self):
+        value = self.Red.value()
+        self.red_value.setText(f"{value}/65")
+        self.qiup.dim_led("R", value)
+
+    def green_slider(self):
+        value = self.Green.value()
+        self.red_value.setText(f"{value}/65")
+        self.qiup.dim_led("G", value)
+    
+    def blue_slider(self):
+        value = self.Blue.value()
+        self.red_value.setText(f"{value}/65")
+        self.qiup.dim_led("B", value)
+
+    def get_datetime(self):
+        qiup_dt = self.qiup.get_datetime()
+        print(qiup_dt)
+        qiup_qt_dt = QtCore.QDateTime(int(qiup_dt[0]), int(qiup_dt[1]), 
+                                      int(qiup_dt[2]), int(qiup_dt[3]), 
+                                      int(qiup_dt[4]), int(qiup_dt[5]))
+        print(qiup_qt_dt)
+        self.datetime_qiu.setDateTime(qiup_qt_dt)
+
+    def set_datetime(self):
+        now = QDateTime.currentDateTime()
+        self.datetime_pc.setDateTime(now)
+        self.qiup.set_time_from_pc()
+
+    def get_button_state(self):
+        btn = self.qiup.pushbutton_state()
+        if btn == 0:
+            self.button_state.setText("Open")
+        if btn == 1:
+            self.button_state.setText("Close")
+
+    def sound_play(self):
+        sound_nr = int(self.spin_sound.value())
+        self.qiup.play_sound(sound_nr)
+
     def set_ledbar(self):
         if self.connect_state == 1:
             led_bar = []
             for led in self.leds:
                 led_bar.append(int(led.isChecked()))
-            print(led_bar)
             self.qiup.ledbar_control(led_bar)
         if self.connect_state == 0:
             print("Not Connected, Please register first.")
@@ -108,14 +175,42 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         return
     
     def ledbar_on(self):
+        for i,led in enumerate(self.dim_slider):
+            led.setValue(65)
         self.qiup.ledbar_control([1,1,1,1,1,1,1,1])
         for led in self.leds:
             led.setChecked(True)
     
     def ledbar_off(self):
+        for i,led in enumerate(self.dim_slider):
+            led.setValue(0)
         self.qiup.ledbar_control([0,0,0,0,0,0,0,0])
         for led in self.leds:
             led.setChecked(False)
+    
+    def get_charge_state(self):
+        charge_state = self.qiup.get_charge_state()
+        match charge_state:
+            case b'0A':
+                self.charge_line.setText("NO_BAT")
+            case b'0B':
+                self.charge_line.setText("NO_CH")
+            case b'0C':
+                self.charge_line.setText("FAST_PRE")
+            case b'0D':
+                self.charge_line.setText("TOP_OFF")
+            case b'0E':
+                self.charge_line.setText("MAINT")
+            case b'0F':
+                self.charge_line.setText("FAULT")
+
+    def closeEvent(self, *args, **kwargs):
+        super(QtWidgets.QMainWindow, self).closeEvent(*args, **kwargs)
+        if self.connect_state == 1:
+            self.qiup.ledbar_control([0,0,0,0,0,0,0,0])
+            self.timer.cancel()
+            self.qiup.release()
+            
 
 app = QtWidgets.QApplication(sys.argv)
 
