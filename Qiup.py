@@ -19,7 +19,7 @@ class Qiup():
         #self.serial = None
 
     def setup_serial(self):
-        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=2)
+        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=1)
         return
     
     def close_serial(self):
@@ -460,7 +460,7 @@ class Qiup():
             return None
     
     def convert_datetime(self, raw_time):
-        year =  str(int(raw_time[0:4],16))
+        year =  str(int(raw_time[0:4],16)).zfill(4)
         month = str(int(raw_time[4:6],16)).zfill(2)
         day = str(int(raw_time[6:8],16)).zfill(2)
         hours = str(int(raw_time[8:10],16)).zfill(2)
