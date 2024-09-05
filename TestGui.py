@@ -38,6 +38,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.blue_label.setStyleSheet("color : blue")
         self.datetime_qiu.clearMinimumDateTime()
         self.datetime_pc.setDateTime(QDateTime.currentDateTime())
+        self.flash_table.resizeColumnsToContents()
         #print(QDateTime.currentDateTime())
 
     def connect_gui(self):
@@ -56,6 +57,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.check_button.clicked.connect(self.get_button_state)
         self.play_sound.clicked.connect(self.sound_play)
         self.charge_state.clicked.connect(self.get_charge_state)
+        self.accu_voltage.clicked.connect(self.get_accu_voltage)
+        self.usb_voltage.clicked.connect(self.get_usb_voltage)
+        self.digital_voltage.clicked.connect(self.get_digital_voltage)
+        self.all_voltages.clicked.connect(self.get_all_voltages)
 
     def register(self):
         button_text = self.connect.text()
@@ -203,6 +208,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                 self.charge_line.setText("MAINT")
             case b'0F':
                 self.charge_line.setText("FAULT")
+
+    def get_accu_voltage(self):
+        voltage = round(float(self.qiup.get_voltage(QP_API_ACCU_VOLTAGE)),3)
+        self.accu_line.setText(f"{voltage}")
+
+    def get_usb_voltage(self):
+        voltage = round(float(self.qiup.get_voltage(QP_API_USB_VOLTAGE)),3)
+        self.usb_line.setText(f"{voltage}")
+    
+    def get_digital_voltage(self):
+        voltage = round(float(self.qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)),3)
+        self.dig_line.setText(f"{voltage}")
+    
+    def get_all_voltages(self):
+        self.get_accu_voltage()
+        self.get_usb_voltage()
+        self.get_digital_voltage()
 
     def closeEvent(self, *args, **kwargs):
         super(QtWidgets.QMainWindow, self).closeEvent(*args, **kwargs)

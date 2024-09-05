@@ -5,7 +5,7 @@ from voltages import *
 
 qiup = Qiup(debug=False)
 #qiup = Qiup(debug=True)
-
+qiup.setup_serial()
 
 #print("API Version")
 #qiup.get_api_version()
@@ -30,7 +30,7 @@ if qiup.register(0) == 1:
 #qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)
 #qiup.get_voltage(10)
 
-#qiup.get_charge_state() # --> Takes longer to request..???
+qiup.get_charge_state() # --> Takes longer to request..???
 
 #qiup.control_irled_ext(0)
 #qiup.control_irled_ext(1)
