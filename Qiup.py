@@ -16,7 +16,6 @@ class Qiup():
         else:
             self.debug = False
         self.url, self.name = self.get_avail_dev()
-        #self.serial = None
 
     def setup_serial(self):
         self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=1)
