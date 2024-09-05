@@ -29,7 +29,8 @@ if qiup.register(0) == 1:
 #qiup.get_voltage(QP_API_USB_VOLTAGE)
 #qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)
 #qiup.get_voltage(10)
-
+print("--------")
+time.sleep(1)
 qiup.get_charge_state() # --> Takes longer to request..???
 
 #qiup.control_irled_ext(0)

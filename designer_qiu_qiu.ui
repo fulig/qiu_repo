@@ -764,19 +764,6 @@
      </property>
     </widget>
    </widget>
-   <widget class="QPushButton" name="charge_state">
-    <property name="geometry">
-     <rect>
-      <x>990</x>
-      <y>40</y>
-      <width>101</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Charge State</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="accu_voltage">
     <property name="geometry">
      <rect>
@@ -893,6 +880,19 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QPushButton" name="charge_state">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>20</y>
+       <width>101</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Charge State</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QTableWidget" name="flash_table">
     <property name="geometry">
@@ -1132,13 +1132,13 @@
      <rect>
       <x>160</x>
       <y>230</y>
-      <width>701</width>
+      <width>811</width>
       <height>28</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="sector_label">
        <property name="text">
         <string>Sector</string>
        </property>
@@ -1146,8 +1146,11 @@
      </item>
      <item>
       <widget class="QSpinBox" name="sector_spin">
+       <property name="minimum">
+        <number>8112</number>
+       </property>
        <property name="maximum">
-        <number>10000</number>
+        <number>8191</number>
        </property>
        <property name="value">
         <number>8112</number>
@@ -1168,7 +1171,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_11">
+      <widget class="QLabel" name="part_label">
        <property name="text">
         <string>Part</string>
        </property>
@@ -1198,7 +1201,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="fill_button">
        <property name="text">
         <string>Fill</string>
        </property>
@@ -1218,7 +1221,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="write_button">
        <property name="text">
         <string>WritePart</string>
        </property>
@@ -1238,7 +1241,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="read_button">
        <property name="text">
         <string>Read Part</string>
        </property>
@@ -1258,29 +1261,21 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="erase_button">
        <property name="text">
         <string>Erase Sector</string>
        </property>
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QFrame" name="frame_6">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>220</y>
-      <width>951</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
+    <zorder>sector_label</zorder>
+    <zorder>part_label</zorder>
+    <zorder>part_spin</zorder>
+    <zorder>sector_spin</zorder>
+    <zorder>fill_button</zorder>
+    <zorder>write_button</zorder>
+    <zorder>read_button</zorder>
+    <zorder>erase_button</zorder>
    </widget>
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
@@ -1344,8 +1339,346 @@
      <enum>QFrame::Raised</enum>
     </property>
    </widget>
+   <widget class="PlotWidget" name="graph" native="true">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>450</y>
+      <width>1081</width>
+      <height>291</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="flash_table_qui">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>310</y>
+      <width>931</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>3</width>
+      <height>3</height>
+     </size>
+    </property>
+    <property name="lineWidth">
+     <number>3</number>
+    </property>
+    <property name="dragDropOverwriteMode">
+     <bool>true</bool>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="rowCount">
+     <number>1</number>
+    </property>
+    <property name="columnCount">
+     <number>32</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <row/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <column/>
+    <item row="0" column="0">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="4">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="5">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="6">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="7">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="8">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="9">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="10">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="11">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="12">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="13">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="14">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="15">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="16">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="17">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="18">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="19">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="20">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="21">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="22">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="23">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="24">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="25">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="26">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="27">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="28">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="29">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="30">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+    <item row="0" column="31">
+     <property name="text">
+      <string>DD</string>
+     </property>
+     <property name="flags">
+      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     </property>
+    </item>
+   </widget>
    <zorder>frame_7</zorder>
-   <zorder>frame_6</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>frame_5</zorder>
    <zorder>frame</zorder>
@@ -1366,7 +1699,6 @@
    <zorder>z_label</zorder>
    <zorder>check_button</zorder>
    <zorder>button_state</zorder>
-   <zorder>charge_state</zorder>
    <zorder>accu_voltage</zorder>
    <zorder>usb_voltage</zorder>
    <zorder>digital_voltage</zorder>
@@ -1379,9 +1711,19 @@
    <zorder>pushButton_5</zorder>
    <zorder>pushButton_6</zorder>
    <zorder>comboBox</zorder>
+   <zorder>graph</zorder>
+   <zorder>flash_table_qui</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

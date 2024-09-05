@@ -2,6 +2,7 @@ from pyftdi.ftdi import Ftdi
 import pyftdi.usbtools
 import pyftdi.serialext
 import numpy as np
+from bitstring import BitArray
 import datetime
 from api_commands import * 
 from voltages import *
@@ -18,7 +19,7 @@ class Qiup():
         self.url, self.name = self.get_avail_dev()
 
     def setup_serial(self):
-        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=1)
+        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=2)
         return
     
     def close_serial(self):
@@ -321,7 +322,6 @@ class Qiup():
             print(f"Error while dimming {rgb} LED")
             return None
     
-    #### verify led numbers!!!!!
     def ledbar_control(self, LED_vector):
         if len(LED_vector) != 8:
             print("Please use list in form of [x,x,x,x,x,x,x,x] -> x=1/0")
@@ -416,6 +416,23 @@ class Qiup():
         return
  #### TODO: mesurement data receiving...   
     #def get_measurement_data
+
+    def get_measurement_data(self):
+        data = self.serial.read_until(b'\x03')
+        #data = self.serial.read(35)
+        data = data.rstrip(b'\x03').lstrip(b'\x02\x1d').hex()
+        #nr_data = int(data[2:4], 16)
+        return_data = data[4:]
+        data_list = []
+        for i in range(16):
+            b_data = data[i*4:(i+1)*4]
+            swap = b_data[2:] + b_data[:2]
+            right_value = int(swap, 16) & 0x0FFF
+            data_list.append(right_value)
+        return data_list[1]
+        #for i in range(int(len(data)/2)):
+        #    print(data[2*i:2*i+1])
+        
 
 
     def print_gain(self, gain_stage):
@@ -513,19 +530,6 @@ class Qiup():
         min =   int(pc_time[10:12])
         secs =  int(pc_time[12:14])
         self.set_datetime([year,month,day,hours,min,secs])
-    
-    # Firmware update??
-    # PREPARE_FW_UPDATE_APPL
-    
-    #function skelleton
-    def function(self):
-        send_reg = bytearray()
-        answer = self.send_command()
-        if answer[0] == ord(1) :
-            return 
-        else:
-            self.q_print("Error")
-            return None
 
     def play_sound(self, sound_nr):
         send_reg = bytearray(PLAY_SOUND_REQ)
@@ -568,21 +572,6 @@ class Qiup():
             print(accel_x)
             print(accel_y)
             print(accel_z)
-            return 
-        else:
-            self.q_print("Error")
-            return None
-    # Wrong API command??
-    def get_event_vector(self):
-        send_reg = bytearray(GET_EVENTSTATUS_VECTOR_REQ)
-        answer = self.send_command(send_reg)
-        if answer[0] == ord(GET_EVENTSTATUS_VECTOR_CONF):
-            earclip_state = answer[1]
-            usb_charge = answer[2]
-            usb_connect = answer[3]
-            bt_connect = answer[4]
-            print(f"Earlip: {earclip_state}, usb_charge: {usb_charge}, "
-                  + f"usb_connect {usb_connect}, bt_connect : {bt_connect}")
             return 
         else:
             self.q_print("Error")

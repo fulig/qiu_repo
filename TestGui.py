@@ -39,6 +39,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.datetime_qiu.clearMinimumDateTime()
         self.datetime_pc.setDateTime(QDateTime.currentDateTime())
         self.flash_table.resizeColumnsToContents()
+        self.flash_table_qui.resizeColumnsToContents()
+        self.flash_table_qui.setDisabled(1)
+        
         #print(QDateTime.currentDateTime())
 
     def connect_gui(self):
@@ -46,21 +49,41 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.connect.clicked.connect(self.register)    
         self.app_version.clicked.connect(self.get_app_version)
         self.api_version.clicked.connect(self.get_api_version)
+        
         self.led_on.clicked.connect(self.ledbar_on)
         self.led_off.clicked.connect(self.ledbar_off)
         self.led_power_on.clicked.connect(self.led_power_control)
         self.Red.valueChanged.connect(self.red_slider)
         self.Green.valueChanged.connect(self.green_slider)
         self.Blue.valueChanged.connect(self.blue_slider)
+        
         self.get_datetime_qiu.clicked.connect(self.get_datetime)
         self.set_datetime_pc.clicked.connect(self.set_datetime)
+        
         self.check_button.clicked.connect(self.get_button_state)
         self.play_sound.clicked.connect(self.sound_play)
+        
         self.charge_state.clicked.connect(self.get_charge_state)
         self.accu_voltage.clicked.connect(self.get_accu_voltage)
         self.usb_voltage.clicked.connect(self.get_usb_voltage)
         self.digital_voltage.clicked.connect(self.get_digital_voltage)
         self.all_voltages.clicked.connect(self.get_all_voltages)
+        
+
+        self.erase_button.clicked.connect(self.erase_flash)
+        self.read_button.clicked.connect(self.read_flash)
+        self.fill_button.clicked.connect(self.fill_flash)
+        self.setup_flash_table()
+
+    def setup_flash_table(self):
+        for i in range(32):
+            #self.flash_table.itemFromIndex(i).setText("FF")
+            item = QtWidgets.QTableWidgetItem("FF")
+            q_item = QtWidgets.QTableWidgetItem("--")
+            self.flash_table.setItem(0,i ,item)
+            self.flash_table_qui.setItem(0,i, q_item)
+            #self.flash_table.insertColumn(i)
+
 
     def register(self):
         button_text = self.connect.text()
@@ -126,12 +149,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def green_slider(self):
         value = self.Green.value()
-        self.red_value.setText(f"{value}/65")
+        self.green_value.setText(f"{value}/65")
         self.qiup.dim_led("G", value)
     
     def blue_slider(self):
         value = self.Blue.value()
-        self.red_value.setText(f"{value}/65")
+        self.blue_value.setText(f"{value}/65")
         self.qiup.dim_led("B", value)
 
     def get_datetime(self):
@@ -181,7 +204,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     
     def ledbar_on(self):
         for i,led in enumerate(self.dim_slider):
-            led.setValue(65)
+            led.setValue(32)
         self.qiup.ledbar_control([1,1,1,1,1,1,1,1])
         for led in self.leds:
             led.setChecked(True)
@@ -192,18 +215,36 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.qiup.ledbar_control([0,0,0,0,0,0,0,0])
         for led in self.leds:
             led.setChecked(False)
-    
+
+    def fill_flash(self):
+        data_string = ""
+        for i in range(32):
+            data = f"{i:02X}"
+            data_string = data_string + data
+            item = QtWidgets.QTableWidgetItem(data)
+            self.flash_table.setItem(0,i ,item)
+
+    def read_flash(self):
+        sector = self.sector_spin.value()
+        part = self.part_spin.value()
+        data = self.qiup.read_flash(sector, part)
+
+    def erase_flash(self):
+        sector = self.sector_spin.value()
+        state = self.qiup.erase_flash(sector)
+        print(state)
+
     def get_charge_state(self):
         charge_state = self.qiup.get_charge_state()
         match charge_state:
             case b'0A':
-                self.charge_line.setText("NO_BAT")
+                self.charge_line.setText("NOBAT")
             case b'0B':
-                self.charge_line.setText("NO_CH")
+                self.charge_line.setText("NOTCH")
             case b'0C':
-                self.charge_line.setText("FAST_PRE")
+                self.charge_line.setText("PRFCH")
             case b'0D':
-                self.charge_line.setText("TOP_OFF")
+                self.charge_line.setText("TPOCH")
             case b'0E':
                 self.charge_line.setText("MAINT")
             case b'0F':
@@ -229,9 +270,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def closeEvent(self, *args, **kwargs):
         super(QtWidgets.QMainWindow, self).closeEvent(*args, **kwargs)
         if self.connect_state == 1:
-            self.qiup.ledbar_control([0,0,0,0,0,0,0,0])
-            self.timer.cancel()
+            if self.retrigger_state == 1:
+                self.timer.cancel()
+            self.ledbar_off()
             self.qiup.release()
+            self.qiup.close_serial()
+            
+            
+            
+        
+
             
 
 app = QtWidgets.QApplication(sys.argv)
