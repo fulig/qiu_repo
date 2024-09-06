@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1118</width>
-    <height>769</height>
+    <width>1126</width>
+    <height>806</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -610,7 +610,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="get_accl">
+   <widget class="QPushButton" name="get_accl_btn">
     <property name="geometry">
      <rect>
       <x>640</x>
@@ -894,441 +894,12 @@
      </property>
     </widget>
    </widget>
-   <widget class="QTableWidget" name="flash_table">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>270</y>
-      <width>931</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="baseSize">
-     <size>
-      <width>3</width>
-      <height>3</height>
-     </size>
-    </property>
-    <property name="lineWidth">
-     <number>3</number>
-    </property>
-    <property name="dragDropOverwriteMode">
-     <bool>true</bool>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="rowCount">
-     <number>1</number>
-    </property>
-    <property name="columnCount">
-     <number>32</number>
-    </property>
-    <attribute name="horizontalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <row/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <item row="0" column="0">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="1">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="2">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="3">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="4">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="5">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="6">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="7">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="8">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="9">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="10">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="11">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="12">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="13">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="14">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="15">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="16">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="17">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="18">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="19">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="20">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="21">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="22">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="23">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="24">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="25">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="26">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="27">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="28">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="29">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="30">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-    <item row="0" column="31">
-     <property name="text">
-      <string>DD</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>230</y>
-      <width>811</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="sector_label">
-       <property name="text">
-        <string>Sector</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSpinBox" name="sector_spin">
-       <property name="minimum">
-        <number>8112</number>
-       </property>
-       <property name="maximum">
-        <number>8191</number>
-       </property>
-       <property name="value">
-        <number>8112</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>28</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="part_label">
-       <property name="text">
-        <string>Part</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSpinBox" name="part_spin">
-       <property name="maximum">
-        <number>127</number>
-       </property>
-       <property name="value">
-        <number>3</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>28</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="fill_button">
-       <property name="text">
-        <string>Fill</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>28</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="write_button">
-       <property name="text">
-        <string>WritePart</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>28</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="read_button">
-       <property name="text">
-        <string>Read Part</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>28</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="erase_button">
-       <property name="text">
-        <string>Erase Sector</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-    <zorder>sector_label</zorder>
-    <zorder>part_label</zorder>
-    <zorder>part_spin</zorder>
-    <zorder>sector_spin</zorder>
-    <zorder>fill_button</zorder>
-    <zorder>write_button</zorder>
-    <zorder>read_button</zorder>
-    <zorder>erase_button</zorder>
-   </widget>
-   <widget class="QPushButton" name="pushButton_5">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>260</y>
-      <width>111</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start Measure</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_6">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>290</y>
-      <width>111</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Stop Measure</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>230</y>
-      <width>111</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>ADC</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>Emulator</string>
-     </property>
-    </item>
-   </widget>
    <widget class="QFrame" name="frame_7">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>220</y>
-      <width>131</width>
+      <y>590</y>
+      <width>141</width>
       <height>101</height>
      </rect>
     </property>
@@ -1338,346 +909,1034 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <widget class="QComboBox" name="measure_mode">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>121</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>ADC</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Emulator</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QPushButton" name="start_measure_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>121</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start Measure</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="stop_measure_btn">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>121</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Stop Measure</string>
+     </property>
+    </widget>
    </widget>
    <widget class="PlotWidget" name="graph" native="true">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>450</y>
-      <width>1081</width>
-      <height>291</height>
+      <x>160</x>
+      <y>370</y>
+      <width>931</width>
+      <height>411</height>
      </rect>
     </property>
    </widget>
-   <widget class="QTableWidget" name="flash_table_qui">
+   <widget class="QFrame" name="frame_6">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>310</y>
-      <width>931</width>
-      <height>31</height>
+      <x>10</x>
+      <y>220</y>
+      <width>1091</width>
+      <height>131</height>
      </rect>
     </property>
-    <property name="baseSize">
-     <size>
-      <width>3</width>
-      <height>3</height>
-     </size>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
     </property>
-    <property name="lineWidth">
-     <number>3</number>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
     </property>
-    <property name="dragDropOverwriteMode">
-     <bool>true</bool>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>0</width>
-      <height>0</height>
-     </size>
-    </property>
-    <property name="rowCount">
-     <number>1</number>
-    </property>
-    <property name="columnCount">
-     <number>32</number>
-    </property>
-    <attribute name="horizontalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <attribute name="verticalHeaderVisible">
-     <bool>false</bool>
-    </attribute>
-    <row/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <column/>
-    <item row="0" column="0">
+    <widget class="QLabel" name="test_label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>50</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>DD</string>
+      <string>Test Flash</string>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+    </widget>
+    <widget class="QLabel" name="qiu_label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>90</y>
+       <width>91</width>
+       <height>21</height>
+      </rect>
      </property>
-    </item>
-    <item row="0" column="1">
+     <property name="font">
+      <font>
+       <bold>true</bold>
+      </font>
+     </property>
      <property name="text">
-      <string>DD</string>
+      <string>Qiu+ Flash</string>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>10</y>
+       <width>811</width>
+       <height>28</height>
+      </rect>
      </property>
-    </item>
-    <item row="0" column="2">
-     <property name="text">
-      <string>DD</string>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="sector_label">
+        <property name="text">
+         <string>Sector</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="sector_spin">
+        <property name="minimum">
+         <number>8112</number>
+        </property>
+        <property name="maximum">
+         <number>8191</number>
+        </property>
+        <property name="value">
+         <number>8112</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>28</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="part_label">
+        <property name="text">
+         <string>Part</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="part_spin">
+        <property name="maximum">
+         <number>127</number>
+        </property>
+        <property name="value">
+         <number>3</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>28</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="fill_button">
+        <property name="text">
+         <string>Fill</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>28</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="write_button">
+        <property name="text">
+         <string>WritePart</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>28</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="read_button">
+        <property name="text">
+         <string>Read Part</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>28</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="erase_button">
+        <property name="text">
+         <string>Erase Sector</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>sector_label</zorder>
+     <zorder>part_label</zorder>
+     <zorder>part_spin</zorder>
+     <zorder>sector_spin</zorder>
+     <zorder>erase_button</zorder>
+     <zorder>write_button</zorder>
+     <zorder>fill_button</zorder>
+     <zorder>read_button</zorder>
+    </widget>
+    <widget class="QTableWidget" name="flash_table">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>50</y>
+       <width>931</width>
+       <height>31</height>
+      </rect>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     <property name="baseSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
      </property>
-    </item>
-    <item row="0" column="3">
-     <property name="text">
-      <string>DD</string>
+     <property name="lineWidth">
+      <number>3</number>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     <property name="dragDropOverwriteMode">
+      <bool>true</bool>
      </property>
-    </item>
-    <item row="0" column="4">
-     <property name="text">
-      <string>DD</string>
+     <property name="iconSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     <property name="rowCount">
+      <number>1</number>
      </property>
-    </item>
-    <item row="0" column="5">
-     <property name="text">
-      <string>DD</string>
+     <property name="columnCount">
+      <number>32</number>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <row/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <item row="0" column="0">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="1">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="2">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="3">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="4">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="5">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="6">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="7">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="8">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="9">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="10">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="11">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="12">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="13">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="14">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="15">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="16">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="17">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="18">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="19">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="20">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="21">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="22">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="23">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="24">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="25">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="26">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="27">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="28">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="29">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="30">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+     <item row="0" column="31">
+      <property name="text">
+       <string>DD</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QTableWidget" name="flash_table_qui">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>90</y>
+       <width>931</width>
+       <height>31</height>
+      </rect>
      </property>
-    </item>
-    <item row="0" column="6">
-     <property name="text">
-      <string>DD</string>
+     <property name="baseSize">
+      <size>
+       <width>3</width>
+       <height>3</height>
+      </size>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     <property name="lineWidth">
+      <number>3</number>
      </property>
-    </item>
-    <item row="0" column="7">
-     <property name="text">
-      <string>DD</string>
+     <property name="dragDropOverwriteMode">
+      <bool>true</bool>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     <property name="iconSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
      </property>
-    </item>
-    <item row="0" column="8">
-     <property name="text">
-      <string>DD</string>
+     <property name="rowCount">
+      <number>1</number>
      </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+     <property name="columnCount">
+      <number>32</number>
      </property>
-    </item>
-    <item row="0" column="9">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="10">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="11">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="12">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="13">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="14">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="15">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="16">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="17">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="18">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="19">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="20">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="21">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="22">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="23">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="24">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="25">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="26">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="27">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="28">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="29">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="30">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
-    <item row="0" column="31">
-     <property name="text">
-      <string>DD</string>
-     </property>
-     <property name="flags">
-      <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-     </property>
-    </item>
+     <attribute name="horizontalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
+     <row/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <item row="0" column="0">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="1">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="2">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="3">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="4">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="5">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="6">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="7">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="8">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="9">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="10">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="11">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="12">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="13">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="14">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="15">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="16">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="17">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="18">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="19">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="20">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="21">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="22">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="23">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="24">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="25">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="26">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="27">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="28">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="29">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="30">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+     <item row="0" column="31">
+      <property name="text">
+       <string>DD</string>
+      </property>
+      <property name="flags">
+       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
+      </property>
+     </item>
+    </widget>
    </widget>
+   <widget class="QFrame" name="frame_8">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>450</y>
+      <width>141</width>
+      <height>121</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="analog_power_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>81</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>AnalogPow.</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="analog_btn">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>10</y>
+       <width>41</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>On</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="irled_int_btn">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>50</y>
+       <width>41</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>On</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="irled_int">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>71</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>IRLED Int.</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="irled_ext_btn">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>90</y>
+       <width>41</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>On</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="irled_ext">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>71</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>IRLED Ext.</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QPushButton" name="earclip_btn">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>380</y>
+      <width>121</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ear Clip State</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="earclip_line">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>410</y>
+      <width>121</width>
+      <height>25</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_9">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>141</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_10">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>700</y>
+      <width>141</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="set_gain_btn">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Set Gain</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="get_gain_btn">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>40</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Get Gain</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="gain_spin">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>42</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>3</number>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="gain_line">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>41</width>
+       <height>25</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <zorder>frame_9</zorder>
+   <zorder>frame_8</zorder>
+   <zorder>frame_6</zorder>
    <zorder>frame_7</zorder>
    <zorder>layoutWidget</zorder>
    <zorder>frame_5</zorder>
@@ -1685,7 +1944,6 @@
    <zorder>frame_4</zorder>
    <zorder>frame_3</zorder>
    <zorder>frame_2</zorder>
-   <zorder>layoutWidget</zorder>
    <zorder>main_operations</zorder>
    <zorder>connect</zorder>
    <zorder>app_version</zorder>
@@ -1693,7 +1951,7 @@
    <zorder>x_value</zorder>
    <zorder>y_value</zorder>
    <zorder>z_value</zorder>
-   <zorder>get_accl</zorder>
+   <zorder>get_accl_btn</zorder>
    <zorder>x_label</zorder>
    <zorder>y_label</zorder>
    <zorder>z_label</zorder>
@@ -1707,12 +1965,10 @@
    <zorder>accu_line</zorder>
    <zorder>usb_line</zorder>
    <zorder>dig_line</zorder>
-   <zorder>flash_table</zorder>
-   <zorder>pushButton_5</zorder>
-   <zorder>pushButton_6</zorder>
-   <zorder>comboBox</zorder>
    <zorder>graph</zorder>
-   <zorder>flash_table_qui</zorder>
+   <zorder>earclip_btn</zorder>
+   <zorder>earclip_line</zorder>
+   <zorder>frame_10</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

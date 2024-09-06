@@ -69,39 +69,52 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.digital_voltage.clicked.connect(self.get_digital_voltage)
         self.all_voltages.clicked.connect(self.get_all_voltages)
         
+        self.get_accl_btn.clicked.connect(self.get_accel)
 
         self.erase_button.clicked.connect(self.erase_flash)
         self.read_button.clicked.connect(self.read_flash)
         self.fill_button.clicked.connect(self.fill_flash)
+        self.write_button.clicked.connect(self.write_flash)
+
+        self.earclip_btn.clicked.connect(self.get_earclip_state)
+        
+        self.set_gain_btn.clicked.connect(self.set_gain)
+        self.get_gain_btn.clicked.connect(self.get_gain)
+
+        self.analog_btn.clicked.connect(self.analog_power)
+        self.irled_ext_btn.clicked.connect(self.irled_ext_control)
+        self.irled_int_btn.clicked.connect(self.irled_int_control)
+
+
         self.setup_flash_table()
+
+
 
     def setup_flash_table(self):
         for i in range(32):
-            #self.flash_table.itemFromIndex(i).setText("FF")
             item = QtWidgets.QTableWidgetItem("FF")
             q_item = QtWidgets.QTableWidgetItem("--")
             self.flash_table.setItem(0,i ,item)
             self.flash_table_qui.setItem(0,i, q_item)
-            #self.flash_table.insertColumn(i)
-
 
     def register(self):
         button_text = self.connect.text()
         self.qiup_name.setText("")
         if button_text == "Connect":
+            self.qiup.get_avail_dev()
             self.qiup.setup_serial()
             self.retrigger_state  = int(self.retrigger.isChecked())
             self.connect_state = self.qiup.register(self.retrigger_state)
             if self.connect_state == None:
                 self.qiup.close_serial()
                 self.connect.setText("Connect")
-                self.qiup_name.setStyleSheet("color: red")
+                self.qiup_name.setStyleSheet("background-color: red")
                 self.qiup_name.setText("NO CONNECTION")
                 return
             else:
                 self.get_api_version()
                 self.get_app_version()
-                self.qiup_name.setStyleSheet("color: white")
+                self.qiup_name.setStyleSheet("background-color: green")
                 self.connect.setText( "Release")
                 if self.retrigger_state == 1:
                     print("Starting retrigger timer.")
@@ -141,7 +154,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         if state_str == "On":
             self.qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
             self.led_power_on.setText("Off")
-        
+    
+    def set_ledbar(self):
+        if self.connect_state == 1:
+            led_bar = []
+            for led in self.leds:
+                led_bar.append(int(led.isChecked()))
+            self.qiup.ledbar_control(led_bar)
+        if self.connect_state == 0:
+            print("Not Connected, Please register first.")
+        return
+       
     def red_slider(self):
         value = self.Red.value()
         self.red_value.setText(f"{value}/65")
@@ -159,11 +182,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def get_datetime(self):
         qiup_dt = self.qiup.get_datetime()
-        print(qiup_dt)
         qiup_qt_dt = QtCore.QDateTime(int(qiup_dt[0]), int(qiup_dt[1]), 
                                       int(qiup_dt[2]), int(qiup_dt[3]), 
                                       int(qiup_dt[4]), int(qiup_dt[5]))
-        print(qiup_qt_dt)
         self.datetime_qiu.setDateTime(qiup_qt_dt)
 
     def set_datetime(self):
@@ -182,15 +203,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         sound_nr = int(self.spin_sound.value())
         self.qiup.play_sound(sound_nr)
 
-    def set_ledbar(self):
-        if self.connect_state == 1:
-            led_bar = []
-            for led in self.leds:
-                led_bar.append(int(led.isChecked()))
-            self.qiup.ledbar_control(led_bar)
-        if self.connect_state == 0:
-            print("Not Connected, Please register first.")
-        return
+    def get_accel(self):
+        x,y,z = self.qiup.get_accel()
+        print(x,y,z)
+        if type(x) is str:
+            self.x_value.setText(x)
+            self.y_value.setText(y)
+            self.z_value.setText(z)
+        if type(x) is float:
+            self.x_value.setText(f"{x:.2f}")
+            self.y_value.setText(f"{y:.2f}")
+            self.z_value.setText(f"{z:.2f}")
 
     def get_api_version(self):
         api_version = self.qiup.get_api_version()
@@ -228,11 +251,68 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         sector = self.sector_spin.value()
         part = self.part_spin.value()
         data = self.qiup.read_flash(sector, part)
+        data_string = str(data).lstrip("b'").rstrip("'")
+        for i in range(32):
+            item = QtWidgets.QTableWidgetItem(data_string[2*i:2*i+2])
+            self.flash_table_qui.setItem(0,i, item)
+
+
+    def write_flash(self):
+        part = self.part_spin.value()
+        sector = self.sector_spin.value()
+        data_string = ""
+        for i in range(32):
+            data_string = data_string + self.flash_table.item(0,i).text()
+        self.qiup.write_flash(sector, part, data_string)
 
     def erase_flash(self):
         sector = self.sector_spin.value()
         state = self.qiup.erase_flash(sector)
         print(state)
+
+    def get_earclip_state(self):
+        state = self.qiup.check_earclip()
+        if state == 0:
+            self.earclip_line.setText("Not Connected.")
+            self.earclip_line.setStyleSheet("background-color : red")
+        if state == 1:
+            self.earclip_line.setText("Connected.")
+            self.earclip_line.setStyleSheet("background-color : green")
+    
+    def analog_power(self):
+        state = self.analog_btn.text()
+        if state == "On":
+            self.qiup.control_power(1, QP_API_ANALOG_SUPPLY_VOLTAGE)
+            self.analog_btn.setText("Off")
+        if state == "Off":
+            self.qiup.control_power(0, QP_API_ANALOG_SUPPLY_VOLTAGE)
+            self.analog_btn.setText("On")
+
+    def irled_int_control(self):
+        state = self.irled_int_btn.text()
+        if state == "On":
+            self.qiup.control_irled_intern(0)
+            self.irled_int_btn.setText("Off")
+        if state == "Off":
+            self.qiup.control_irled_intern(1)
+            self.irled_int_btn.setText("On")
+    
+    def irled_ext_control(self):
+        state = self.irled_ext_btn.text()
+        if state == "On":
+            self.qiup.control_irled_ext(0)
+            self.irled_ext_btn.setText("Off")
+        if state == "Off":
+            self.qiup.control_irled_ext(1)
+            self.irled_ext_btn.setText("On")
+
+    def get_gain(self):
+        stage = self.qiup.get_gain()
+        self.gain_line.setText(str(stage))
+
+    def set_gain(self):
+        stage = int(self.gain_spin.value())
+        self.qiup.set_gain(stage)
 
     def get_charge_state(self):
         charge_state = self.qiup.get_charge_state()
@@ -252,15 +332,15 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def get_accu_voltage(self):
         voltage = round(float(self.qiup.get_voltage(QP_API_ACCU_VOLTAGE)),3)
-        self.accu_line.setText(f"{voltage}")
+        self.accu_line.setText(f"{voltage:.3f}")
 
     def get_usb_voltage(self):
         voltage = round(float(self.qiup.get_voltage(QP_API_USB_VOLTAGE)),3)
-        self.usb_line.setText(f"{voltage}")
+        self.usb_line.setText(f"{voltage:.3f}")
     
     def get_digital_voltage(self):
         voltage = round(float(self.qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)),3)
-        self.dig_line.setText(f"{voltage}")
+        self.dig_line.setText(f"{voltage:.3f}")
     
     def get_all_voltages(self):
         self.get_accu_voltage()
@@ -274,13 +354,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                 self.timer.cancel()
             self.ledbar_off()
             self.qiup.release()
-            self.qiup.close_serial()
-            
-            
-            
-        
-
-            
+            self.qiup.close_serial()            
 
 app = QtWidgets.QApplication(sys.argv)
 

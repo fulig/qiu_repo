@@ -16,7 +16,7 @@ class Qiup():
             self.debug = True
         else:
             self.debug = False
-        self.url, self.name = self.get_avail_dev()
+        #self.url, self.name = self.get_avail_dev()
 
     def setup_serial(self):
         self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=2)
@@ -32,13 +32,13 @@ class Qiup():
         dev = Ftdi.list_devices()
         if dev == []:
             self.q_print("No FTDI connected.")
-            return None,None
+            return None
         else:
             dev = dev[0][0]
-            url = f"ftdi://ftdi:ft-x:{dev[4]}/1"
-            name = dev[-1]
-            self.q_print(f"FTDI device: {name} {url}")
-            return url,name
+            self.url = f"ftdi://ftdi:ft-x:{dev[4]}/1"
+            self.name = dev[-1]
+            self.q_print(f"FTDI device : {self.name}")
+            self.q_print(f"FTDI URL    : {self.url}")
             
     def check_reject(self, answer):
         state = int(answer[:2], 16)
@@ -556,7 +556,12 @@ class Qiup():
         else:
             self.q_print("Error while checking button state")
             return None
-
+    
+    def twos_comp(self, val, bits):
+        if (val & (1 << (bits - 1))) != 0: # if sign bit is set e.g., 8bit: 128-255
+            val = val - (1 << bits)        # compute negative value
+        return val
+    
 #Umrechnung implementieren!!!       
     def get_accel(self):
         send_reg = bytearray(GET_ACCEL_RAW_REQ)
@@ -564,15 +569,19 @@ class Qiup():
         if answer[0] == ord(GET_ACCEL_RAW_CONF):
             state = int(answer[1:3])
             self.api_return(state)
-            print(state)
-            print(answer)
-            accel_x = answer[3:7]
-            accel_y = answer[7:11]
-            accel_z = answer[11:15]
-            print(accel_x)
-            print(accel_y)
-            print(accel_z)
-            return 
+            if state == 1:
+                return ["XXX", "XXX", "XXX"]
+            if state == 0:        
+                accel_x = int(answer[3:7],16 ) >> 2
+                accel_y = int(answer[7:11],16) >> 2
+                accel_z = int(answer[11:15], 16) >> 2
+                raw_x = self.twos_comp(accel_x, 14) 
+                raw_y = self.twos_comp(accel_y , 14)
+                raw_z = self.twos_comp(accel_z , 14)                
+                x = raw_x * 0.244 / 1000
+                y = raw_y * 0.244 / 1000
+                z = raw_z * 0.244 / 1000
+            return [x,y,z]
         else:
             self.q_print("Error")
             return None
