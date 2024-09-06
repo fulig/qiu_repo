@@ -918,14 +918,17 @@
        <height>25</height>
       </rect>
      </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
      <item>
       <property name="text">
-       <string>ADC</string>
+       <string>Emulator</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Emulator</string>
+       <string>ADC</string>
       </property>
      </item>
     </widget>
@@ -992,7 +995,7 @@
      </property>
      <property name="font">
       <font>
-       <bold>true</bold>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">
@@ -1010,7 +1013,7 @@
      </property>
      <property name="font">
       <font>
-       <bold>true</bold>
+       <bold>false</bold>
       </font>
      </property>
      <property name="text">

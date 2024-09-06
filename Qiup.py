@@ -19,7 +19,7 @@ class Qiup():
         #self.url, self.name = self.get_avail_dev()
 
     def setup_serial(self):
-        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=2)
+        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=3)
         return
     
     def close_serial(self):
@@ -354,6 +354,7 @@ class Qiup():
         send_reg = bytearray(FLASH_READ_DATA_REQ)
         sector = f"{sector_number:04X}"
         part = f"{part_number:02X}"
+
         send_reg.extend(map(ord, sector+part))
         answer = self.send_command(send_reg)
         if answer[0] == ord(FLASH_READ_DATA_CONF):
@@ -411,25 +412,28 @@ class Qiup():
             self.q_print("Error while setting up Measurement.")
             return None
     
+    def start_measure(self, emulator):
+        self.puls_measure_control(emulator,0,1,1)
+        return
+    
     def stop_measure(self):
         self.puls_measure_control(0,0,0,0)
         return
- #### TODO: mesurement data receiving...   
-    #def get_measurement_data
 
     def get_measurement_data(self):
         data = self.serial.read_until(b'\x03')
         #data = self.serial.read(35)
-        data = data.rstrip(b'\x03').lstrip(b'\x02\x1d').hex()
-        #nr_data = int(data[2:4], 16)
-        return_data = data[4:]
-        data_list = []
-        for i in range(16):
-            b_data = data[i*4:(i+1)*4]
-            swap = b_data[2:] + b_data[:2]
-            right_value = int(swap, 16) & 0x0FFF
-            data_list.append(right_value)
-        return data_list[1]
+        if data[1] == ord(PULSE_MEAS_DATA_16_IND):
+            data = data.rstrip(b'\x03').lstrip(b'\x02\x1d').hex()
+            #nr_data = int(data[2:4], 16)
+            return_data = data[4:]
+            data_list = []
+            for i in range(17):
+                b_data = data[i*4:(i+1)*4]
+                swap = b_data[2:] + b_data[:2]
+                right_value = int(swap, 16) & 0x0FFF
+                data_list.append(right_value)
+            return data_list
         #for i in range(int(len(data)/2)):
         #    print(data[2*i:2*i+1])
         

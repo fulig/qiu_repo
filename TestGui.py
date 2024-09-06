@@ -10,6 +10,7 @@ import sys
 import threading
 from PyQt6 import QtGui, QtWidgets
 from PyQt6.QtCore import QDateTime
+import pyqtgraph
 from Qiup import *
 from Gui import *  
 from voltages import *
@@ -19,11 +20,21 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.setupUi(self)
         self.connect_state = 0
+        self.measure_state = False
+        self.data_number = 20*16
+        self.measure_data = np.empty(self.data_number)
+        
         self.default_values()
         self.gui = Ui_Quip_test()
         self.qiup = Qiup(debug=True)
         self.default_values()
         self.connect_gui()
+
+        self.graph_timer = QtCore.QTimer()
+        self.graph_timer.timeout.connect(self.update_serial_data)
+        self.idx_count = 0
+        #self.test_plot_x = [0,1,2,3,4,5,6,7,8,9]
+        #self.graph.plot(self.test_plot_x, self.test_plot_x)
         #
 
     def default_values(self):
@@ -42,6 +53,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.flash_table_qui.resizeColumnsToContents()
         self.flash_table_qui.setDisabled(1)
         
+        self.graph.setYRange(0, 5000, padding=0)
+        self.graph.setXRange(0, self.data_number, padding=0)
+        self.curve = self.graph.plot()
         #print(QDateTime.currentDateTime())
 
     def connect_gui(self):
@@ -85,7 +99,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.irled_ext_btn.clicked.connect(self.irled_ext_control)
         self.irled_int_btn.clicked.connect(self.irled_int_control)
 
-
+        self.start_measure_btn.clicked.connect(self.start_measure)
+        self.stop_measure_btn.clicked.connect(self.stop_measure)
         self.setup_flash_table()
 
 
@@ -124,6 +139,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         if button_text == "Release":
             if self.retrigger_state == 1:
                 self.timer.cancel()
+            if self.measure_state == True:
+                self.stop_measure()
             self.ledbar_off()
             self.connect_state = self.qiup.release()
             self.qiup.close_serial()
@@ -205,7 +222,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def get_accel(self):
         x,y,z = self.qiup.get_accel()
-        print(x,y,z)
         if type(x) is str:
             self.x_value.setText(x)
             self.y_value.setText(y)
@@ -256,7 +272,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             item = QtWidgets.QTableWidgetItem(data_string[2*i:2*i+2])
             self.flash_table_qui.setItem(0,i, item)
 
-
     def write_flash(self):
         part = self.part_spin.value()
         sector = self.sector_spin.value()
@@ -291,19 +306,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def irled_int_control(self):
         state = self.irled_int_btn.text()
         if state == "On":
-            self.qiup.control_irled_intern(0)
+            self.qiup.control_irled_intern(1)
             self.irled_int_btn.setText("Off")
         if state == "Off":
-            self.qiup.control_irled_intern(1)
+            self.qiup.control_irled_intern(0)
             self.irled_int_btn.setText("On")
     
     def irled_ext_control(self):
         state = self.irled_ext_btn.text()
         if state == "On":
-            self.qiup.control_irled_ext(0)
+            self.qiup.control_irled_ext(1)
             self.irled_ext_btn.setText("Off")
         if state == "Off":
-            self.qiup.control_irled_ext(1)
+            self.qiup.control_irled_ext(0)
             self.irled_ext_btn.setText("On")
 
     def get_gain(self):
@@ -343,18 +358,49 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.dig_line.setText(f"{voltage:.3f}")
     
     def get_all_voltages(self):
+        self.get_charge_state()
         self.get_accu_voltage()
         self.get_usb_voltage()
         self.get_digital_voltage()
 
+    def start_measure(self):
+        self.measure_state = True
+        mode = self.measure_mode.currentIndex()
+        if self.retrigger_state == 1:
+            self.timer.cancel()
+            self.qiup.release()
+            self.qiup.register()
+        self.qiup.start_measure(mode)
+        self.graph_timer.start()
+    
+    def stop_measure(self):
+        self.measure_state = False
+        if self.retrigger_state == 1:
+            self.qiup.release()
+            self.qiup.register(1)
+        self.qiup.stop_measure()
+        self.graph_timer.stop()
+        self.idx_count = 0
+        self.measure_data = np.empty(self.data_number)
+        self.curve.setData(self.measure_data)
+
+    def update_serial_data(self):
+        if self.idx_count == len(self.measure_data):
+            self.idx_count = 0
+        self.measure_data[self.idx_count:self.idx_count+16] = self.qiup.get_measurement_data()[1:]
+        self.idx_count = self.idx_count + 16
+        self.curve.setData(self.measure_data)
+    
     def closeEvent(self, *args, **kwargs):
         super(QtWidgets.QMainWindow, self).closeEvent(*args, **kwargs)
         if self.connect_state == 1:
             if self.retrigger_state == 1:
                 self.timer.cancel()
+            if self.measure_state == True:
+                self.stop_measure()
             self.ledbar_off()
             self.qiup.release()
-            self.qiup.close_serial()            
+            self.qiup.close_serial()  
 
 app = QtWidgets.QApplication(sys.argv)
 

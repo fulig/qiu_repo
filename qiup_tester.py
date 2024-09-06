@@ -5,6 +5,7 @@ from voltages import *
 
 qiup = Qiup(debug=False)
 #qiup = Qiup(debug=True)
+qiup.get_avail_dev()
 qiup.setup_serial()
 
 #print("API Version")
@@ -21,7 +22,7 @@ if qiup.register(0) == 1:
 #time.sleep(1)
 #qiup.register_retrigger()
 #qiup.control_power(1,QP_API_LED_SUPPLY_VOLTAGE)
-#qiup.control_power(1,QP_API_ANALOG_SUPPLY_VOLTAGE)
+qiup.control_power(1,QP_API_ANALOG_SUPPLY_VOLTAGE)
 #qiup.control_power(0,QP_API_LED_SUPPLY_VOLTAGE)
 #qiup.control_power(0,QP_API_ANALOG_SUPPLY_VOLTAGE)
 
@@ -29,10 +30,13 @@ if qiup.register(0) == 1:
 #qiup.get_voltage(QP_API_USB_VOLTAGE)
 #qiup.get_voltage(QP_API_DIG_SUPPLY_VOLTAGE)
 #qiup.get_voltage(10)
-print("--------")
-time.sleep(1)
-qiup.get_charge_state() # --> Takes longer to request..???
-
+#print("--------")
+#time.sleep(1)
+#qiup.get_charge_state() # --> Takes longer to request..???
+qiup.start_measure([0,0,1,1])
+for i in range(256):
+    data = qiup.get_measurement_data()
+    print(data)
 #qiup.control_irled_ext(0)
 #qiup.control_irled_ext(1)
 
