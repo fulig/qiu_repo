@@ -12,6 +12,10 @@ class Qiup():
         self.baudrate = baudrate
         self.STX = b'\x02'
         self.ETX = b'\x03'
+        self.run_idx = 0
+        self.ex_run_idx = 0
+        self.inc = True
+
         if debug == True:
             self.debug = True
         else:
@@ -413,33 +417,59 @@ class Qiup():
             self.q_print("Error while setting up Measurement.")
             return None
     
-    def start_measure(self, emulator):
-        self.puls_measure_control(emulator,0,1,1)
-        print(emulator)
+    def start_measure(self):
+        self.puls_measure_control(0,0,1,1)
         return
     
     def stop_measure(self):
         self.puls_measure_control(0,0,0,0)
+        self.inc = True
+        self.run_idx = 1
         return
 
     def get_measurement_data(self):
         data = self.serial.read_until(b'\x03')
-        #data = self.serial.read(35)
         if data[1] == ord(PULSE_MEAS_DATA_16_IND):
+            
             data = data.rstrip(b'\x03').lstrip(b'\x02\x1d').hex()
-            #print(data)
             data_list = []
             data_len = int(data[:4],16)
-            #if data_len == 34:
-            for i in range(17):
+            data = data[4:]
+            
+            if data_len != 34:
+                data = self.fix_data(data)
+            for i in range(int(len(data)/4)):
                 b_data = data[i*4:(i+1)*4]
                 swap = b_data[2:] + b_data[:2]
+                received = swap[0]
                 right_value = int(swap, 16) & 0x0FFF
                 data_list.append(right_value)
+                self.handle_idx()
             return data_list
-        #for i in range(int(len(data)/2)):
-        #    print(data[2*i:2*i+1])
-        
+
+    def fix_data(self,data_line):
+        return_data = data_line
+        print(type(return_data))
+        print(return_data)
+        if len(data_line)%4 == 0:
+            for i in range(int(len(data_line)/4)):
+                data = data_line[i*4:(i+1)*4]
+                idx = data[2]
+                if self.run_idx != idx:
+                    return_data = return_data[:i*4] + return_data[i*4+6:]
+                self.handle_idx()
+        print(return_data)
+        return return_data
+    
+    def handle_idx(self):
+        if self.inc:
+            self.run_idx += 1
+        else:
+            self.run_idx -= 1
+        if self.run_idx == 7:
+            self.inc = False
+        if self.run_idx == 1:
+            self.inc = True
 
     def print_gain(self, gain_stage):
         gain = ""

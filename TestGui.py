@@ -366,13 +366,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def start_measure(self):
         self.measure_state = True
-        mode = self.measure_mode.currentIndex()
-        #print(mode)
+        #mode = self.measure_mode.currentIndex()
         if self.retrigger_state == 1:
             self.timer.cancel()
             self.qiup.release()
             self.qiup.register()
-        self.qiup.start_measure(mode)
+        self.qiup.start_measure()
         self.graph_timer.start()
     
     def stop_measure(self):
@@ -389,7 +388,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def update_serial_data(self):
         if self.idx_count == len(self.measure_data):
             self.idx_count = 0
-        self.measure_data[self.idx_count:self.idx_count+16] = self.qiup.get_measurement_data()[1:]
+        measure_data = self.qiup.get_measurement_data()
+        self.measure_data[self.idx_count:self.idx_count+len(measure_data)] = measure_data
         self.idx_count = self.idx_count + 16
         self.curve.setData(self.measure_data)
     
