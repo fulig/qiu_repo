@@ -32,13 +32,14 @@ class Qiup():
         dev = Ftdi.list_devices()
         if dev == []:
             self.q_print("No FTDI connected.")
-            return None
+            return False
         else:
             dev = dev[0][0]
             self.url = f"ftdi://ftdi:ft-x:{dev[4]}/1"
             self.name = dev[-1]
             self.q_print(f"FTDI device : {self.name}")
             self.q_print(f"FTDI URL    : {self.url}")
+            return True
             
     def check_reject(self, answer):
         state = int(answer[:2], 16)
@@ -414,6 +415,7 @@ class Qiup():
     
     def start_measure(self, emulator):
         self.puls_measure_control(emulator,0,1,1)
+        print(emulator)
         return
     
     def stop_measure(self):
@@ -425,9 +427,10 @@ class Qiup():
         #data = self.serial.read(35)
         if data[1] == ord(PULSE_MEAS_DATA_16_IND):
             data = data.rstrip(b'\x03').lstrip(b'\x02\x1d').hex()
-            #nr_data = int(data[2:4], 16)
-            return_data = data[4:]
+            #print(data)
             data_list = []
+            data_len = int(data[:4],16)
+            #if data_len == 34:
             for i in range(17):
                 b_data = data[i*4:(i+1)*4]
                 swap = b_data[2:] + b_data[:2]
@@ -437,7 +440,6 @@ class Qiup():
         #for i in range(int(len(data)/2)):
         #    print(data[2*i:2*i+1])
         
-
 
     def print_gain(self, gain_stage):
         gain = ""

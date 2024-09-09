@@ -26,7 +26,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         
         self.default_values()
         self.gui = Ui_Quip_test()
-        self.qiup = Qiup(debug=True)
+        self.qiup = Qiup(debug=False)
         self.default_values()
         self.connect_gui()
 
@@ -148,6 +148,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.api_version_text.setText("")
             self.app_version_text.setText("")
             self.qiup_name.setText("")
+            self.qiup_name.setStyleSheet("")
     
     def retrigger_timer(self):
         if self.connect_state == 0:
@@ -366,6 +367,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def start_measure(self):
         self.measure_state = True
         mode = self.measure_mode.currentIndex()
+        #print(mode)
         if self.retrigger_state == 1:
             self.timer.cancel()
             self.qiup.release()
@@ -382,7 +384,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.graph_timer.stop()
         self.idx_count = 0
         self.measure_data = np.empty(self.data_number)
-        self.curve.setData(self.measure_data)
+        #self.curve.setData(self.measure_data)
 
     def update_serial_data(self):
         if self.idx_count == len(self.measure_data):

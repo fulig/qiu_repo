@@ -141,162 +141,10 @@
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QFrame" name="LED">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>30</y>
-      <width>161</width>
-      <height>42</height>
-     </rect>
-    </property>
-    <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string> 8</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>7</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>6</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="4">
-      <widget class="QLabel" name="label_6">
-       <property name="text">
-        <string>4</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="5">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>3</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="6">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>2</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="7">
-      <widget class="QLabel" name="label_9">
-       <property name="text">
-        <string>1</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="3">
-      <widget class="QLabel" name="label_5">
-       <property name="text">
-        <string>5</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" colspan="8">
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QRadioButton" name="led1">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="led2">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="led3">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="led4">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="led5">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="led6">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="led7">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QRadioButton" name="led8">
-         <property name="text">
-          <string/>
-         </property>
-         <property name="autoExclusive">
-          <bool>false</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QFrame" name="frame">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
+      <x>310</x>
       <y>20</y>
       <width>241</width>
       <height>191</height>
@@ -500,6 +348,158 @@
      <property name="text">
       <string>All LED Off</string>
      </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>161</width>
+       <height>42</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string> 8</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>7</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>6</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>4</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="6">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="7">
+       <widget class="QLabel" name="label_9">
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>5</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="8">
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QRadioButton" name="led1">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="led2">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="led3">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="led4">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="led5">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="led6">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="led7">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="led8">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="autoExclusive">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QFrame" name="frame_2">
@@ -919,16 +919,16 @@
       </rect>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <item>
       <property name="text">
-       <string>Emulator</string>
+       <string>ADC</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>ADC</string>
+       <string>Emulator</string>
       </property>
      </item>
     </widget>
@@ -964,7 +964,7 @@
      <rect>
       <x>160</x>
       <y>370</y>
-      <width>931</width>
+      <width>941</width>
       <height>411</height>
      </rect>
     </property>
@@ -987,9 +987,9 @@
     <widget class="QLabel" name="test_label">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>10</x>
        <y>50</y>
-       <width>81</width>
+       <width>71</width>
        <height>31</height>
       </rect>
      </property>
@@ -1005,9 +1005,9 @@
     <widget class="QLabel" name="qiu_label">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>10</x>
        <y>90</y>
-       <width>91</width>
+       <width>71</width>
        <height>21</height>
       </rect>
      </property>
@@ -1017,13 +1017,13 @@
       </font>
      </property>
      <property name="text">
-      <string>Qiu+ Flash</string>
+      <string>Qiu Flash</string>
      </property>
     </widget>
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>130</x>
        <y>10</y>
        <width>811</width>
        <height>28</height>
@@ -1173,9 +1173,9 @@
     <widget class="QTableWidget" name="flash_table">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>90</x>
        <y>50</y>
-       <width>931</width>
+       <width>991</width>
        <height>31</height>
       </rect>
      </property>
@@ -1406,9 +1406,9 @@
     <widget class="QTableWidget" name="flash_table_qui">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>90</x>
        <y>90</y>
-       <width>931</width>
+       <width>991</width>
        <height>31</height>
       </rect>
      </property>
@@ -1937,13 +1937,12 @@
      </property>
     </widget>
    </widget>
+   <zorder>LED</zorder>
    <zorder>frame_9</zorder>
    <zorder>frame_8</zorder>
    <zorder>frame_6</zorder>
    <zorder>frame_7</zorder>
-   <zorder>layoutWidget</zorder>
    <zorder>frame_5</zorder>
-   <zorder>frame</zorder>
    <zorder>frame_4</zorder>
    <zorder>frame_3</zorder>
    <zorder>frame_2</zorder>
