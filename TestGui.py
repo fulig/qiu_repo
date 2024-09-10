@@ -47,8 +47,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.red_label.setStyleSheet("color:red")
         self.green_label.setStyleSheet("color:green")
         self.blue_label.setStyleSheet("color : blue")
-        self.datetime_qiu.clearMinimumDateTime()
+        self.datetime_qiu.setDateTime(self.datetime_qiu.minimumDateTime())
         self.datetime_pc.setDateTime(QDateTime.currentDateTime())
+
         self.flash_table.resizeColumnsToContents()
         self.flash_table_qui.resizeColumnsToContents()
         self.flash_table_qui.setDisabled(1)
@@ -56,6 +57,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.graph.setYRange(0, 5000, padding=0)
         self.graph.setXRange(0, self.data_number, padding=0)
         self.curve = self.graph.plot()
+
+        self.line_edits = [self.accu_line, self.usb_line, self.dig_line,
+                           self.x_value, self.y_value, self.z_value, 
+                           self.earclip_line, self.gain_line, 
+                           self.api_version_text, self.app_version_text, 
+                           self.qiup_name, self.button_state, self.charge_line]
         #print(QDateTime.currentDateTime())
 
     def connect_gui(self):
@@ -103,7 +110,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.stop_measure_btn.clicked.connect(self.stop_measure)
         self.setup_flash_table()
 
-
+    def reset_fields(self):
+        for line_field in self.line_edits:
+            line_field.setText("")
+            line_field.setStyleSheet("")
+        self.setup_flash_table()
+        self.datetime_qiu.setDateTime(self.datetime_qiu.minimumDateTime())
 
     def setup_flash_table(self):
         for i in range(32):
@@ -120,6 +132,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.qiup.setup_serial()
             self.retrigger_state  = int(self.retrigger.isChecked())
             self.connect_state = self.qiup.register(self.retrigger_state)
+            self.qiup.control_power(0, QP_API_ANALOG_SUPPLY_VOLTAGE)
+            self.power_line.setText("Off")
+            self.qiup.control_irled_ext(0)
+            self.irled_ext_line.setText("Off")
+            self.qiup.control_irled_intern(0)
+            self.irled_int_line.setText("Off")
             if self.connect_state == None:
                 self.qiup.close_serial()
                 self.connect.setText("Connect")
@@ -145,10 +163,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.connect_state = self.qiup.release()
             self.qiup.close_serial()
             self.connect.setText("Connect")
-            self.api_version_text.setText("")
-            self.app_version_text.setText("")
-            self.qiup_name.setText("")
-            self.qiup_name.setStyleSheet("")
+            self.reset_fields()
     
     def retrigger_timer(self):
         if self.connect_state == 0:
@@ -299,27 +314,33 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         state = self.analog_btn.text()
         if state == "On":
             self.qiup.control_power(1, QP_API_ANALOG_SUPPLY_VOLTAGE)
+            self.power_line.setText("On")
             self.analog_btn.setText("Off")
         if state == "Off":
             self.qiup.control_power(0, QP_API_ANALOG_SUPPLY_VOLTAGE)
+            self.power_line.setText("Off")
             self.analog_btn.setText("On")
 
     def irled_int_control(self):
         state = self.irled_int_btn.text()
         if state == "On":
             self.qiup.control_irled_intern(1)
+            self.irled_int_line.setText("On")
             self.irled_int_btn.setText("Off")
         if state == "Off":
             self.qiup.control_irled_intern(0)
+            self.irled_int_line.setText("Off")
             self.irled_int_btn.setText("On")
     
     def irled_ext_control(self):
         state = self.irled_ext_btn.text()
         if state == "On":
             self.qiup.control_irled_ext(1)
+            self.irled_ext_line.setText("On")
             self.irled_ext_btn.setText("Off")
         if state == "Off":
             self.qiup.control_irled_ext(0)
+            self.irled_ext_line.setText("Off")
             self.irled_ext_btn.setText("On")
 
     def get_gain(self):
@@ -359,21 +380,19 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.dig_line.setText(f"{voltage:.3f}")
     
     def get_all_voltages(self):
-        self.get_charge_state()
         self.get_accu_voltage()
         self.get_usb_voltage()
         self.get_digital_voltage()
 
     def start_measure(self):
         self.measure_state = True
-        #mode = self.measure_mode.currentIndex()
         if self.retrigger_state == 1:
             self.timer.cancel()
             self.qiup.release()
             self.qiup.register()
         self.qiup.start_measure()
         self.graph_timer.start()
-    
+
     def stop_measure(self):
         self.measure_state = False
         if self.retrigger_state == 1:

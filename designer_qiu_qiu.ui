@@ -355,7 +355,7 @@
        <x>30</x>
        <y>10</y>
        <width>161</width>
-       <height>42</height>
+       <height>43</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout">
@@ -539,15 +539,43 @@
        <height>26</height>
       </rect>
      </property>
+     <property name="date">
+      <date>
+       <year>2001</year>
+       <month>1</month>
+       <day>1</day>
+      </date>
+     </property>
+     <property name="time">
+      <time>
+       <hour>17</hour>
+       <minute>20</minute>
+       <second>48</second>
+      </time>
+     </property>
      <property name="minimumDateTime">
       <datetime>
-       <hour>0</hour>
-       <minute>0</minute>
+       <hour>1</hour>
+       <minute>1</minute>
        <second>0</second>
-       <year>1752</year>
-       <month>9</month>
-       <day>14</day>
+       <year>2001</year>
+       <month>1</month>
+       <day>1</day>
       </datetime>
+     </property>
+     <property name="minimumDate">
+      <date>
+       <year>2001</year>
+       <month>1</month>
+       <day>1</day>
+      </date>
+     </property>
+     <property name="minimumTime">
+      <time>
+       <hour>1</hour>
+       <minute>1</minute>
+       <second>0</second>
+      </time>
      </property>
      <property name="displayFormat">
       <string>dd.MM.yyyy HH:mm:ss</string>
@@ -719,7 +747,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Open</string>
+     <string/>
     </property>
    </widget>
    <widget class="QFrame" name="frame_4">
@@ -898,9 +926,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>590</y>
-      <width>141</width>
-      <height>101</height>
+      <y>460</y>
+      <width>191</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -909,35 +937,12 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QComboBox" name="measure_mode">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>121</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="currentIndex">
-      <number>0</number>
-     </property>
-     <item>
-      <property name="text">
-       <string>ADC</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Emulator</string>
-      </property>
-     </item>
-    </widget>
     <widget class="QPushButton" name="start_measure_btn">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>40</y>
-       <width>121</width>
+       <y>10</y>
+       <width>171</width>
        <height>25</height>
       </rect>
      </property>
@@ -949,8 +954,8 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>70</y>
-       <width>121</width>
+       <y>40</y>
+       <width>171</width>
        <height>25</height>
       </rect>
      </property>
@@ -962,9 +967,9 @@
    <widget class="PlotWidget" name="graph" native="true">
     <property name="geometry">
      <rect>
-      <x>160</x>
+      <x>210</x>
       <y>370</y>
-      <width>941</width>
+      <width>891</width>
       <height>411</height>
      </rect>
     </property>
@@ -1026,7 +1031,7 @@
        <x>130</x>
        <y>10</y>
        <width>811</width>
-       <height>28</height>
+       <height>29</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1737,8 +1742,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>450</y>
-      <width>141</width>
+      <y>550</y>
+      <width>191</width>
       <height>121</height>
      </rect>
     </property>
@@ -1826,13 +1831,61 @@
       <string>IRLED Ext.</string>
      </property>
     </widget>
+    <widget class="QLineEdit" name="power_line">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>41</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="irled_int_line">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>50</y>
+       <width>41</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="irled_ext_line">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>90</y>
+       <width>41</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
    <widget class="QPushButton" name="earclip_btn">
     <property name="geometry">
      <rect>
       <x>20</x>
       <y>380</y>
-      <width>121</width>
+      <width>171</width>
       <height>25</height>
      </rect>
     </property>
@@ -1845,7 +1898,7 @@
      <rect>
       <x>20</x>
       <y>410</y>
-      <width>121</width>
+      <width>171</width>
       <height>25</height>
      </rect>
     </property>
@@ -1858,7 +1911,7 @@
      <rect>
       <x>10</x>
       <y>370</y>
-      <width>141</width>
+      <width>191</width>
       <height>71</height>
      </rect>
     </property>
@@ -1873,8 +1926,8 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>700</y>
-      <width>141</width>
+      <y>690</y>
+      <width>191</width>
       <height>80</height>
      </rect>
     </property>
@@ -1887,9 +1940,9 @@
     <widget class="QPushButton" name="set_gain_btn">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>60</x>
        <y>10</y>
-       <width>80</width>
+       <width>121</width>
        <height>25</height>
       </rect>
      </property>
@@ -1900,9 +1953,9 @@
     <widget class="QPushButton" name="get_gain_btn">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>60</x>
        <y>40</y>
-       <width>80</width>
+       <width>121</width>
        <height>25</height>
       </rect>
      </property>
