@@ -435,9 +435,10 @@ class Qiup():
             data_list = []
             data_len = int(data[:4],16)
             data = data[4:]
-            
-            if data_len != 34:
-                data = self.fix_data(data)
+            if data_len > 34:
+                if self.debug:
+                    print("Repairing data...")
+                data = data.replace("ff", "")
             for i in range(int(len(data)/4)):
                 b_data = data[i*4:(i+1)*4]
                 swap = b_data[2:] + b_data[:2]
@@ -448,17 +449,17 @@ class Qiup():
             return data_list
 
     def fix_data(self,data_line):
-        return_data = data_line
-        print(type(return_data))
-        print(return_data)
-        if len(data_line)%4 == 0:
-            for i in range(int(len(data_line)/4)):
-                data = data_line[i*4:(i+1)*4]
-                idx = data[2]
-                if self.run_idx != idx:
-                    return_data = return_data[:i*4] + return_data[i*4+6:]
-                self.handle_idx()
-        print(return_data)
+        
+        #self.handle_idx()
+        return_data = []
+        return_data[:0] = data_line
+        print(len(data_line))
+        
+         # ''.join(return_data)
+        #print("--------")
+        #print(data_line)
+        #print(return_data)
+        #print("--------")
         return return_data
     
     def handle_idx(self):
@@ -470,6 +471,7 @@ class Qiup():
             self.inc = False
         if self.run_idx == 1:
             self.inc = True
+        #print(f"IDX : {self.run_idx}")
 
     def print_gain(self, gain_stage):
         gain = ""

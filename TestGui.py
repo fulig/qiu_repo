@@ -386,11 +386,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         #self.curve.setData(self.measure_data)
 
     def update_serial_data(self):
-        if self.idx_count == len(self.measure_data):
-            self.idx_count = 0
+        if self.idx_count >= self.data_number:
+            self.idx_count = self.idx_count - self.data_number
         measure_data = self.qiup.get_measurement_data()
-        self.measure_data[self.idx_count:self.idx_count+len(measure_data)] = measure_data
-        self.idx_count = self.idx_count + 16
+        if self.idx_count + len(measure_data) <= self.data_number:
+            self.measure_data[self.idx_count:self.idx_count+len(measure_data)] = measure_data
+            self.idx_count = self.idx_count + len(measure_data)
+        elif self.idx_count + len(measure_data) > self.data_number:
+            diff_end = self.data_number - self.idx_count
+            diff_begin = self.idx_count + len(measure_data) - self.data_number
+            self.measure_data[self.idx_count:] = measure_data[:diff_end]
+            self.measure_data[:diff_begin] = measure_data[diff_end:]
+            self.idx_count = diff_begin
         self.curve.setData(self.measure_data)
     
     def closeEvent(self, *args, **kwargs):
