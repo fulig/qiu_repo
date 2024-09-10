@@ -116,6 +116,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             line_field.setStyleSheet("")
         self.setup_flash_table()
         self.datetime_qiu.setDateTime(self.datetime_qiu.minimumDateTime())
+        self.measure_data = np.empty(self.data_number)
+        self.curve.setData(self.measure_data)
 
     def setup_flash_table(self):
         for i in range(32):
@@ -402,7 +404,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.graph_timer.stop()
         self.idx_count = 0
         self.measure_data = np.empty(self.data_number)
-        #self.curve.setData(self.measure_data)
+        self.curve.setData(self.measure_data)
 
     def update_serial_data(self):
         if self.idx_count >= self.data_number:
