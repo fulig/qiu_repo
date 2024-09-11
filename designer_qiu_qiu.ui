@@ -1193,6 +1193,12 @@
      <property name="lineWidth">
       <number>3</number>
      </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
      <property name="dragDropOverwriteMode">
       <bool>true</bool>
      </property>
