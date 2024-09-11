@@ -1011,9 +1011,9 @@
      <property name="geometry">
       <rect>
        <x>200</x>
-       <y>50</y>
+       <y>60</y>
        <width>71</width>
-       <height>21</height>
+       <height>31</height>
       </rect>
      </property>
      <property name="font">
@@ -1271,7 +1271,7 @@
      <property name="geometry">
       <rect>
        <x>270</x>
-       <y>50</y>
+       <y>60</y>
        <width>811</width>
        <height>31</height>
       </rect>
@@ -1567,57 +1567,45 @@
       <number>3</number>
      </property>
     </widget>
-    <widget class="QPushButton" name="fill_button">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
        <x>20</x>
        <y>40</y>
-       <width>80</width>
-       <height>25</height>
+       <width>168</width>
+       <height>58</height>
       </rect>
      </property>
-     <property name="text">
-      <string>Fill</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="write_button">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>40</y>
-       <width>80</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>WritePart</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="read_button">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>60</y>
-       <width>80</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Read Part</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="erase_button">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>60</y>
-       <width>81</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Erase Sector</string>
-     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="fill_button">
+        <property name="text">
+         <string>Fill</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="write_button">
+        <property name="text">
+         <string>WritePart</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="read_button">
+        <property name="text">
+         <string>Read Part</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="erase_button">
+        <property name="text">
+         <string>Erase Sector</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QFrame" name="frame_8">
