@@ -1415,6 +1415,9 @@
      </item>
     </widget>
     <widget class="QTableWidget" name="flash_table_qui">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="geometry">
       <rect>
        <x>270</x>
@@ -1496,256 +1499,160 @@
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="1">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="2">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="3">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="4">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="5">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="6">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="7">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="8">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="9">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="10">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="11">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="12">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="13">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="14">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="15">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="16">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="17">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="18">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="19">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="20">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="21">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="22">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="23">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="24">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="25">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="26">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="27">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="28">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="29">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
      <item row="0" column="30">
       <property name="text">
        <string>DD</string>
       </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
-      </property>
      </item>
      <item row="0" column="31">
       <property name="text">
        <string>DD</string>
-      </property>
-      <property name="flags">
-       <set>ItemIsSelectable|ItemIsEditable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsUserCheckable</set>
       </property>
      </item>
     </widget>
