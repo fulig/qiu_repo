@@ -6,6 +6,7 @@ from bitstring import BitArray
 import datetime
 from api_commands import * 
 from voltages import *
+import pyftdi.serialext.protocol_ftdi
 
 class Qiup():
     def __init__(self, url=None, debug=False, baudrate=115200):
