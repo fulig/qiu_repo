@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1116</width>
-    <height>806</height>
+    <height>763</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -926,7 +926,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>460</y>
+      <y>420</y>
       <width>181</width>
       <height>71</height>
      </rect>
@@ -968,7 +968,7 @@
     <property name="geometry">
      <rect>
       <x>200</x>
-      <y>370</y>
+      <y>330</y>
       <width>901</width>
       <height>411</height>
      </rect>
@@ -977,10 +977,10 @@
    <widget class="QFrame" name="frame_6">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>10</x>
       <y>220</y>
-      <width>901</width>
-      <height>131</height>
+      <width>1091</width>
+      <height>101</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -992,8 +992,8 @@
     <widget class="QLabel" name="test_label">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>50</y>
+       <x>200</x>
+       <y>10</y>
        <width>71</width>
        <height>31</height>
       </rect>
@@ -1010,8 +1010,8 @@
     <widget class="QLabel" name="qiu_label">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>90</y>
+       <x>200</x>
+       <y>50</y>
        <width>71</width>
        <height>21</height>
       </rect>
@@ -1025,161 +1025,11 @@
       <string>Qiu Flash</string>
      </property>
     </widget>
-    <widget class="QWidget" name="layoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>10</y>
-       <width>811</width>
-       <height>29</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="sector_label">
-        <property name="text">
-         <string>Sector</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="sector_spin">
-        <property name="minimum">
-         <number>8112</number>
-        </property>
-        <property name="maximum">
-         <number>8191</number>
-        </property>
-        <property name="value">
-         <number>8112</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>28</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QLabel" name="part_label">
-        <property name="text">
-         <string>Part</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="part_spin">
-        <property name="maximum">
-         <number>127</number>
-        </property>
-        <property name="value">
-         <number>3</number>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_4">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>28</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="fill_button">
-        <property name="text">
-         <string>Fill</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>28</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="write_button">
-        <property name="text">
-         <string>WritePart</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>28</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="read_button">
-        <property name="text">
-         <string>Read Part</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_3">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>28</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="erase_button">
-        <property name="text">
-         <string>Erase Sector</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-     <zorder>sector_label</zorder>
-     <zorder>part_label</zorder>
-     <zorder>part_spin</zorder>
-     <zorder>sector_spin</zorder>
-     <zorder>erase_button</zorder>
-     <zorder>write_button</zorder>
-     <zorder>fill_button</zorder>
-     <zorder>read_button</zorder>
-    </widget>
     <widget class="QTableWidget" name="flash_table">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>50</y>
+       <x>270</x>
+       <y>10</y>
        <width>811</width>
        <height>31</height>
       </rect>
@@ -1420,8 +1270,8 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>90</y>
+       <x>270</x>
+       <y>50</y>
        <width>811</width>
        <height>31</height>
       </rect>
@@ -1656,12 +1506,125 @@
       </property>
      </item>
     </widget>
+    <widget class="QLabel" name="sector_label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>36</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Sector</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="sector_spin">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>10</y>
+       <width>55</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="minimum">
+      <number>8112</number>
+     </property>
+     <property name="maximum">
+      <number>8191</number>
+     </property>
+     <property name="value">
+      <number>8112</number>
+     </property>
+    </widget>
+    <widget class="QLabel" name="part_label">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>10</y>
+       <width>25</width>
+       <height>27</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Part</string>
+     </property>
+    </widget>
+    <widget class="QSpinBox" name="part_spin">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>10</y>
+       <width>48</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="maximum">
+      <number>127</number>
+     </property>
+     <property name="value">
+      <number>3</number>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="fill_button">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>40</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fill</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="write_button">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>40</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>WritePart</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="read_button">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>80</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Read Part</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="erase_button">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>60</y>
+       <width>81</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Erase Sector</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QFrame" name="frame_8">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>550</y>
+      <y>510</y>
       <width>181</width>
       <height>121</height>
      </rect>
@@ -1803,7 +1766,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>380</y>
+      <y>340</y>
       <width>161</width>
       <height>25</height>
      </rect>
@@ -1816,7 +1779,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>410</y>
+      <y>370</y>
       <width>161</width>
       <height>25</height>
      </rect>
@@ -1829,7 +1792,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>370</y>
+      <y>330</y>
       <width>181</width>
       <height>71</height>
      </rect>
@@ -1845,7 +1808,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>690</y>
+      <y>650</y>
       <width>181</width>
       <height>80</height>
      </rect>
