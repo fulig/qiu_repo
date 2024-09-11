@@ -436,4 +436,5 @@ app = QtWidgets.QApplication(sys.argv)
 
 window = MainWindow()
 window.show()
+window.flash_table.resizeColumnsToContents()
 app.exec()
