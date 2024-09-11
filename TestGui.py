@@ -135,11 +135,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.retrigger_state  = int(self.retrigger.isChecked())
             self.connect_state = self.qiup.register(self.retrigger_state)
             self.qiup.control_power(0, QP_API_ANALOG_SUPPLY_VOLTAGE)
-            self.power_line.setText("Off")
-            self.qiup.control_irled_ext(0)
-            self.irled_ext_line.setText("Off")
-            self.qiup.control_irled_intern(0)
-            self.irled_int_line.setText("Off")
+            
             if self.connect_state == None:
                 self.qiup.close_serial()
                 self.connect.setText("Connect")
@@ -150,6 +146,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                 self.get_api_version()
                 self.get_app_version()
                 self.qiup_name.setStyleSheet("background-color: green")
+                self.power_line.setText("Off")
+                self.qiup.control_irled_ext(0)
+                self.irled_ext_line.setText("Off")
+                self.qiup.control_irled_intern(0)
+                self.irled_int_line.setText("Off")
                 self.connect.setText( "Release")
                 if self.retrigger_state == 1:
                     print("Starting retrigger timer.")
