@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Quip_test(object):
     def setupUi(self, Quip_test):
         Quip_test.setObjectName("Quip_test")
-        Quip_test.resize(1126, 806)
+        Quip_test.resize(1116, 806)
         self.centralwidget = QtWidgets.QWidget(Quip_test)
         self.centralwidget.setObjectName("centralwidget")
         self.connect = QtWidgets.QPushButton(self.centralwidget)
@@ -383,7 +383,7 @@ class Ui_Quip_test(object):
         self.flash_table.setLineWidth(3)
         self.flash_table.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.flash_table.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        #self.flash_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+        self.flash_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.flash_table.setDragDropOverwriteMode(True)
         self.flash_table.setIconSize(QtCore.QSize(0, 0))
         self.flash_table.setRowCount(1)
@@ -454,7 +454,9 @@ class Ui_Quip_test(object):
         item = QtWidgets.QTableWidgetItem()
         self.flash_table.setItem(0, 31, item)
         self.flash_table.horizontalHeader().setVisible(False)
+        self.flash_table.horizontalHeader().setDefaultSectionSize(38)
         self.flash_table.verticalHeader().setVisible(False)
+        self.flash_table.verticalHeader().setDefaultSectionSize(21)
         self.flash_table_qui = QtWidgets.QTableWidget(self.frame_6)
         self.flash_table_qui.setGeometry(QtCore.QRect(90, 90, 991, 31))
         self.flash_table_qui.setBaseSize(QtCore.QSize(3, 3))
