@@ -1220,14 +1220,17 @@
      <attribute name="horizontalHeaderVisible">
       <bool>false</bool>
      </attribute>
+     <attribute name="horizontalHeaderMinimumSectionSize">
+      <number>0</number>
+     </attribute>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>38</number>
+      <number>25</number>
      </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
      </attribute>
-     <attribute name="verticalHeaderDefaultSectionSize">
-      <number>21</number>
+     <attribute name="verticalHeaderMinimumSectionSize">
+      <number>0</number>
      </attribute>
      <row/>
      <column/>
