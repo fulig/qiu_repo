@@ -927,7 +927,7 @@
      <rect>
       <x>10</x>
       <y>460</y>
-      <width>191</width>
+      <width>181</width>
       <height>71</height>
      </rect>
     </property>
@@ -942,7 +942,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>171</width>
+       <width>161</width>
        <height>25</height>
       </rect>
      </property>
@@ -955,7 +955,7 @@
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>171</width>
+       <width>161</width>
        <height>25</height>
       </rect>
      </property>
@@ -967,9 +967,9 @@
    <widget class="PlotWidget" name="graph" native="true">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>200</x>
       <y>370</y>
-      <width>891</width>
+      <width>901</width>
       <height>411</height>
      </rect>
     </property>
@@ -977,9 +977,9 @@
    <widget class="QFrame" name="frame_6">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>200</x>
       <y>220</y>
-      <width>1091</width>
+      <width>901</width>
       <height>131</height>
      </rect>
     </property>
@@ -992,7 +992,7 @@
     <widget class="QLabel" name="test_label">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>10</x>
        <y>50</y>
        <width>71</width>
        <height>31</height>
@@ -1010,7 +1010,7 @@
     <widget class="QLabel" name="qiu_label">
      <property name="geometry">
       <rect>
-       <x>190</x>
+       <x>10</x>
        <y>90</y>
        <width>71</width>
        <height>21</height>
@@ -1028,7 +1028,7 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>80</x>
        <y>10</y>
        <width>811</width>
        <height>29</height>
@@ -1178,7 +1178,7 @@
     <widget class="QTableWidget" name="flash_table">
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>80</x>
        <y>50</y>
        <width>811</width>
        <height>31</height>
@@ -1420,7 +1420,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>270</x>
+       <x>80</x>
        <y>90</y>
        <width>811</width>
        <height>31</height>
@@ -1662,7 +1662,7 @@
      <rect>
       <x>10</x>
       <y>550</y>
-      <width>191</width>
+      <width>181</width>
       <height>121</height>
      </rect>
     </property>
@@ -1677,7 +1677,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>81</width>
+       <width>71</width>
        <height>17</height>
       </rect>
      </property>
@@ -1756,7 +1756,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>10</y>
        <width>41</width>
        <height>26</height>
@@ -1772,7 +1772,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>50</y>
        <width>41</width>
        <height>26</height>
@@ -1788,7 +1788,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>140</x>
+       <x>130</x>
        <y>90</y>
        <width>41</width>
        <height>26</height>
@@ -1804,7 +1804,7 @@
      <rect>
       <x>20</x>
       <y>380</y>
-      <width>171</width>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
@@ -1817,7 +1817,7 @@
      <rect>
       <x>20</x>
       <y>410</y>
-      <width>171</width>
+      <width>161</width>
       <height>25</height>
      </rect>
     </property>
@@ -1830,7 +1830,7 @@
      <rect>
       <x>10</x>
       <y>370</y>
-      <width>191</width>
+      <width>181</width>
       <height>71</height>
      </rect>
     </property>
@@ -1846,7 +1846,7 @@
      <rect>
       <x>10</x>
       <y>690</y>
-      <width>191</width>
+      <width>181</width>
       <height>80</height>
      </rect>
     </property>
@@ -1859,7 +1859,7 @@
     <widget class="QPushButton" name="set_gain_btn">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>50</x>
        <y>10</y>
        <width>121</width>
        <height>25</height>
@@ -1872,7 +1872,7 @@
     <widget class="QPushButton" name="get_gain_btn">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>50</x>
        <y>40</y>
        <width>121</width>
        <height>25</height>
