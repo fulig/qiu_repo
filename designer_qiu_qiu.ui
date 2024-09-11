@@ -14,45 +14,6 @@
    <string>Qiu+ Hardware Test</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="connect">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>40</y>
-      <width>91</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Connect</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="app_version">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>80</y>
-      <width>91</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>App Version</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="api_version">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>120</y>
-      <width>91</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>API Version</string>
-    </property>
-   </widget>
    <widget class="QFrame" name="main_operations">
     <property name="geometry">
      <rect>
@@ -138,6 +99,45 @@
        <width>141</width>
        <height>25</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="api_version">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>91</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>API Version</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="app_version">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>60</y>
+       <width>91</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>App Version</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="connect">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>91</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Connect</string>
      </property>
     </widget>
    </widget>
@@ -1990,7 +1990,6 @@
      </property>
     </widget>
    </widget>
-   <zorder>LED</zorder>
    <zorder>frame_9</zorder>
    <zorder>frame_8</zorder>
    <zorder>frame_6</zorder>
@@ -2000,9 +1999,6 @@
    <zorder>frame_3</zorder>
    <zorder>frame_2</zorder>
    <zorder>main_operations</zorder>
-   <zorder>connect</zorder>
-   <zorder>app_version</zorder>
-   <zorder>api_version</zorder>
    <zorder>x_value</zorder>
    <zorder>y_value</zorder>
    <zorder>z_value</zorder>
@@ -2024,6 +2020,7 @@
    <zorder>earclip_btn</zorder>
    <zorder>earclip_line</zorder>
    <zorder>frame_10</zorder>
+   <zorder>LED</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
