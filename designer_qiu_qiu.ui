@@ -1193,15 +1193,6 @@
      <property name="lineWidth">
       <number>3</number>
      </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="sizeAdjustPolicy">
-      <enum>QAbstractScrollArea::AdjustToContents</enum>
-     </property>
      <property name="dragDropOverwriteMode">
       <bool>true</bool>
      </property>
@@ -1220,17 +1211,8 @@
      <attribute name="horizontalHeaderVisible">
       <bool>false</bool>
      </attribute>
-     <attribute name="horizontalHeaderMinimumSectionSize">
-      <number>0</number>
-     </attribute>
-     <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>25</number>
-     </attribute>
      <attribute name="verticalHeaderVisible">
       <bool>false</bool>
-     </attribute>
-     <attribute name="verticalHeaderMinimumSectionSize">
-      <number>0</number>
      </attribute>
      <row/>
      <column/>
@@ -1443,12 +1425,6 @@
      </property>
      <property name="lineWidth">
       <number>3</number>
-     </property>
-     <property name="verticalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
-     </property>
-     <property name="horizontalScrollBarPolicy">
-      <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
      <property name="dragDropOverwriteMode">
       <bool>true</bool>
