@@ -154,7 +154,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QPushButton" name="led_power_on">
      <property name="geometry">
@@ -515,7 +515,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QPushButton" name="get_datetime_qiu">
      <property name="geometry">
@@ -718,7 +718,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="check_button">
@@ -763,7 +763,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QSpinBox" name="spin_sound">
      <property name="geometry">
@@ -906,7 +906,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QPushButton" name="charge_state">
      <property name="geometry">
@@ -935,7 +935,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QPushButton" name="start_measure_btn">
      <property name="geometry">
@@ -987,7 +987,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QLabel" name="test_label">
      <property name="geometry">
@@ -1751,7 +1751,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QLabel" name="analog_power_label">
      <property name="geometry">
@@ -1919,7 +1919,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
    </widget>
    <widget class="QFrame" name="frame_10">
@@ -1935,7 +1935,7 @@
      <enum>QFrame::StyledPanel</enum>
     </property>
     <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
+     <enum>QFrame::Sunken</enum>
     </property>
     <widget class="QPushButton" name="set_gain_btn">
      <property name="geometry">
