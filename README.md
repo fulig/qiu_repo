@@ -9,5 +9,5 @@ After this the pyftdi can be used with python.
 
 ### Compile Exe
 
-To compile an executable for windows run `pyinstaller TestGui.py --add-data "libusb0.dll;."` in a windows shell inside the repository. This will build an exe-file
+To compile an executable for windows run `pyinstaller TestGui.py --onefile --add-data "libusb0.dll;."` in a windows shell inside the repository. This will build an exe-file
 to run on windows without the need for a python installation.
