@@ -33,14 +33,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.graph_timer = QtCore.QTimer()
         self.graph_timer.timeout.connect(self.update_serial_data)
         self.idx_count = 0
-        #self.test_plot_x = [0,1,2,3,4,5,6,7,8,9]
-        #self.graph.plot(self.test_plot_x, self.test_plot_x)
-        #
 
     def default_values(self):
         self.connect_state = 0
         self.retrigger.setChecked(True)
-        self.retrigger_sec.setValue(5)
+        self.retrigger_sec.setValue(7)
         self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led7,self.led8]
         self.dim_leds = ["R","G","B"]
         self.dim_slider = [self.Red, self.Green, self.Blue]
@@ -118,6 +115,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.datetime_qiu.setDateTime(self.datetime_qiu.minimumDateTime())
         self.measure_data = np.empty(self.data_number)
         self.curve.setData(self.measure_data)
+        self.analog_btn.setText("On")
+        self.irled_ext_btn.setText("On")
+        self.irled_int_btn.setText("On")
 
     def setup_flash_table(self):
         for i in range(32):
