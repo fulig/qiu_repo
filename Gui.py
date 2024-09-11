@@ -383,7 +383,7 @@ class Ui_Quip_test(object):
         self.flash_table.setLineWidth(3)
         self.flash_table.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.flash_table.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self.flash_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+        #self.flash_table.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.flash_table.setDragDropOverwriteMode(True)
         self.flash_table.setIconSize(QtCore.QSize(0, 0))
         self.flash_table.setRowCount(1)
