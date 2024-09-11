@@ -124,8 +124,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             item = QtWidgets.QTableWidgetItem("FF")
             q_item = QtWidgets.QTableWidgetItem("--")
             self.flash_table.setItem(0,i ,item)
-            self.flash_table_qui.setItem(0,i, q_item)
-            self.flash_table_qui.setColumnWidth(i,1)
+            self.flash_table.setItem(0,i, q_item)
 
     def register(self):
         button_text = self.connect.text()
