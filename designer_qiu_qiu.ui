@@ -1199,6 +1199,9 @@
      <property name="horizontalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
+     <property name="sizeAdjustPolicy">
+      <enum>QAbstractScrollArea::AdjustToContents</enum>
+     </property>
      <property name="dragDropOverwriteMode">
       <bool>true</bool>
      </property>
@@ -1431,6 +1434,12 @@
      </property>
      <property name="lineWidth">
       <number>3</number>
+     </property>
+     <property name="verticalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
+     </property>
+     <property name="horizontalScrollBarPolicy">
+      <enum>Qt::ScrollBarAlwaysOff</enum>
      </property>
      <property name="dragDropOverwriteMode">
       <bool>true</bool>
