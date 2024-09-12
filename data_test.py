@@ -16,7 +16,9 @@ for d in lines:
         #print(b_data)
         swap = b_data[2:] + b_data[:2]
         #print(swap)
-        data.append(int(swap, 16)& 0x0FFF)
+        conv_data = int(swap, 16)& 0x0FFF
+        #print(conv_data)
+        data.append(conv_data)
         swap_line += swap
     swapped.append(swap_line)
 print(swapped)
@@ -35,8 +37,9 @@ for d in lines:
         b_data = data_line[i*4:(i+1)*4]
         #print(b_data)
         swap = b_data[2:] + b_data[:2]
-        #print(swap)
-        data_fix.append(int(swap, 16)& 0x0FFF)
+        conv_data = int(swap, 16)& 0x0FFF
+        print(conv_data)
+        data_fix.append(conv_data)
 
 with open("fix_2", "r") as file:
     lines  = file.readlines()
