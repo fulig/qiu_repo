@@ -48,9 +48,9 @@
     <widget class="QSpinBox" name="retrigger_sec">
      <property name="geometry">
       <rect>
-       <x>160</x>
+       <x>130</x>
        <y>140</y>
-       <width>41</width>
+       <width>31</width>
        <height>26</height>
       </rect>
      </property>
@@ -61,10 +61,10 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>250</x>
+       <x>180</x>
        <y>140</y>
-       <width>31</width>
-       <height>31</height>
+       <width>54</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="text">
@@ -507,7 +507,7 @@
      <rect>
       <x>560</x>
       <y>20</y>
-      <width>361</width>
+      <width>301</width>
       <height>81</height>
      </rect>
     </property>
@@ -522,7 +522,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>171</width>
+       <width>141</width>
        <height>25</height>
       </rect>
      </property>
@@ -535,7 +535,7 @@
       <rect>
        <x>10</x>
        <y>50</y>
-       <width>171</width>
+       <width>141</width>
        <height>26</height>
       </rect>
      </property>
@@ -584,9 +584,9 @@
     <widget class="QDateTimeEdit" name="datetime_pc">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>150</x>
        <y>50</y>
-       <width>171</width>
+       <width>141</width>
        <height>26</height>
       </rect>
      </property>
@@ -597,9 +597,9 @@
     <widget class="QPushButton" name="set_datetime_pc">
      <property name="geometry">
       <rect>
-       <x>180</x>
+       <x>150</x>
        <y>10</y>
-       <width>171</width>
+       <width>141</width>
        <height>25</height>
       </rect>
      </property>
@@ -710,7 +710,7 @@
      <rect>
       <x>560</x>
       <y>110</y>
-      <width>171</width>
+      <width>161</width>
       <height>101</height>
      </rect>
     </property>
@@ -724,9 +724,9 @@
    <widget class="QFrame" name="frame_4">
     <property name="geometry">
      <rect>
-      <x>750</x>
+      <x>720</x>
       <y>110</y>
-      <width>171</width>
+      <width>141</width>
       <height>101</height>
      </rect>
     </property>
@@ -752,7 +752,7 @@
     <widget class="QPushButton" name="play_sound">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>40</x>
        <y>60</y>
        <width>91</width>
        <height>25</height>
@@ -770,7 +770,7 @@
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>51</width>
+       <width>41</width>
        <height>25</height>
       </rect>
      </property>
@@ -781,9 +781,9 @@
     <widget class="QPushButton" name="check_button">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>50</x>
        <y>10</y>
-       <width>91</width>
+       <width>81</width>
        <height>25</height>
       </rect>
      </property>
@@ -795,7 +795,7 @@
    <widget class="QFrame" name="frame_5">
     <property name="geometry">
      <rect>
-      <x>930</x>
+      <x>870</x>
       <y>20</y>
       <width>191</width>
       <height>191</height>
@@ -882,17 +882,17 @@
       <string>Dig. Voltage</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="all_voltages">
+    <widget class="QPushButton" name="usb_voltage">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>150</y>
-       <width>171</width>
+       <x>80</x>
+       <y>80</y>
+       <width>101</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>All Voltages</string>
+      <string>USB Voltage</string>
      </property>
     </widget>
     <widget class="QPushButton" name="accu_voltage">
@@ -908,17 +908,17 @@
       <string>Accu Voltage</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="usb_voltage">
+    <widget class="QPushButton" name="all_voltages">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>80</y>
-       <width>101</width>
+       <x>10</x>
+       <y>150</y>
+       <width>171</width>
        <height>25</height>
       </rect>
      </property>
      <property name="text">
-      <string>USB Voltage</string>
+      <string>All Voltages</string>
      </property>
     </widget>
    </widget>
@@ -967,9 +967,9 @@
    <widget class="PlotWidget" name="graph" native="true">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>200</x>
       <y>330</y>
-      <width>911</width>
+      <width>901</width>
       <height>411</height>
      </rect>
     </property>
@@ -979,7 +979,7 @@
      <rect>
       <x>10</x>
       <y>220</y>
-      <width>1111</width>
+      <width>1091</width>
       <height>101</height>
      </rect>
     </property>
@@ -992,7 +992,7 @@
     <widget class="QLabel" name="test_label">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>200</x>
        <y>10</y>
        <width>71</width>
        <height>31</height>
@@ -1010,7 +1010,7 @@
     <widget class="QLabel" name="qiu_label">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>200</x>
        <y>60</y>
        <width>71</width>
        <height>31</height>
@@ -1028,9 +1028,9 @@
     <widget class="QTableWidget" name="flash_table">
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>270</x>
        <y>10</y>
-       <width>771</width>
+       <width>811</width>
        <height>31</height>
       </rect>
      </property>
@@ -1270,9 +1270,9 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>310</x>
+       <x>270</x>
        <y>60</y>
-       <width>771</width>
+       <width>811</width>
        <height>31</height>
       </rect>
      </property>
@@ -1541,7 +1541,7 @@
     <widget class="QLabel" name="part_label">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>110</x>
        <y>10</y>
        <width>25</width>
        <height>27</height>
@@ -1554,7 +1554,7 @@
     <widget class="QSpinBox" name="part_spin">
      <property name="geometry">
       <rect>
-       <x>170</x>
+       <x>140</x>
        <y>10</y>
        <width>48</width>
        <height>26</height>
@@ -1570,9 +1570,9 @@
     <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>40</y>
-       <width>211</width>
+       <width>168</width>
        <height>58</height>
       </rect>
      </property>
@@ -1810,9 +1810,9 @@
     <widget class="QPushButton" name="set_gain_btn">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>50</x>
        <y>10</y>
-       <width>101</width>
+       <width>121</width>
        <height>25</height>
       </rect>
      </property>
@@ -1823,9 +1823,9 @@
     <widget class="QPushButton" name="get_gain_btn">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>50</x>
        <y>40</y>
-       <width>101</width>
+       <width>121</width>
        <height>25</height>
       </rect>
      </property>
@@ -1854,7 +1854,7 @@
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>61</width>
+       <width>41</width>
        <height>25</height>
       </rect>
      </property>
