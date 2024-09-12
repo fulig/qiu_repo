@@ -436,9 +436,9 @@ class Qiup():
             data_list = []
             data_len = int(data[:4],16)
             data = data[4:]
+            print(data)
             if data_len > 34:
-                if self.debug:
-                    print("Repairing data...")
+                #print(data_len)
                 data = data.replace("ff", "")
             for i in range(int(len(data)/4)):
                 b_data = data[i*4:(i+1)*4]
