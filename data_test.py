@@ -1,15 +1,26 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import re
 
 with open("data_save", "r") as file:
     lines  = file.readlines()
 
+#def plot_all_data(data):
+#    fig,ax  =plt.subplots(len(data))
+#    for i in len(data):
+#        x = np.linspace(0,len(data[i])-1,len(data[i]) )
+#        ax[i].plot(x, data[i])
+#    plt.show()
+
+fig, ax = plt.subplots(2)
+
 data = []
 swapped = []
 for d in lines:
-    line = d.rstrip()
+    line = d.rstrip().replace(" ", "")
     length = int(line[0:2], 16)
     data_line = line
+    #print(data_line)
     swap_line = ""
     for i in range(int(len(data_line)/4)):
         b_data = data_line[i*4:(i+1)*4]
@@ -20,56 +31,43 @@ for d in lines:
         #print(conv_data)
         data.append(conv_data)
         swap_line += swap
-    swapped.append(swap_line)
-print(swapped)
-with open("swapped_data", "w") as file:
-    file.write('\n'.join(swapped))
 
-with open("data_save_man_fix", "r") as file:
-    lines  = file.readlines()
+x = np.linspace(0,len(data)-1, len(data))
+ax[0].plot(x,data)
 
-data_fix = []
+data = []
 for d in lines:
-    line = d.rstrip()
+    line = d.rstrip().replace(" ", "")
     length = int(line[0:2], 16)
     data_line = line
-    for i in range(int(len(data_line)/4)):
-        b_data = data_line[i*4:(i+1)*4]
-        #print(b_data)
-        swap = b_data[2:] + b_data[:2]
-        conv_data = int(swap, 16)& 0x0FFF
-        print(conv_data)
-        data_fix.append(conv_data)
-
-with open("fix_2", "r") as file:
-    lines  = file.readlines()
-
-data_fix_2 = []
-for d in lines:
-    line = d.rstrip()
-    length = int(line[0:2], 16)
-    data_line = line
-    #if len(line) == 64:
+    #print(data_line)
+    swap_line = ""
+    if (len(data_line)>64):
+        print("-------------")
+        print(data_line)
+        data_line= re.sub("ff0[a-fA-F0-9]{3}","", data_line)
+        #print(finds)
+        #data_line = data_line.replace("ff", "")
+        print(data_line)
+        print("-------------")
     for i in range(int(len(data_line)/4)):
         b_data = data_line[i*4:(i+1)*4]
         #print(b_data)
         swap = b_data[2:] + b_data[:2]
         #print(swap)
-        data_fix_2.append(int(swap, 16)& 0x0FFF)
-x_fix_2 = np.linspace(0, len(data_fix_2)-1, len(data_fix_2))
-x_fix = np.linspace(0, len(data_fix)-1, len(data_fix))
-x = np.linspace(0, len(data)-1, len(data))
+        conv_data = int(swap, 16)& 0x0FFF
+        #print(conv_data)
+        data.append(conv_data)
+        swap_line += swap
 
+x = np.linspace(0,len(data)-1, len(data))
+ax[1].plot(x,data)
 
-fig,ax = plt.subplots(3)
-
-ax[0].plot(x_fix, data_fix)
-ax[0].set_title("Fixed")
-
-ax[1].plot(x_fix_2, data_fix_2)
-
-ax[2].plot(x, data)
 plt.show()
+
+
+
+
 
 
 

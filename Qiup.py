@@ -2,7 +2,7 @@ from pyftdi.ftdi import Ftdi
 import pyftdi.usbtools
 import pyftdi.serialext
 import numpy as np
-from bitstring import BitArray
+import re
 import datetime
 from api_commands import * 
 from voltages import *
