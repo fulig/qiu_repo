@@ -21,7 +21,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.setupUi(self)
         self.connect_state = 0
         self.measure_state = False
-        self.data_number = 20*16
+        self.data_number = 500
         self.measure_data = np.empty(self.data_number)
         
         self.default_values()
@@ -53,7 +53,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         
         self.graph.setYRange(0, 5000, padding=0)
         self.graph.setXRange(0, self.data_number, padding=0)
-        self.curve = self.graph.plot()
+        self.curve = self.graph.plot(pen='g')
 
         self.line_edits = [self.accu_line, self.usb_line, self.dig_line,
                            self.x_value, self.y_value, self.z_value, 
@@ -419,7 +419,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         elif self.idx_count + len(measure_data) > self.data_number:
             diff_end = self.data_number - self.idx_count
             diff_begin = self.idx_count + len(measure_data) - self.data_number
-            self.measure_data[self.idx_count:] = measure_data[:diff_end]
+            self.measure_data[self.idx_count:] = 0 #measure_data[:diff_end]
             self.measure_data[:diff_begin] = measure_data[diff_end:]
             self.idx_count = diff_begin
         self.curve.setData(self.measure_data)
