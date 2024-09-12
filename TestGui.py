@@ -10,6 +10,7 @@ import sys
 import threading
 from PyQt6 import QtGui, QtWidgets
 from PyQt6.QtCore import QDateTime
+import PyQtQt6.
 import pyqtgraph
 from Qiup import *
 from Gui import *  
@@ -436,7 +437,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.qiup.close_serial()  
 
 app = QtWidgets.QApplication(sys.argv)
-
+app.setStyle('Fusion')
 window = MainWindow()
 window.show()
 #window.flash_table.resizeColumnsToContents()
