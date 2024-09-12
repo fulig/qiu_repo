@@ -2,7 +2,8 @@ from pyftdi.ftdi import Ftdi
 import pyftdi.usbtools
 import pyftdi.serialext
 import numpy as np
-from bitstring import BitArray
+import re
+
 import datetime
 from api_commands import * 
 from voltages import *
@@ -439,7 +440,7 @@ class Qiup():
             if data_len > 34:
                 if self.debug:
                     print("Repairing data...")
-                data = data.replace("ff", "")
+                data = re.sub("ff0[a-fA-F0-9]{3}","", data)
             for i in range(int(len(data)/4)):
                 b_data = data[i*4:(i+1)*4]
                 swap = b_data[2:] + b_data[:2]
