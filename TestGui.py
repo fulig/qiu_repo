@@ -10,7 +10,6 @@ import sys
 import threading
 from PyQt6 import QtGui, QtWidgets
 from PyQt6.QtCore import QDateTime
-import PyQtQt6.
 import pyqtgraph
 from Qiup import *
 from Gui import *  
