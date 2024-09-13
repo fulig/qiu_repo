@@ -21,7 +21,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.setupUi(self)
         self.connect_state = 0
         self.measure_state = False
-        self.data_number = 500
+        self.data_number = 32*16
         self.measure_data = np.empty(self.data_number)
         self.measure_data[:] = None
         
@@ -424,16 +424,18 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             diff_end = self.data_number - self.idx_count
             diff_begin = self.idx_count + len(measure_data) - self.data_number
             if self.measure_state == False:
-                print("Stopping")
-                self.measure_data[self.idx_count:] = measure_data[:diff_end]
-                self.curve.setData(self.measure_data)
                 self.qiup.stop_measure()
                 self.graph_timer.stop()
+                self.measure_data[self.idx_count:] = None # measure_data[:diff_end]
+                self.curve.setData(self.measure_data)
+                if self.retrigger_state == 1:
+                    self.qiup.release()
+                    self.qiup.register(1)
+                    self.retrigger_timer()
                 self.idx_count = 0
                 self.measure_data[:] = None
                 return
             else:
-                
                 self.measure_data[:] = None
                 self.measure_data[:diff_begin] = measure_data[diff_end:]
                 self.idx_count = diff_begin

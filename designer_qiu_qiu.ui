@@ -1636,23 +1636,10 @@
       <string>AnalogPow.</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="analog_btn">
-     <property name="geometry">
-      <rect>
-       <x>90</x>
-       <y>10</y>
-       <width>41</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>On</string>
-     </property>
-    </widget>
     <widget class="QPushButton" name="irled_int_btn">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>120</x>
        <y>50</y>
        <width>41</width>
        <height>25</height>
@@ -1678,7 +1665,7 @@
     <widget class="QPushButton" name="irled_ext_btn">
      <property name="geometry">
       <rect>
-       <x>90</x>
+       <x>120</x>
        <y>90</y>
        <width>41</width>
        <height>25</height>
@@ -1707,7 +1694,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>90</x>
        <y>10</y>
        <width>31</width>
        <height>26</height>
@@ -1723,7 +1710,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>90</x>
        <y>50</y>
        <width>31</width>
        <height>26</height>
@@ -1739,7 +1726,7 @@
      </property>
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>90</x>
        <y>90</y>
        <width>31</width>
        <height>26</height>
@@ -1747,6 +1734,19 @@
      </property>
      <property name="text">
       <string/>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="analog_btn">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>10</y>
+       <width>41</width>
+       <height>25</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>On</string>
      </property>
     </widget>
    </widget>
