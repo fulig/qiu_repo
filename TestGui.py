@@ -23,6 +23,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.measure_state = False
         self.data_number = 500
         self.measure_data = np.empty(self.data_number)
+        self.measure_data[:] = None
         
         self.default_values()
         self.gui = Ui_Quip_test()
@@ -400,28 +401,42 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def stop_measure(self):
         self.measure_state = False
-        if self.retrigger_state == 1:
-            self.qiup.release()
-            self.qiup.register(1)
-        self.qiup.stop_measure()
-        self.graph_timer.stop()
-        self.idx_count = 0
-        self.measure_data = np.empty(self.data_number)
-        self.curve.setData(self.measure_data)
+        #print(self.measure_state)
+        #if self.retrigger_state == 1:
+        #    self.qiup.release()
+        #    self.qiup.register(1)
+        #self.qiup.stop_measure()
+        #self.graph_timer.stop()
+        #self.idx_count = 0
+        #self.measure_data = np.empty(self.data_number)
+        #self.curve.setData(self.measure_data)
 
     def update_serial_data(self):
+        
         if self.idx_count >= self.data_number:
             self.idx_count = self.idx_count - self.data_number
         measure_data = self.qiup.get_measurement_data()
         if self.idx_count + len(measure_data) <= self.data_number:
             self.measure_data[self.idx_count:self.idx_count+len(measure_data)] = measure_data
+            #self.measure_data
             self.idx_count = self.idx_count + len(measure_data)
-        elif self.idx_count + len(measure_data) > self.data_number:
+        if self.idx_count + len(measure_data) > self.data_number:
             diff_end = self.data_number - self.idx_count
             diff_begin = self.idx_count + len(measure_data) - self.data_number
-            self.measure_data[self.idx_count:] = 0 #measure_data[:diff_end]
-            self.measure_data[:diff_begin] = measure_data[diff_end:]
-            self.idx_count = diff_begin
+            if self.measure_state == False:
+                print("Stopping")
+                self.measure_data[self.idx_count:] = measure_data[:diff_end]
+                self.curve.setData(self.measure_data)
+                self.qiup.stop_measure()
+                self.graph_timer.stop()
+                self.idx_count = 0
+                self.measure_data[:] = None
+                return
+            else:
+                
+                self.measure_data[:] = None
+                self.measure_data[:diff_begin] = measure_data[diff_end:]
+                self.idx_count = diff_begin
         self.curve.setData(self.measure_data)
     
     def closeEvent(self, *args, **kwargs):
@@ -429,8 +444,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         if self.connect_state == 1:
             if self.retrigger_state == 1:
                 self.timer.cancel()
-            if self.measure_state == True:
-                self.stop_measure()
+            
+            self.qiup.stop_measure()
             self.ledbar_off()
             self.qiup.release()
             self.qiup.close_serial()  
