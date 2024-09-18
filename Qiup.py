@@ -372,8 +372,8 @@ class Qiup():
         else:
             self.q_print(f"Error while reading flash sector {sector_number}, part {part_number}")
             return None
-      
-    def write_flash(self, sector_number, part_number, data):
+
+    def write_flash(self, sector_number, part_number, data, api_return=True):
         if not isinstance(data, str):
             self.q_print("Please use string format for data.")
             return
@@ -385,7 +385,8 @@ class Qiup():
         answer = self.send_command(send_reg)
         if answer[0] == ord(FLASH_WRITE_DATA_CONF):
             state = int(answer[1:])
-            self.api_return(state)
+            if api_return:
+                self.api_return(state)
             return state
         else:
             self.q_print("Error while writing flash.")

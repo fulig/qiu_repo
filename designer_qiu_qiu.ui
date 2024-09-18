@@ -724,7 +724,7 @@
    <widget class="QFrame" name="frame_4">
     <property name="geometry">
      <rect>
-      <x>720</x>
+      <x>730</x>
       <y>110</y>
       <width>141</width>
       <height>101</height>
@@ -736,32 +736,6 @@
     <property name="frameShadow">
      <enum>QFrame::Sunken</enum>
     </property>
-    <widget class="QSpinBox" name="spin_sound">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>60</y>
-       <width>31</width>
-       <height>26</height>
-      </rect>
-     </property>
-     <property name="maximum">
-      <number>5</number>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="play_sound">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>60</y>
-       <width>91</width>
-       <height>25</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>PlaySound</string>
-     </property>
-    </widget>
     <widget class="QLineEdit" name="button_state">
      <property name="enabled">
       <bool>false</bool>
@@ -790,6 +764,46 @@
      <property name="text">
       <string>PushButton</string>
      </property>
+    </widget>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>121</width>
+       <height>60</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <item row="0" column="0">
+       <widget class="QSpinBox" name="spin_sound_load">
+        <property name="maximum">
+         <number>5</number>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="load_sound_btn">
+        <property name="text">
+         <string>LoadSound</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QSpinBox" name="spin_sound">
+        <property name="maximum">
+         <number>5</number>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="play_sound">
+        <property name="text">
+         <string>PlaySound</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QFrame" name="frame_5">

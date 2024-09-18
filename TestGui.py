@@ -81,7 +81,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         
         self.check_button.clicked.connect(self.get_button_state)
         self.play_sound.clicked.connect(self.sound_play)
-        
+        self.load_sound_btn.clicked.connect(self.sound_load)
+
         self.charge_state.clicked.connect(self.get_charge_state)
         self.accu_voltage.clicked.connect(self.get_accu_voltage)
         self.usb_voltage.clicked.connect(self.get_usb_voltage)
@@ -237,6 +238,28 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.button_state.setText("Open")
         if btn == 1:
             self.button_state.setText("Close")
+
+    def sound_load(self):
+        print("Writing Audio to Flash")
+        with open("sound/audio0_32.txt" ,"r") as file:
+            audio_data = file.readlines()
+        test = "1320"
+        for i in audio_data:
+            test = test + i.rstrip()
+        for i in range(32 - (len(test) % 64)):
+            test = test + "f"
+        parts = int(len(test)/64)
+        sector_start = 8176
+        part_start = 0
+        for i in range(parts):
+            data = test[i*64:(i+1)*64]
+            self.qiup.write_flash(sector_start, part_start, data, api_return=False)
+            part_start += 1
+            if part_start == 128:
+                part_start = 0
+                sector_start += 1
+        print("Finished writing audio to flash")
+        #self.qiup.write_flash(8176, 0, test)
 
     def sound_play(self):
         sound_nr = int(self.spin_sound.value())
@@ -401,15 +424,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def stop_measure(self):
         self.measure_state = False
-        #print(self.measure_state)
-        #if self.retrigger_state == 1:
-        #    self.qiup.release()
-        #    self.qiup.register(1)
-        #self.qiup.stop_measure()
-        #self.graph_timer.stop()
-        #self.idx_count = 0
-        #self.measure_data = np.empty(self.data_number)
-        #self.curve.setData(self.measure_data)
 
     def update_serial_data(self):
         
