@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1074</width>
+    <width>1364</width>
     <height>756</height>
    </rect>
   </property>
@@ -765,13 +765,13 @@
       <string>PushButton</string>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>40</y>
-       <width>121</width>
-       <height>60</height>
+       <width>128</width>
+       <height>62</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
@@ -993,7 +993,7 @@
      <rect>
       <x>10</x>
       <y>220</y>
-      <width>1051</width>
+      <width>1231</width>
       <height>101</height>
      </rect>
     </property>
@@ -1044,7 +1044,7 @@
       <rect>
        <x>270</x>
        <y>10</y>
-       <width>771</width>
+       <width>941</width>
        <height>31</height>
       </rect>
      </property>
@@ -1286,7 +1286,7 @@
       <rect>
        <x>270</x>
        <y>60</y>
-       <width>771</width>
+       <width>941</width>
        <height>31</height>
       </rect>
      </property>
@@ -1586,8 +1586,8 @@
       <rect>
        <x>20</x>
        <y>40</y>
-       <width>168</width>
-       <height>58</height>
+       <width>180</width>
+       <height>60</height>
       </rect>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">

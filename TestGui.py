@@ -12,7 +12,11 @@ from PyQt6 import QtGui, QtWidgets
 from PyQt6.QtCore import QDateTime
 import pyqtgraph
 from Qiup import *
-from Gui import *  
+import platform
+if platform.system() == "Linux":
+    from Gui_linux import *
+if platform.system() == "Windows":   
+    from Gui import *  
 from voltages import *
 
 class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
@@ -47,6 +51,9 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.blue_label.setStyleSheet("color : blue")
         self.datetime_qiu.setDateTime(self.datetime_qiu.minimumDateTime())
         self.datetime_pc.setDateTime(QDateTime.currentDateTime())
+
+        self.spin_sound_load.setValue(2)
+        self.spin_sound.setValue(2)
 
         self.flash_table.resizeColumnsToContents()
         self.flash_table_qui.resizeColumnsToContents()
@@ -240,24 +247,32 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.button_state.setText("Close")
 
     def sound_load(self):
-        print("Writing Audio to Flash")
-        with open("sound/audio0_32.txt" ,"r") as file:
+        sound_addr = [8176, 8160, 8144, 8128, 8112]
+        sound_length = ["1320", "3ca8", "2fa8"]
+        audio_nr = self.spin_sound_load.value()
+        with open(f"sound/audio{audio_nr}.txt" ,"r") as file:
             audio_data = file.readlines()
-        test = "1320"
+        data = sound_length[audio_nr]
         for i in audio_data:
-            test = test + i.rstrip()
-        for i in range(32 - (len(test) % 64)):
-            test = test + "f"
-        parts = int(len(test)/64)
-        sector_start = 8176
+            data = data + i.rstrip().upper()
+        for i in range(32 - (len(data) % 64)):
+            data = data + "f"
+        parts = len(data)//64
+        sectors = parts//127 + (parts % 127 > 0)
+        sector_start = sound_addr[audio_nr]
         part_start = 0
+        print(f"Writing Audio {audio_nr} to sector {sound_addr[audio_nr]}.")
+        for i in range(sectors):
+            self.qiup.erase_flash(sector_start + i)
+        print(f"Writing Sector {sector_start}")
         for i in range(parts):
-            data = test[i*64:(i+1)*64]
-            self.qiup.write_flash(sector_start, part_start, data, api_return=False)
+            data_send = data[i*64:(i+1)*64]
+            self.qiup.write_flash(sector_start, part_start, data_send)
             part_start += 1
             if part_start == 128:
                 part_start = 0
                 sector_start += 1
+                print(f"Writing Sector {sector_start}")
         print("Finished writing audio to flash")
         #self.qiup.write_flash(8176, 0, test)
 
