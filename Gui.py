@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Quip_test(object):
     def setupUi(self, Quip_test):
         Quip_test.setObjectName("Quip_test")
-        Quip_test.resize(1555, 756)
+        Quip_test.resize(1068, 756)
         self.centralwidget = QtWidgets.QWidget(Quip_test)
         self.centralwidget.setObjectName("centralwidget")
         self.main_operations = QtWidgets.QFrame(self.centralwidget)
