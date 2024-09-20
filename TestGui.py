@@ -249,7 +249,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def sound_load(self):
         sound_addr = [8176, 8160, 8144, 8128, 8112]
         audio_nr = self.spin_sound_load.value() - 1
-        with open(f"sound/sound_{audio_nr}.txt" ,"r") as file:
+        with open(f"./sound/sound_{audio_nr}.txt" ,"r") as file:
             audio_data = file.readlines()
         data = []
         for line in audio_data:
