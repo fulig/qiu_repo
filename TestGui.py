@@ -248,16 +248,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def sound_load(self):
         sound_addr = [8176, 8160, 8144, 8128, 8112]
-        sound_length = ["1320", "3ca8", "2fa8"]
-        audio_nr = self.spin_sound_load.value()
-        with open(f"sound/audio{audio_nr}.txt" ,"r") as file:
+        audio_nr = self.spin_sound_load.value() - 1
+        with open(f"sound/sound_{audio_nr}.txt" ,"r") as file:
             audio_data = file.readlines()
-        data = sound_length[audio_nr]
-        for i in audio_data:
-            data = data + i.rstrip().upper()
-        for i in range(32 - (len(data) % 64)):
-            data = data + "f"
-        parts = len(data)//64
+        data = []
+        for line in audio_data:
+            data.append(line.rstrip())
+        parts = len(data)
         sectors = parts//127 + (parts % 127 > 0)
         sector_start = sound_addr[audio_nr]
         part_start = 0
@@ -266,15 +263,14 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.qiup.erase_flash(sector_start + i)
         print(f"Writing Sector {sector_start}")
         for i in range(parts):
-            data_send = data[i*64:(i+1)*64]
-            self.qiup.write_flash(sector_start, part_start, data_send)
+            self.qiup.write_flash(sector_start, part_start, data[i], api_return=False)
             part_start += 1
             if part_start == 128:
                 part_start = 0
                 sector_start += 1
                 print(f"Writing Sector {sector_start}")
         print("Finished writing audio to flash")
-        #self.qiup.write_flash(8176, 0, test)
+
 
     def sound_play(self):
         sound_nr = int(self.spin_sound.value())
@@ -441,7 +437,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.measure_state = False
 
     def update_serial_data(self):
-        
         if self.idx_count >= self.data_number:
             self.idx_count = self.idx_count - self.data_number
         measure_data = self.qiup.get_measurement_data()
