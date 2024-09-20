@@ -11,13 +11,16 @@ import threading
 from PyQt6 import QtGui, QtWidgets
 from PyQt6.QtCore import QDateTime
 import pyqtgraph
-from Qiup import *
+from pathlib import Path
+
 import platform
 if platform.system() == "Linux":
     from Gui_linux import *
 if platform.system() == "Windows":   
     from Gui import *  
+
 from voltages import *
+from Qiup import *
 
 class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def __init__(self, *args, obj=None, **kwargs):
@@ -249,7 +252,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def sound_load(self):
         sound_addr = [8176, 8160, 8144, 8128, 8112]
         audio_nr = self.spin_sound_load.value() - 1
-        with open(f"./sound/sound_{audio_nr}.txt" ,"r") as file:
+        sound_folder = Path("./sound/")
+        with open(sound_folder / f"sound_{audio_nr}.txt" ,"r") as file:
             audio_data = file.readlines()
         data = []
         for line in audio_data:
