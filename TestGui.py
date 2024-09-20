@@ -20,6 +20,7 @@ if platform.system() == "Windows":
     from Gui import *  
 
 from voltages import *
+from sounds import *
 from Qiup import *
 
 class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
@@ -252,12 +253,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def sound_load(self):
         sound_addr = [8176, 8160, 8144, 8128, 8112]
         audio_nr = self.spin_sound_load.value() - 1
-        sound_folder = Path("./sound/")
-        with open(sound_folder / f"sound_{audio_nr}.txt" ,"r") as file:
-            audio_data = file.readlines()
-        data = []
-        for line in audio_data:
-            data.append(line.rstrip())
+        data = sounds[audio_nr]
         parts = len(data)
         sectors = parts//127 + (parts % 127 > 0)
         sector_start = sound_addr[audio_nr]
