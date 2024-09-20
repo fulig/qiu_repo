@@ -377,6 +377,7 @@ class Qiup():
         if not isinstance(data, str):
             self.q_print("Please use string format for data.")
             return
+        data = data.upper()
         send_reg = bytearray(FLASH_WRITE_DATA_REQ)
         sector = f"{sector_number:04X}"
         part = f"{part_number:02X}"
