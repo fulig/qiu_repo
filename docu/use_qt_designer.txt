@@ -1,0 +1,3 @@
+-> source .venvs/qt6_venv/bin/activate
+-> Changes and update python Gui
+-> pyuic6 designer_qiu_qiu.ui -o Gui.py

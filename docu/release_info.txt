@@ -1,0 +1,28 @@
+Version v2.1.0
+-> hinzugefügtes Feature:
+	-> Auswählbare Sounddateien 1-4 auf Flash laden
+
+Version v2.0.0
+
+-> Manueller Test mit grahpical Userinterface für Inbetriebnahme von Qiu+ auf Basis von pyftdi lib
+-> Features:
+	-> Graphical User interface implementiert in QT6 (mit Hilfe von QT-Designer)
+	-> Release/Connect mit Qiu+
+	-> Retrigger Funktion für Connect mit einstellbaren Retriggerintervall
+	-> LED-Steuerung (RGBs, LED-Bar, LED-Power)
+	-> Abfrage und Setzen von Datum/Zeit
+	-> Abfrage Beschleunigungssensordaten
+	-> Abfrage Button Status
+	-> Abfrage von Ladestatus, Akkuspannung, USB-Spannung, digitaler Spannung
+	-> Abspielen von Sound 1- 4
+	-> Flash-Funktionen: 
+		-> Read/Write Flash mit auswählbarer Sector/Part Nummer. 
+		-> Automatisches erzeugen von aufsteigender Zahlenreihe (Fill)
+		-> Löschen von ausgewählten Sektor
+	-> Abfrage Ear Clip Status
+	-> Messfunktionen:
+		-> Messung starten/stoppen
+		-> aufzeichnen und graphische Darstellung von Messung
+	-> Analoge Power ein-/ausschalten
+	-> Interne/externe IRLED ein-/ausschalten
+	-> Abfrage und Setzen von Verstärkerstufe
