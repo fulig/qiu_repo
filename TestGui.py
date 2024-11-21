@@ -14,14 +14,15 @@ import pyqtgraph
 from pathlib import Path
 
 import platform
-if platform.system() == "Linux":
-    from Gui_linux import *
-if platform.system() == "Windows":   
-    from Gui import *  
+#if platform.system() == "Linux":
+#    from Gui_linux import *
+#if platform.system() == "Windows":   
+from Gui import *  
 
 from voltages import *
 from sounds import *
 from Qiup import *
+#from Thread import *
 
 class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def __init__(self, *args, obj=None, **kwargs):
@@ -250,8 +251,11 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         if btn == 1:
             self.button_state.setText("Close")
 
+    def load_btn_pressed(self):
+        self.play_sound.setEnabled(False)
+
     def sound_load(self):
-        sound_addr = [8176, 8160, 8144, 8128, 8112]
+        
         audio_nr = self.spin_sound_load.value() - 1
         data = sounds[audio_nr]
         parts = len(data)

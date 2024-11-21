@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_Quip_test(object):
     def setupUi(self, Quip_test):
         Quip_test.setObjectName("Quip_test")
-        Quip_test.resize(1068, 756)
+        Quip_test.resize(1066, 756)
         self.centralwidget = QtWidgets.QWidget(Quip_test)
         self.centralwidget.setObjectName("centralwidget")
         self.main_operations = QtWidgets.QFrame(self.centralwidget)
@@ -244,7 +244,7 @@ class Ui_Quip_test(object):
         self.frame_4.setFrameShadow(QtWidgets.QFrame.Shadow.Sunken)
         self.frame_4.setObjectName("frame_4")
         self.widget = QtWidgets.QWidget(self.frame_4)
-        self.widget.setGeometry(QtCore.QRect(10, 0, 121, 95))
+        self.widget.setGeometry(QtCore.QRect(10, 10, 121, 81))
         self.widget.setObjectName("widget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -625,6 +625,9 @@ class Ui_Quip_test(object):
         self.earclip_line.raise_()
         self.frame_10.raise_()
         self.LED.raise_()
+        self.button_state.raise_()
+        self.check_button.raise_()
+        self.layoutWidget.raise_()
         Quip_test.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(Quip_test)
         self.statusbar.setObjectName("statusbar")

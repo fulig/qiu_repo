@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1068</width>
+    <width>1066</width>
     <height>756</height>
    </rect>
   </property>
@@ -740,9 +740,9 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>0</y>
+       <y>10</y>
        <width>121</width>
-       <height>95</height>
+       <height>81</height>
       </rect>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -1897,6 +1897,9 @@
    <zorder>earclip_line</zorder>
    <zorder>frame_10</zorder>
    <zorder>LED</zorder>
+   <zorder>button_state</zorder>
+   <zorder>check_button</zorder>
+   <zorder>layoutWidget</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
