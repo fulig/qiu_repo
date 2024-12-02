@@ -39,6 +39,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.qiup = Qiup(debug=False)
         self.default_values()
         self.connect_gui()
+        self.set_buttons_enabled(False, ["connect"])
 
         self.graph_timer = QtCore.QTimer()
         self.graph_timer.timeout.connect(self.update_serial_data)
@@ -121,6 +122,13 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.stop_measure_btn.clicked.connect(self.stop_measure)
         self.setup_flash_table()
 
+    def set_buttons_enabled(self, enabled: bool, except_list=None):
+        if except_list is None:
+            except_list = []
+        for widget in self.findChildren(QtWidgets.QPushButton):
+            if widget.objectName() not in except_list:
+                widget.setEnabled(enabled)
+
     def reset_fields(self):
         for line_field in self.line_edits:
             line_field.setText("")
@@ -167,6 +175,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                 self.get_app_version()
                 self.qiup_name.setStyleSheet("background-color: green")
                 self.connect.setText( "Release")
+                self.set_buttons_enabled(True)
                 if self.retrigger_state == 1:
                     print("Starting retrigger timer.")
                     self.repeat_time = self.retrigger_sec.value()
@@ -255,13 +264,17 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.play_sound.setEnabled(False)
 
     def sound_load(self):
-        
+        self.set_buttons_enabled(False)
         audio_nr = self.spin_sound_load.value() - 1
         data = sounds[audio_nr]
         parts = len(data)
         sectors = parts//127 + (parts % 127 > 0)
         sector_start = sound_addr[audio_nr]
         part_start = 0
+        if self.retrigger_state == 1:
+            self.timer.cancel()
+            self.qiup.release()
+            self.qiup.register() 
         print(f"Writing Audio {audio_nr} to sector {sound_addr[audio_nr]}.")
         for i in range(sectors):
             self.qiup.erase_flash(sector_start + i)
@@ -273,8 +286,12 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                 part_start = 0
                 sector_start += 1
                 print(f"Writing Sector {sector_start}")
+        self.set_buttons_enabled(True)
         print("Finished writing audio to flash")
-
+        if self.retrigger_state == 1:
+            self.qiup.release()
+            self.qiup.register(1)
+            self.retrigger_timer()
 
     def sound_play(self):
         sound_nr = int(self.spin_sound.value())
