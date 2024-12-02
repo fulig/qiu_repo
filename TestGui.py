@@ -15,9 +15,6 @@ from pathlib import Path
 import numpy as np
 
 import platform
-#if platform.system() == "Linux":
-#    from Gui_linux import *
-#if platform.system() == "Windows":   
 from Gui import *  
 
 from voltages import *
