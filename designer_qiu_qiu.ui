@@ -91,16 +91,6 @@
       </rect>
      </property>
     </widget>
-    <widget class="QLineEdit" name="qiup_name">
-     <property name="geometry">
-      <rect>
-       <x>130</x>
-       <y>20</y>
-       <width>141</width>
-       <height>25</height>
-      </rect>
-     </property>
-    </widget>
     <widget class="QPushButton" name="api_version">
      <property name="geometry">
       <rect>
@@ -138,6 +128,16 @@
      </property>
      <property name="text">
       <string>Connect</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="qiup_name">
+     <property name="geometry">
+      <rect>
+       <x>131</x>
+       <y>20</y>
+       <width>141</width>
+       <height>25</height>
+      </rect>
      </property>
     </widget>
    </widget>

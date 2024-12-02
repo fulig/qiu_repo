@@ -10,7 +10,6 @@ import datetime
 class Qiup():
     def __init__(self, url=None, debug=False, baudrate=115200):
         self.baudrate = baudrate
-        self.port = self.get_avail_dev()
         self.STX = b'\x02'
         self.ETX = b'\x03'
         self.run_idx = 0
@@ -20,28 +19,12 @@ class Qiup():
         self.debug = debug
         #self.url, self.name = self.get_avail_dev()
 
-    def setup_serial(self):
-        self.serial = serial.Serial(port=self.port, baudrate=self.baudrate,timeout=4)
+    def setup_serial(self, port):
+        self.serial = serial.Serial(port=port, baudrate=self.baudrate,timeout=4)
         self.serial.set_low_latency_mode(True)
         return
     
-    def get_avail_dev(self):
-        ports = serial.tools.list_ports.comports()
-        if not ports:
-            self.q_print("No serial devices connected.")
-            return None
-        else:
-            usb_ports = []
-            for port in ports:
-                if "ttyUSB" in port.device or "COM" in port.device:
-                    self.q_print(f"Found serial device: {port.device}")
-                    usb_ports.append(port)
-            if not usb_ports:
-                self.q_print("No ttyUSB or COM devices found.")
-                return None
-            # Return the first available ttyUSB or COM port
-            self.name =usb_ports[0].device
-            return usb_ports[0].device
+    
     
     def close_serial(self):
         self.serial.close()

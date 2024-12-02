@@ -5,6 +5,8 @@ from PyQt6.QtCore import QDateTime
 import pyqtgraph
 from pathlib import Path
 import numpy as np
+import serial
+import serial.tools.list_ports
 
 import platform
 from Gui import *  
@@ -37,7 +39,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def default_values(self):
         self.connect_state = 0
-        self.retrigger.setChecked(True)
+        self.get_avail_dev()
+        self.retrigger.setChecked(False)
         self.retrigger_sec.setValue(7)
         self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led7,self.led8]
         self.dim_leds = ["R","G","B"]
@@ -63,8 +66,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                            self.x_value, self.y_value, self.z_value, 
                            self.earclip_line, self.gain_line, 
                            self.api_version_text, self.app_version_text, 
-                           self.qiup_name, self.button_state, self.charge_line]
+                           self.button_state, self.charge_line]
         #print(QDateTime.currentDateTime())
+    def get_avail_dev(self):
+        ports = serial.tools.list_ports.comports()
+        if not ports:
+            self.q_print("No serial devices connected.")
+            return None
+        else:
+            usb_ports = []
+            for port in ports:
+                if "ttyUSB" in port.device or "COM" in port.device:
+                    print(f"Found serial device: {port.device}")
+                    usb_ports.append(port.device)
+            if not usb_ports:
+                print("No ttyUSB or COM devices found.")
+            # Return the first available ttyUSB or COM port
+            self.qiup_name.addItems(usb_ports)
 
     def connect_gui(self):
         self.setup_led_buttons()
@@ -148,17 +166,16 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def register(self):
         button_text = self.connect.text()
-        self.qiup_name.setText("")
         if button_text == "Connect":
-            self.qiup.get_avail_dev()
-            self.qiup.setup_serial()
+            port = self.qiup_name.currentText()
+            self.qiup.setup_serial(port)
             self.retrigger_state  = int(self.retrigger.isChecked())
+            
             self.connect_state = self.qiup.register(self.retrigger_state)
             if self.connect_state == None:
                 self.qiup.close_serial()
                 self.connect.setText("Connect")
                 self.qiup_name.setStyleSheet("background-color: red")
-                self.qiup_name.setText("NO CONNECTION")
                 return
             else:
                 self.get_api_version()
@@ -170,7 +187,6 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
                     print("Starting retrigger timer.")
                     self.repeat_time = self.retrigger_sec.value()
                     self.retrigger_timer()
-                self.qiup_name.setText(self.qiup.name)
                 self.setup_start()
         if button_text == "Release":
             if self.retrigger_state == 1:
@@ -181,6 +197,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.connect_state = self.qiup.release()
             self.qiup.close_serial()
             self.connect.setText("Connect")
+            self.qiup_name.setStyleSheet("")
             self.reset_fields()
             self.set_buttons_enabled(False, ["connect"])
     
