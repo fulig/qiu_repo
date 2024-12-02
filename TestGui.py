@@ -71,7 +71,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
     def get_avail_dev(self):
         ports = serial.tools.list_ports.comports()
         if not ports:
-            self.print("No serial devices connected.")
+            print("No serial devices connected.")
             return None
         else:
             usb_ports = []
