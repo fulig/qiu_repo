@@ -26,7 +26,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
         self.measure_data = np.empty(self.data_number)
         self.measure_data[:] = None
         
-        self.default_values()
+        #self.default_values()
+        self.get_avail_dev()
         self.gui = Ui_Quip_test()
         self.qiup = Qiup(debug=False)
         self.default_values()
@@ -39,7 +40,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
 
     def default_values(self):
         self.connect_state = 0
-        self.get_avail_dev()
+        
         self.retrigger.setChecked(False)
         self.retrigger_sec.setValue(7)
         self.leds = [self.led1,self.led2,self.led3,self.led4,self.led5,self.led6,self.led7,self.led8]

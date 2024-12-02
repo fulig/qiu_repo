@@ -23,9 +23,6 @@ class Qiup():
         self.serial = serial.Serial(port=port, baudrate=self.baudrate,timeout=4)
         self.serial.set_low_latency_mode(True)
         return
-    
-    
-    
     def close_serial(self):
         self.serial.close()
 
