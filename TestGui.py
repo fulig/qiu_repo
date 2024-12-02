@@ -192,6 +192,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_Quip_test):
             self.qiup.close_serial()
             self.connect.setText("Connect")
             self.reset_fields()
+            self.set_buttons_enabled(False, ["connect"])
     
     def retrigger_timer(self):
         if self.connect_state == 0:
