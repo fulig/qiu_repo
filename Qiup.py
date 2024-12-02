@@ -1,52 +1,50 @@
-from pyftdi.ftdi import Ftdi
-import pyftdi.usbtools
-import pyftdi.serialext
-import numpy as np
-import re
-
-import datetime
+import serial
+import serial.tools.list_ports
 from api_commands import * 
 from voltages import *
-import pyftdi.serialext.protocol_ftdi
+import numpy as np
+import re
+import datetime
+
 
 class Qiup():
     def __init__(self, url=None, debug=False, baudrate=115200):
         self.baudrate = baudrate
+        self.port = self.get_avail_dev()
         self.STX = b'\x02'
         self.ETX = b'\x03'
         self.run_idx = 0
         self.ex_run_idx = 0
         self.inc = True
 
-        if debug == True:
-            self.debug = True
-        else:
-            self.debug = False
+        self.debug = debug
         #self.url, self.name = self.get_avail_dev()
 
     def setup_serial(self):
-        self.serial = pyftdi.serialext.serial_for_url(self.url, baudrate=self.baudrate, timeout=4)
+        self.serial = serial.Serial(port=self.port, baudrate=self.baudrate,timeout=4)
         return
+    
+    def get_avail_dev(self):
+        ports = serial.tools.list_ports.comports()
+        if not ports:
+            self.q_print("No serial devices connected.")
+            return None
+        else:
+            usb_ports = []
+            for port in ports:
+                if "ttyUSB" in port.device:
+                    self.q_print(f"Found serial device: {port.device}")
+                    usb_ports.append(port)
+            # Return the first available port
+            return usb_ports[0].device
     
     def close_serial(self):
         self.serial.close()
 
     def q_print(self, message):
         print(f"QIUP : {message}")
-    
-    def get_avail_dev(self):
-        dev = Ftdi.list_devices()
-        if dev == []:
-            self.q_print("No FTDI connected.")
-            return False
-        else:
-            dev = dev[0][0]
-            self.url = f"ftdi://ftdi:ft-x:{dev[4]}/1"
-            self.name = dev[-1]
-            self.q_print(f"FTDI device : {self.name}")
-            self.q_print(f"FTDI URL    : {self.url}")
-            return True
-            
+
+
     def check_reject(self, answer):
         state = int(answer[:2], 16)
         connect_state = int(answer[2:4], 16)

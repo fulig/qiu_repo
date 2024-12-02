@@ -12,6 +12,7 @@ from PyQt6 import QtGui, QtWidgets
 from PyQt6.QtCore import QDateTime
 import pyqtgraph
 from pathlib import Path
+import numpy as np
 
 import platform
 #if platform.system() == "Linux":
